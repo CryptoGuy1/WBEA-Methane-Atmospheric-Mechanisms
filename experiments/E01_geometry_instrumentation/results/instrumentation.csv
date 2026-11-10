@@ -1,0 +1,13 @@
+station,lat,lon,wind_heights_m,composite_wind_share_20m,temperature_levels,stability_proxy_usable,analyser_and_history
+AMS 1,57.18942778,-111.64058333,10,0.0,AT10;AT2;AT_Delta,T10-T2,pending site documents
+AMS 2,57.050006,-111.564147,10,0.0,AT2,no,pending site documents
+AMS 5,56.967964,-111.4821,20;45;75;90,0.988,AT2;AT20;AT45;AT75;AT90,T90-T20 (tower),Thermo 55i installed 2021; tower sensors replaced 2022 (SDOC Mar 2024)
+AMS 6,56.75137778,-111.47669444,10,0.0,AT2,no,pending site documents
+AMS 7,56.73339167,-111.3905,10,0.0,AT2,no,pending site documents
+AMS 9,57.198178,-111.59946327,10;20,0.571,AT2,no,pending site documents
+AMS 11,57.02679167,-111.50081944,10,0.0,AT2,no,pending site documents
+AMS 13,57.149175,-111.642344,10,0.0,AT2,no,pending site documents
+AMS 14,56.44890833,-111.037975,20,0.974,AT10;AT2;AT_Delta,no,pending site documents
+AMS 18,55.621487,-111.172798,10;20,0.526,AT2,no,pending site documents
+AMS 23,57.34890123,-111.63968854,10,0.0,AT2,no,pending site documents
+AMS 30,57.24118,-111.722081,10,0.0,AT2,no,pending site documents
