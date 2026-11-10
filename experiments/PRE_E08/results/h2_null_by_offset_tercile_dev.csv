@@ -1,0 +1,4 @@
+offset_tercile,mean,std,count
+short offset,-0.0025,0.0317,82
+medium offset,-0.0176,0.0319,82
+long offset,0.0028,0.0375,82

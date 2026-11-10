@@ -1,0 +1,2 @@
+window_days,K,min_p,pooled_D_dev,p_dev,spearman_null_vs_offset,spearman_p,eligible_hours_real,eligible_hours_shift_median,eligible_hours_shift_p5,eligible_hours_shift_p95
+273,246,0.004,0.1841,0.004,-0.0159,0.8045,75852.0,75852.0,75852.0,75852.0
