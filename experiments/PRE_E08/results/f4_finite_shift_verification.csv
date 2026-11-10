@@ -1,0 +1,2 @@
+confirmation_days,admissible_shifts_K,min_attainable_p,dev_window,dev_window_shifts,pooled_D,p_pooled,pairs_estimable,pairs_familywise_lt_05,runtime_s
+342,315,0.00316,2024-12-25 01:00:00 to 2025-12-02 00:00:00,315,0.18164,0.00316,27,11,10.7

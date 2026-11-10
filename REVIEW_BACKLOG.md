@@ -18,7 +18,7 @@ Severity: **M** material (fixed now) · **N** non-critical (deferred) · **I** i
 | RB-08 | 2026-11-10 | N | E05 | Hour sets use wind at the receptor hour only; wind may change during transit | Sensitivity with wind averaged over t-l..t | **Resolved** (joint review): pooled D 0.143 with t-3..t wind vs 0.128; 27/27 positive |
 | RB-09 | 2026-11-10 | N | E05 | AMS 9 and AMS 18 alternate 10/20 m wind sensors | Height-stratified D for AMS 9 pairs | **Resolved as limitation** (joint review): D higher in 10 m hours (6/7 pairs) but 20 m hours fall mostly in 2022-2023; see RB-17 |
 | RB-10 | 2026-11-10 | N | E01, all | Relocation and instrument histories unverified for 11 stations | Parse WBEA Volume III site documents when supplied | Open; awaiting documents |
-| RB-11 | 2026-11-10 | N | E02, all | Official meanings of Z, SP and "." not confirmed | WBEA QAP or provincial code table | Open; awaiting documents |
+| RB-11 | 2026-11-10 | N | E02, all | Official meanings of Z, SP and "." not confirmed | WBEA QAP or provincial code table | **Partly resolved**: WBEA SOP-ANA-008 documents a daily one-hour zero/span cycle flagged as calibration; token letter and clock time still inferred (metadata/E08_data_eligibility.md) |
 | RB-12 | 2026-11-10 | I | all | `run_metadata.json` written before the author rewrite cites pre-rewrite hashes | Mapping in HISTORY_REWRITE.md | Resolved |
 | RB-13 | 2026-11-10 | N | all | pandas FutureWarnings (concat sorting, object dtypes) in logs | Code hygiene pass before E08 freeze | Deferred to integrated review |
 | RB-14 | 2026-11-10 | I | all | GitHub Issues not used: the access token has Contents permission only | Backlog kept as this file | Resolved |

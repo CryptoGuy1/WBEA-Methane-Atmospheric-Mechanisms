@@ -1,0 +1,16 @@
+variable,coverage
+AMS 5 WS20 m,0.988
+AMS 5 WD20 m,0.988
+AMS 5 WS45 m,0.985
+AMS 5 WD45 m,0.985
+AMS 5 WS75 m,0.977
+AMS 5 WD75 m,0.977
+AMS 5 WS90 m,0.974
+AMS 5 WD90 m,0.974
+ERA5 u100/v100 at AMS 1 cell,1.0
+ERA5 u100/v100 at AMS 13 cell,1.0
+ERA5 u100/v100 at AMS 5 cell,1.0
+median ratio WS45/WS20 at AMS 5,1.348
+median ratio WS75/WS20 at AMS 5,1.5
+median ratio WS90/WS20 at AMS 5,1.558
+median ratio ERA5 100 m speed / AMS 1 10 m speed,1.951
