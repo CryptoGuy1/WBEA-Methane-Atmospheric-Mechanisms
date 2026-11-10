@@ -17,7 +17,8 @@ meteorological composition of methane-exceedance reporting in the WBEA monitorin
 | E06 detectability and kernel shape | `e06-kernel-criterion-failed` | criterion 3 failed as pre-registered; revised for E08 |
 | E05+E06 joint review | `review-e05-e06` | no material error |
 | E07 composition decomposition | `e07-h3-not-supported` | H3 not supported as pre-registered (exploratory) |
-| Integrated review E02-E07 | - | next (before E08 freeze) |
+| E07 review corrections | `e07-r1` | complete (exploratory) |
+| Integrated review E01-E07 | `integrated-review` | complete; freeze awaits decisions F1-F5 |
 | E08 confirmation | - | **sealed** (see SEALED_DATA_POLICY.md) |
 
 All development results are **exploratory**. Only E08 produces confirmatory results.
