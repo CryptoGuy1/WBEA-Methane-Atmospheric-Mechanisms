@@ -1,0 +1,4 @@
+tercile,hours,mean_offdiag_r,min_r,max_r
+unstable,14229,0.406,0.018,0.812
+neutral,14399,0.325,0.065,0.816
+stable,14329,0.253,0.064,0.736
