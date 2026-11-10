@@ -66,10 +66,13 @@ q2 = pd.DataFrame(q2); q2.to_csv(RES / "q2_station_heterogeneity.csv", index=Fal
 pt = pair_table(ST); lift = []
 for _, r in pt.iterrows():
     a, b = E[r.i], E[r.j]; ok = a.notna() & b.notna(); a, b = a[ok], b[ok]
-    pab = (a * b).mean(); lift.append(dict(i=r.i, j=r.j, km=round(r.km, 2), p_i=a.mean(), p_j=b.mean(), p_both=pab,
-                                           lift=pab / (a.mean() * b.mean()), p_j_given_i=pab / a.mean()))
+    pab = (a * b).mean()
+    cell = a.index.month * 100 + a.index.hour                       # expected joint rate if independent WITHIN month x hour
+    exp_joint = (a.groupby(cell).mean() * b.groupby(cell).mean() * a.groupby(cell).size()).sum() / len(a)
+    lift.append(dict(i=r.i, j=r.j, km=round(r.km, 2), p_i=a.mean(), p_j=b.mean(), p_both=pab,
+                     lift=pab / (a.mean() * b.mean()), lift_given_month_hour=pab / exp_joint, p_j_given_i=pab / a.mean()))
 lift = pd.DataFrame(lift); lift.to_csv(RES / "q3_pairwise_cooccurrence.csv", index=False)
-rho = lift[["km", "lift"]].corr("spearman").iloc[0, 1]
+rho = lift[["km", "lift"]].corr("spearman").iloc[0, 1]; rho_c = lift[["km", "lift_given_month_hour"]].corr("spearman").iloc[0, 1]
 
 # ------------------------------------------------ Q4 meteorological strata (fixed regimes, correction 5)
 S = (P["AMS 5"]["AT90 (C)"] - P["AMS 5"]["AT20 (C)"])
@@ -134,20 +137,22 @@ q7 = pd.DataFrame([dict(set=k, station_hours=int(E[m].notna().sum().sum()), rate
 q7.to_csv(RES / "q7_smoke_sensitivity.csv", index=False)
 
 # ------------------------------------------------ Figures
-fig = plt.figure(figsize=(7.2, 5.6)); gs = fig.add_gridspec(2, 2, hspace=0.45, wspace=0.3)
+fig = plt.figure(figsize=(7.4, 5.8)); gs = fig.add_gridspec(2, 2, hspace=0.5, wspace=0.55)
 a = fig.add_subplot(gs[0, 0]); im = a.imshow(100 * hm.values, aspect="auto", origin="lower", cmap="magma",
                                                extent=[-0.5, 23.5, 0.5, 12.5])
 a.set_xlabel("Hour ending (MST)"); a.set_ylabel("Month"); a.set_xticks(range(0, 24, 6)); a.set_yticks(range(1, 13, 2))
-fig.colorbar(im, ax=a, fraction=0.05).set_label("P95 excursion rate (%)"); a.set_title("a  Hour x month (12 stations pooled)")
+fig.colorbar(im, ax=a, fraction=0.05).set_label("P95 excursion rate (%)"); a.set_title("a  Hour x month, 12 stations")
 b = fig.add_subplot(gs[0, 1]); b.fill_between(range(24), 100 * h_lo, 100 * h_hi, alpha=.3); b.plot(range(24), 100 * h_est, "k-")
 b.axhline(5, ls=":", c="grey"); b.set_xlabel("Hour ending (MST)"); b.set_ylabel("Rate (%)"); b.set_xticks(range(0, 24, 6))
-b.set_title("b  Diurnal profile, 95% block-bootstrap CI")
+b.set_title("b  Diurnal profile (95% CI)")
 c = fig.add_subplot(gs[1, 0]); c.fill_between(mcols, 100 * m_lo, 100 * m_hi, alpha=.3); c.plot(mcols, 100 * m_est, "k-o", ms=3)
 c.axhline(5, ls=":", c="grey"); c.set_xlabel("Month"); c.set_ylabel("Rate (%)"); c.set_xticks(range(1, 13))
-c.set_title("c  Seasonal profile, 95% block-bootstrap CI")
-dd = fig.add_subplot(gs[1, 1]); dd.scatter(lift.km, lift.lift, s=10, c="k"); dd.axhline(1, ls=":", c="grey")
+c.set_title("c  Seasonal profile (95% CI)")
+dd = fig.add_subplot(gs[1, 1]); dd.scatter(lift.km, lift.lift, s=9, c="lightgrey", label=f"unconditional (rho {rho:.2f})")
+dd.scatter(lift.km, lift.lift_given_month_hour, s=9, c="k", label=f"given month x hour (rho {rho_c:.2f})")
+dd.legend(fontsize=6, frameon=False); dd.axhline(1, ls=":", c="grey")
 dd.set_xscale("log"); dd.set_xlabel("Station separation (km)"); dd.set_ylabel("Co-occurrence lift")
-dd.set_title(f"d  Joint excursions vs distance (66 pairs, Spearman {rho:.2f})")
+dd.set_title("d  Joint excursions vs distance (66 pairs)")
 fig.text(0.01, 0.0, "Excursion = CH$_4$ above the station's 2021-2023 P95 (dotted line = 5% by construction in the reference years). "
          "Development data 2021-01-01 to 2025-12-02; 12 stations; 14-day joint block bootstrap, 2,000 replicates.", fontsize=6.3)
 save(fig, FIG / "figure03_excursion_phenotype")
@@ -176,7 +181,7 @@ save(fig, FIG / "figureS4_episode_definition_sensitivity")
 runmeta.write(EXP, dict(experiment="E03_excursion_patterns", status="exploratory", seed_used=CFG["project"]["seed"] + 3,
                         external_manifest="manifests/external_derived_SHA256SUMS.txt"))
 print("hour profile", (100 * h_est).round(2).tolist()); print("month profile", (100 * m_est).round(2).tolist())
-print(q2.to_string(index=False)); print("lift~km spearman", round(rho, 3)); print(lift.sort_values("lift", ascending=False).head(5).round(3).to_string(index=False))
+print(q2.to_string(index=False)); print("lift~km spearman", round(rho, 3), "conditional", round(rho_c, 3)); print(lift.sort_values("lift", ascending=False).head(5).round(3).to_string(index=False))
 print(lift.sort_values("km").head(8).round(3).to_string(index=False))
 print("stab rates", (100 * st3["mean"]).round(2).to_dict(), "wind rates", (100 * wd3["mean"]).round(2).to_dict()); print(bq.round(3).to_string())
 print(pd.read_csv(RES / "q4_regime_table.csv").head(8).to_string(index=False)); print(summ.to_string(index=False))
