@@ -1,0 +1,7 @@
+{
+ "experiment": "R1_readiness",
+ "run_utc": "2026-11-10 (as run, see results timestamps)",
+ "python": "3.12.3",
+ "note": "Scripts archived exactly as run, with original absolute paths; outputs reproduced in results/.",
+ "inputs": "development panel (manifests/dev_panel_SHA256SUMS.txt); ERA5 era5c (manifests/archives_sha256.csv)"
+}

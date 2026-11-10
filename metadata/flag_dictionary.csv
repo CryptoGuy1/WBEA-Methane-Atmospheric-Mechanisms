@@ -1,0 +1,8 @@
+token,hours_2021_2025_all_12_stations,observed_timing,official_definition,source,status,analysis_treatment
+(numeric; no code),479063,all hours,"Valid data carry no validation code",Alberta AMD Ch.6 s4.1.1 DQ 4-A(b) (2014),Official (provincial),Valid
+C,3225,"10:00-14:00 MST; ~0.6% of hours","'C' given as example flag for calibration",Alberta AMD Ch.6 s4.1.1 (2014),"Official example; WBEA-specific list not yet obtained",Missing: instrument QA/QC
+Z,21133,"Every ~25 h; 97-100% within 01:00-06:00 MST; ~4.1% of hours","Not defined in documents accessed. WBEA states it runs daily zero and span checks with EPA protocol gases",wbea.org data-management page; AMD Ch.6,"UNCONFIRMED; meaning must come from WBEA QAP/SOP or AEP flag table (Reference Tables V2.1)",Missing: instrument QA/QC (treated as non-random by hour)
+SP,2,"AMS 2 (10:00), AMS 11 (02:00)",Not defined in documents accessed,-,UNCONFIRMED,Missing
+.,13825,"Mostly daytime; 17-25% within 01:00-06:00",Not defined in documents accessed,-,"UNCONFIRMED (generic missing)",Missing
+"zero values (NMHC)",n/a,n/a,"Valid negative hourly gas values are reported as 0",Alberta AMD Ch.6 DQ 4-J,Official (provincial),NMHC is left-censored at 0; never treat 0 as a measured value
+"CH4+NMHC=THC",n/a,n/a,"Sum must be preserved through all adjustments",Alberta AMD Ch.6 Table 1,Official (provincial),THC never used as a CH4 predictor

@@ -1,0 +1,12 @@
+# Data are never committed: WBEA exports are "For authorized use only"; rebuild from raw with src/build/.
+data/
+sealed/
+raw/
+*.parquet
+*.nc
+*.xlsx
+# Copyrighted reference PDFs stay outside git
+literature/pdf/
+*.pdf
+__pycache__/
+.ipynb_checkpoints/

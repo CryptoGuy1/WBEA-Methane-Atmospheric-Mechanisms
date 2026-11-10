@@ -1,0 +1,50 @@
+# WBEA methane atmospheric-mechanisms project configuration.
+# Items marked FROZEN may only change through a DECISION_LOG entry made before E08.
+
+[project]
+name = "WBEA-Methane-Atmospheric-Mechanisms"
+seed = 20261110                         # global RNG seed; experiments derive sub-seeds from it
+timezone = "MST (UTC-7, no DST)"        # D-02
+timestamp_convention = "hour-ending"    # D-02 (data evidence; WBEA documentation pending)
+
+[split]                                  # FROZEN (D-01)
+dev_start = "2021-01-01 01:00"
+dev_end = "2025-12-02 00:00"
+reference_years = [2021, 2022, 2023]     # station medians, percentile thresholds, regime cut points
+
+[stations]                               # FROZEN (D-05, D-10)
+usable = ["AMS 1", "AMS 2", "AMS 5", "AMS 6", "AMS 7", "AMS 9", "AMS 11",
+          "AMS 13", "AMS 14", "AMS 18", "AMS 23", "AMS 30"]
+excluded_no_dev_data = ["AMS 15", "AMS 32", "AMS 503"]
+h1_core_response = ["AMS 1", "AMS 2", "AMS 6", "AMS 7", "AMS 11", "AMS 13", "AMS 23"]  # pre-registered v2.0 set
+h1_core_kmin = 5
+h1_expanded_response = ["AMS 1", "AMS 2", "AMS 6", "AMS 7", "AMS 9", "AMS 11", "AMS 13",
+                        "AMS 14", "AMS 18", "AMS 23", "AMS 30"]                      # sensitivity
+stability_station = "AMS 5"
+
+[h2]                                     # FROZEN rule (D-04)
+max_pair_km = 30.0
+lags = [1, 2, 3]                         # correction 1: lag 0 excluded
+u_min_ms = 1.0
+max_tau_h = 3.0
+align_cos = 0.707
+kmin_other_stations = 4
+n_wind_shifts = 1000                     # correction 4
+min_shift_days = 14
+
+[bootstrap]
+block_days = 14
+sensitivity_block_days = [7, 21, 30]
+n_boot = 2000
+
+[h3]                                     # correction 5
+stability_terciles_from = "2021-2023 pooled AMS 5 S"
+wind_classes_ms = [1.0, 2.5]
+day_night = "solar elevation > 0 deg at 57.0N, 111.5W"
+min_cell_hours = 50
+
+[smoke]                                  # D-11 (sensitivity only)
+firms_radius_km = 100
+firms_min_detections = 10
+firms_persistent_months = 6
+pm25_network_median_ugm3 = 30

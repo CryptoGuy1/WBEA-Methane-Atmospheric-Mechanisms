@@ -1,0 +1,13 @@
+station,name,lat,lon,wind_heights_m,temp_levels,has_NMHC,has_PM25,has_WD_STD,n_variables
+AMS 1,Fort McKay - Bertha Ganter,57.18942778,-111.64058333,10,AT10;AT2;AT_Delta,True,True,True,13
+AMS 2,Mildred Lake,57.050006,-111.564147,10,AT2,True,False,True,9
+AMS 5,Mannix,56.967964,-111.4821,20;45;75;90,AT2;AT20;AT45;AT75;AT90,True,False,True,37
+AMS 6,Patricia McInnes,56.75137778,-111.47669444,10,AT2,True,True,True,11
+AMS 7,Athabasca Valley,56.73339167,-111.3905,10,AT2,True,True,True,12
+AMS 9,Barge Landing,57.198178,-111.59946327,10;20,AT2,True,True,True,15
+AMS 11,Lower Camp,57.02679167,-111.50081944,10,AT2,True,False,True,10
+AMS 13,Fort McKay South,57.149175,-111.642344,10,AT2,True,True,True,11
+AMS 14,Anzac,56.44890833,-111.037975,20,AT10;AT2;AT_Delta,True,True,True,15
+AMS 18,Stony Mountain,55.621487,-111.172798,10;20,AT2,True,True,True,18
+AMS 23,Fort Hills,57.34890123,-111.63968854,10,AT2,True,True,True,10
+AMS 30,Ells River,57.24118,-111.722081,10,AT2,True,True,True,11

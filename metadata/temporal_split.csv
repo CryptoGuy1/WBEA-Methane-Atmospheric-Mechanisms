@@ -1,0 +1,5 @@
+segment,start_mst_hour_ending,end_mst_hour_ending,hours,status,use
+Development,2021-01-01 01:00,2025-12-02 00:00,43104,"Annual-validated (2021-2025 covered by Volume III reports; 2025 report dated March 2026)",All E01-E07 development; exploratory labels throughout
+Confirmation (sealed),2025-12-02 01:00,2026-11-09 00:00,about 8208,"Exported 2026-11-09 as 'Final Data (1Hr)'; Level 2 monthly status per month NOT yet confirmed; annual (post-final) validation of 2026 not yet performed",E08 only; primary set = months confirmed final by WBEA
+ERA5 limit,2021-01-01 00:00 UTC,2026-11-04 23:00 UTC,51216,Reanalysis (ERA5 final for older months; ERA5T preliminary for most recent ~2-3 months),Confirmation hours after 2026-11-04 16:00 MST lack ERA5
+FIRMS archive / NRT,2021-01-01 / 2026-08-01,2026-07-31 / 2026-11-09,-,Standard (C2) archive / near-real-time,Smoke-day sensitivity; static-source mask from archive applied to NRT
