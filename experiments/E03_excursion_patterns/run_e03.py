@@ -21,7 +21,7 @@ CH = pd.DataFrame({s: P[s]["CH4 (ppm)"] for s in ST}); idx = CH.index
 ref = CH.loc[str(CFG["split"]["reference_years"][0]):str(CFG["split"]["reference_years"][-1])]
 Q = {q: ref.quantile(q / 100) for q in (90, 95, 99)}
 pd.DataFrame(Q).round(4).to_csv(RES / "thresholds_ppm_2021_2023.csv")
-EX = {q: CH.gt(Q[q]).where(CH.notna()) for q in Q}      # 1/0/NaN
+EX = {q: CH.gt(Q[q]).astype(float).where(CH.notna()) for q in Q}   # 1.0/0.0/NaN
 E = EX[95]; X = CH - ref.median()
 elev = elevation_deg(idx); night = elev <= 0
 blk = block_ids(idx, CFG["bootstrap"]["block_days"]); ub = np.unique(blk)
