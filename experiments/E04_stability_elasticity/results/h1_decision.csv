@@ -1,0 +1,5 @@
+criterion,met
+Direct-effect 95% CI excludes 0,True
+Sign agrees in at least 4 of 5 years,True
+Negative control not >= 50% of effect with CI excluding 0,True
+H1 gate (all three),True

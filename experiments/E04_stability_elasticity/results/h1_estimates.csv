@@ -1,0 +1,32 @@
+group,label,n_hours,n_cells,estimate,se_boot,ci_lo,ci_hi
+primary,Total (no wind term),40715,1439,0.0543,0.00289,0.04753,0.0589
+primary,Direct (with log wind),40334,1439,0.04752,0.00277,0.04106,0.05203
+uncertainty,"Direct, 7-day blocks",40334,1439,0.04752,0.00246,0.04238,0.05138
+uncertainty,"Direct, 21-day blocks",40334,1439,0.04752,0.00292,0.04205,0.05313
+uncertainty,"Direct, 30-day blocks",40334,1439,0.04752,0.00285,0.04153,0.05265
+year,"Direct, 2021",8270,288,0.05859,0.00591,0.0455,0.0694
+year,"Direct, 2022",8091,288,0.03724,0.00467,0.02895,0.04718
+year,"Direct, 2023",8088,288,0.04418,0.00454,0.03349,0.05142
+year,"Direct, 2024",8288,288,0.05082,0.00736,0.03683,0.06556
+year,"Direct, 2025",7597,287,0.04851,0.00775,0.03435,0.06367
+season,"Direct, DJF",9444,359,0.04785,0.00469,0.03688,0.05474
+season,"Direct, MAM",10485,360,0.05585,0.0046,0.04605,0.0635
+season,"Direct, JJA",10294,360,0.03839,0.00354,0.03039,0.04418
+season,"Direct, SON",10111,360,0.04831,0.00405,0.0401,0.05583
+response,"Direct, response without AMS 1",41651,1440,0.04599,0.00269,0.03978,0.05028
+response,"Direct, response without AMS 2",40437,1439,0.04545,0.00257,0.039,0.04931
+response,"Direct, response without AMS 6",41735,1440,0.05717,0.00328,0.04942,0.06218
+response,"Direct, response without AMS 7",40813,1439,0.05439,0.00332,0.04691,0.06048
+response,"Direct, response without AMS 11",41649,1440,0.04839,0.00288,0.04128,0.05269
+response,"Direct, response without AMS 13",40627,1439,0.0432,0.00264,0.03682,0.0472
+response,"Direct, response without AMS 23",40802,1439,0.04683,0.0027,0.04044,0.05099
+response,"Direct, expanded 11-station response (Kmin 8)",39219,1438,0.03427,0.00234,0.02889,0.03788
+response,"Direct, background-subtracted response (C - B_t)",40333,1439,0.04662,0.00272,0.04063,0.05117
+response,"Direct, station-months < 75% removed",40141,1439,0.04745,0.00297,0.04065,0.05222
+response,"Direct, smoke hours excluded",36595,1439,0.04788,0.00309,0.04099,0.05291
+proxy,Proxy AMS 5 T45 - T20,40334,1439,0.03756,0.00293,0.031,0.04203
+proxy,Proxy AMS 5 T75 - T20,40334,1439,0.04533,0.00276,0.03929,0.05019
+proxy,Proxy AMS 1 T10 - T2 (response without AMS 1),40897,1440,0.01276,0.00256,0.00691,0.01693
+proxy,"Proxy ERA5 -log(BLH), AMS 5 cell",40334,1439,0.05379,0.00304,0.04691,0.0585
+negative control,"Negative control: coefficient on S(t+24), given S(t)",40201,1417,-4e-05,0.0019,-0.00477,0.00264
+negative control,Coefficient on S(t) in the negative-control model,40201,1417,0.04747,0.00276,0.0414,0.0523

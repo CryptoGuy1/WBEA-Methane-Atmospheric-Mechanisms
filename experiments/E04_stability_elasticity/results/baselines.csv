@@ -1,0 +1,5 @@
+model,r2
+climatology only (year x month x hour cell means),0.2871
+partial R2 of S given cells and log wind,0.1356
+random forest OOB R2 (Grange-Carslaw style normalisation),0.5833
+"RF partial-dependence slope of S (ppm per SD, 5-95% range)",0.0517
