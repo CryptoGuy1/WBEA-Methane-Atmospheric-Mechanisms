@@ -1,0 +1,9 @@
+variant,kappa
+sigma cut 0.4,0.8677
+sigma cut 0.6,0.8495
+lead lags 1-2,0.9328
+lead z >= 0.75,0.9413
+lead z >= 1.25,0.9542
+onset-available synchrony (t0-1..t0) vs retrospective,0.8959
+leave-one-core-station-out synchrony (min over 10),0.8958
+P90 matched episodes (5556 of 13230 P90 onsets matched to 7951 P95 onsets),0.6168

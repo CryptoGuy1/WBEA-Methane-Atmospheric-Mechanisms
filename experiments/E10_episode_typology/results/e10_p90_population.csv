@@ -1,0 +1,6 @@
+label,P95_share,P90_share
+accumulation-compatible,0.1331,0.2091
+mixed,0.0396,0.0565
+advection-compatible,0.1217,0.1045
+isolated,0.7026,0.6268
+unclassified,0.003,0.0031

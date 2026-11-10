@@ -1,0 +1,3 @@
+outcome,n_train,n_test,r2_gain_test,ci_lo,ci_hi,met
+log duration,4804,3147,0.0211,0.0034,0.0385,True
+log peak excess,4804,3147,0.0111,0.0002,0.0223,True

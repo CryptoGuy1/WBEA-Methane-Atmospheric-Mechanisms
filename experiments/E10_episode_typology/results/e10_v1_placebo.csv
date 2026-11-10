@@ -1,0 +1,2 @@
+check,real_share,placebo_mean,placebo_p95,p,met
+V1 wind-shift placebo (not independent of wind),0.1217,0.1413,0.1483,1.0,False

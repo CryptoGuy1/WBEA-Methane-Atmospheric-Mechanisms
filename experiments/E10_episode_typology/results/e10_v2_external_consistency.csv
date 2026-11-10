@@ -1,0 +1,4 @@
+variable,contrast_acc_minus_adv,ci_lo,ci_hi,expected_sign,met
+blh,-75.5205,-88.892,-58.6044,negative,True
+S_z,0.1678,-0.0839,0.3376,positive,False
+era5_dir_sd3h,5.8282,0.0043,12.6119,positive,True

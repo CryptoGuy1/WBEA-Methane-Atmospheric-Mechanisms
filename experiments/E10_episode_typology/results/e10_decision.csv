@@ -1,0 +1,5 @@
+criterion,value,met
+V1 wind-shift placebo (not independent of wind),real 0.122 vs placebo 95th 0.148 (p = 1.000),False
+V2 ERA5 BLH lower in accumulation- than advection-compatible (external consistency),-76 m (-89 to -59),True
+V3 out-of-sample R2 gain > 0 for at least one outcome (2024-2025 hold-out),log duration: 0.0211 (0.0034 to 0.0385); log peak excess: 0.0111 (0.0002 to 0.0223),True
+Typology supported (V1 and V2-BLH and V3),,False

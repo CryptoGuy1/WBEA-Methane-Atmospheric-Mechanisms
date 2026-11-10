@@ -1,0 +1,6 @@
+label,share,ci_lo,ci_hi,n
+accumulation-compatible,0.1331,0.112,0.1555,1058
+mixed,0.0396,0.0321,0.0478,315
+advection-compatible,0.1217,0.1113,0.1317,968
+isolated,0.7026,0.6736,0.7298,5586
+unclassified,0.003,0.0015,0.0048,24
