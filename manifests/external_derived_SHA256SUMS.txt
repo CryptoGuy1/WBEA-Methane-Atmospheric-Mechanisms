@@ -1,0 +1,2 @@
+6c5e4c15e627c9f769f2f71a8fefb8e50760a2df281a0024fecf91dff1f93258  era5_station_cells.parquet
+f5a034fc6fb847f8da35040f87ecf7c049f1f46a8043769cea52da459d236612  firms_fire_days.csv

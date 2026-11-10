@@ -35,3 +35,16 @@ def load_dev(stations=None, verify=True):
 
 def ch4_panel(P):
     return pd.DataFrame({s: P[s]["CH4 (ppm)"] for s in P})
+
+def load_era5():
+    """ERA5 at each station's nearest cell, averaged over the station's hour (development period only)."""
+    d = pd.read_parquet(ROOT / "data" / "external" / "era5_station_cells.parquet")
+    if d.time_mst_hour_ending.max() > CUT:
+        raise SealViolation("ERA5 derived file extends past the development cutoff")
+    return {s: g.set_index("time_mst_hour_ending").drop(columns="station") for s, g in d.groupby("station")}
+
+def load_fire_days():
+    f = pd.read_csv(ROOT / "data" / "external" / "firms_fire_days.csv", parse_dates=["fire_day"]).fire_day
+    if (f > CUT).any():
+        raise SealViolation("fire days past cutoff")
+    return pd.DatetimeIndex(f)
