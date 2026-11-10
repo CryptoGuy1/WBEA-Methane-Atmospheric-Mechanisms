@@ -1,0 +1,2 @@
+criterion,value,outcome
+"Primary: Delta SSE (W0 minus ERA5 100 m, X4a) 95% CI above 0",0.314 (-0.081 to 0.772),inconclusive

@@ -1,0 +1,8 @@
+comparison,base,alternative,delta_SSE,ci_lo,ci_hi
+PRIMARY X4a: ERA5 100 m transit on fixed W0 hours,W0,W4_full,0.3144,-0.0813,0.7722
+"speed only (W0 direction, ERA5 speed)",W0,W4_speed,0.3324,-0.3289,0.8716
+X4b: reselected hours with ERA5 100 m,W0,W4_resel,-0.5166,-2.253,0.1737
+direction-consistent common sample,W0_dc,W4_dc,0.562,-0.2944,1.5592
+AMS 5 45 m (supporting),W0,T45,0.3137,-0.502,0.9438
+AMS 5 75 m (supporting),W0,T75,0.2073,-0.5246,0.7909
+AMS 5 90 m (supporting),W0,T90,0.2442,-0.554,0.7481
