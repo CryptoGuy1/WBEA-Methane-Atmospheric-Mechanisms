@@ -1,0 +1,12 @@
+label,n_hours,estimate,ci_lo,ci_hi,change_vs_primary,ci_width_ratio_vs_primary
+"Direct, response without AMS 1",41651,0.046,0.0398,0.0503,-0.0015,0.9572
+"Direct, response without AMS 2",40437,0.0454,0.039,0.0493,-0.0021,0.9398
+"Direct, response without AMS 6",41735,0.0572,0.0494,0.0622,0.0096,1.1632
+"Direct, response without AMS 7",40813,0.0544,0.0469,0.0605,0.0069,1.237
+"Direct, response without AMS 11",41649,0.0484,0.0413,0.0527,0.0009,1.0401
+"Direct, response without AMS 13",40627,0.0432,0.0368,0.0472,-0.0043,0.9462
+"Direct, response without AMS 23",40802,0.0468,0.0404,0.051,-0.0007,0.9617
+"Direct, expanded 11-station response (Kmin 8)",39219,0.0343,0.0289,0.0379,-0.0132,0.8195
+"Direct, background-subtracted response (C - B_t)",40333,0.0466,0.0406,0.0512,-0.0009,0.9608
+"Direct, station-months < 75% removed",40141,0.0474,0.0406,0.0522,-0.0001,1.0547
+"Direct, smoke hours excluded",36595,0.0479,0.041,0.0529,0.0004,1.0866

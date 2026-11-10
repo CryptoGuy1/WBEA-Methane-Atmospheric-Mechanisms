@@ -21,7 +21,9 @@ meteorological composition of methane-exceedance reporting in the WBEA monitorin
 | Integrated review E01-E07 | `integrated-review` | complete |
 | Pre-E08 tasks (F1-F5, Jan-Oct and Jan-Sep H3 benchmarks) | `pre-e08-tasks` | complete |
 | E09 elevated-wind sensitivity (X4) | `e09-x4-inconclusive` | primary outcome inconclusive (exploratory) |
-| E10 episode typology (X1) | - | authorised; awaiting E09 review |
+| E09-r1 precision refinement | `e09-r1` | primary still inconclusive; improvement depends on re-binning |
+| E10 episode typology (X1) | `e10-typology-not-supported` | not supported (V1 failed) |
+| E11 station contribution (X3) | `e11-x3` | descriptive; no single station drives H1 or H2 |
 | E08 confirmation | - | **sealed** (see SEALED_DATA_POLICY.md) |
 
 All development results are **exploratory**. Only E08 produces confirmatory results.

@@ -55,3 +55,25 @@ Primary criterion: inconclusive. Recorded as such; no method change is proposed 
 
 ## Outputs
 `results/e09_centroids_reference_sse.csv`, `e09_delta_sse.csv`, `e09_decision.csv`, `e09_membership_by_pair_variant.csv`, `e09_direction_disagreement.csv`, `e09_tower_representativeness.csv`; `figures/e09_centroids_by_wind.{png,svg,pdf}`.
+
+## E09-r1 precision refinement (2026-11-10, D-59; `run_e09_r1.py`, `results/r1_*`)
+Changes: common random source signals across variants within each pair x replicate; paired reference replicates; 50 replicates; Monte Carlo and temporal uncertainty separated; fixed-bin diagnostic. Hypothesis and threshold unchanged; original 10-replicate results above are preserved.
+
+| Comparison | Delta SSE | Monte Carlo 95% (SD) | Temporal 95% (SD) | Combined 95% |
+|---|---|---|---|---|
+| **Primary X4a** | **0.294** | 0.198 to 0.396 (0.056) | -0.111 to 0.736 (0.215) | **-0.122 to 0.741** |
+| Speed only | 0.315 | 0.223 to 0.402 (0.055) | -0.294 to 0.816 (0.273) | -0.314 to 0.858 |
+| Direction-consistent common sample | 0.560 | 0.373 to 0.741 (0.109) | -0.228 to 1.370 (0.432) | -0.291 to 1.436 |
+| **Fixed-bin diagnostic** (observed bins and centroids identical to W0; only the reference uses ERA5 transport) | **0.096** | -0.060 to 0.248 (0.087) | -0.999 to 0.956 (0.488) | -1.025 to 0.961 |
+
+| Version | Delta SSE | 95% interval |
+|---|---|---|
+| E09 (10 unpaired replicates) | 0.314 | -0.081 to 0.772 |
+| E09-r1 (50 paired replicates) | 0.294 | -0.122 to 0.741 |
+
+**Outcome: the primary conclusion remains inconclusive; it neither becomes supported nor changes direction.**
+
+Findings:
+1. **Precision.** Paired common-random-number replicates reduce Monte Carlo spread to an SD of 0.056. Temporal (observational) uncertainty (SD 0.215) now dominates the interval. More simulation would not change the conclusion.
+2. **Bin movement.** With bins held fixed, the faster-transport reference centroids (0.17, 0.30, 0.52, 0.81, 1.13 h) fall *below* the observed ones in the long-transit bins, so ERA5-speed transport over-shoots there. The fit gain shrinks from 0.29 to 0.10, with a very wide interval. **Most of the X4a improvement depends on hours moving between transit bins**, not on a better reference for the same observations.
+3. Reading: the data are compatible with an effective transport speed somewhere between the 10 m and the ERA5 100 m wind, but this test cannot pin it down.

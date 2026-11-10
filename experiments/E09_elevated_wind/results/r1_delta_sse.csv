@@ -1,0 +1,5 @@
+comparison,delta_SSE,mc_sd,mc_ci_lo,mc_ci_hi,temporal_sd,temporal_ci_lo,temporal_ci_hi,combined_ci_lo,combined_ci_hi
+"PRIMARY X4a: ERA5 100 m transit, fixed W0 hours",0.2935,0.0559,0.1979,0.3963,0.2154,-0.1107,0.7357,-0.122,0.741
+speed only,0.3151,0.0547,0.2226,0.4022,0.2726,-0.2942,0.8161,-0.3139,0.8583
+direction-consistent common sample,0.5596,0.1089,0.3734,0.741,0.4318,-0.2282,1.37,-0.2914,1.4357
+"fixed-bin diagnostic: identical observed bins, ERA5 transport in reference",0.0962,0.0867,-0.0599,0.2479,0.488,-0.9989,0.9556,-1.0253,0.9609
