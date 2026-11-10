@@ -48,3 +48,13 @@ Typology **not supported**; reported in full. Per the protocol, episode-distribu
 
 ## Outputs
 `results/e10_episodes.csv`, `e10_shares_pooled.csv`, `e10_shares_by_station.csv`, `e10_v1_placebo.csv`, `e10_v2_external_consistency.csv`, `e10_v3_temporal_holdout.csv`, `e10_v4_period_stability.csv`, `e10_classification_stability.csv`, `e10_p90_population.csv`, `e10_decision.csv`, `exploratory_v1_conditional.csv`; `figures/e10_typology.{png,svg,pdf}`.
+
+## Addendum (2026-11-10, researcher review): assessable vs non-assessable upstream lead
+`L = 0` does not always mean a detectable lead was absent: for 55% of episodes (4,412 of 7,951) no eligible aligned upstream pair existed at onset, so a lead could not be assessed. Descriptive split (`addendum_assessability.py`; no re-classification):
+
+| | n | Accumulation-compatible | Mixed | Advection-compatible | Isolated | Unclassified | Median BLH (m) |
+|---|---|---|---|---|---|---|---|
+| Lead assessable | 3,539 | 7.0% | 8.9% | 27.4% | 56.5% | 0.3% | 137 |
+| No assessable pair | 4,412 | 18.4% | 0% | 0% | 81.3% | 0.3% | 89 |
+
+"Isolated" in the no-assessable group means "not network-wide, lead not assessable", not "no upstream influence". **V1 used 200 random admissible whole-day wind shifts, not the full admissible set** (about 1,768 shifts in the development series); its p-value resolution is 1/201. The V1 failure is not near the decision boundary (real share 0.122 vs placebo mean 0.141).
