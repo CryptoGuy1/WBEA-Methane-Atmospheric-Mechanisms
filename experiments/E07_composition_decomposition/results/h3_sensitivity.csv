@@ -1,0 +1,8 @@
+analysis,share,ci_lo,ci_hi
+"Primary (raw P95, Jan-Nov, 2021-2025)",0.0269,-0.0396,0.1264
+Manski lower (missing CH4 as non-exceedance),0.0222,,
+Manski upper (missing CH4 as exceedance),0.0191,,
+Background-adjusted excess C - B_t (D-16),-0.0071,-0.0319,0.0317
+PWIP hours excluded,0.0371,-0.0377,0.1522
+Full calendar years 2021-2024 only,0.1006,-0.0191,0.2365
+"Baseline: boosted-tree deweathering, implied meteorology share",0.2125,,
