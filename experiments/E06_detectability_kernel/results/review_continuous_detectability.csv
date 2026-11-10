@@ -1,0 +1,9 @@
+model,memory_min,A,detection_rate,mean_D
+continuous source,20,0.2,0.2315,0.0299
+continuous source,20,0.4,0.7407,0.1103
+continuous source,180,0.2,0.4537,0.0435
+continuous source,180,0.4,0.8333,0.1563
+original (mask-gated),20,0.2,0.4259,0.0525
+original (mask-gated),20,0.4,0.8796,0.1657
+original (mask-gated),180,0.2,0.5185,0.0566
+original (mask-gated),180,0.4,0.9167,0.1835

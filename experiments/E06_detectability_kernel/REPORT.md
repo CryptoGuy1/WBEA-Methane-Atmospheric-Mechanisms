@@ -46,3 +46,24 @@ Direction-dependent coupling (E05) is real in this network and its lag structure
 
 ## Figures
 Main Figure 7 (`figure07_kernel_shape`, pre-registered A = 3 comparison). Supplementary S2 (`figureS2_detectability`).
+
+## Review corrections (2026-11-10, D-38; `review_corrections.py`, `results/review_*`)
+Original results above are unchanged. Two corrections requested at the E06 scientific review:
+
+**1. Wind-conditioned injection.** The original model switches the injected signal on only in the detector's eligible hours. A continuous-source model was added: one AR(1) signal exists at all hours, the station upstream along the pair axis receives it, and the other receives 0.8 x |cos| x the signal delayed by tau (wind speed floored at 0.5 m/s, tau capped at 6 h).
+
+| Detection rate | memory 180, A = 0.2 | memory 180, A = 0.4 | memory 20, A = 0.2 | memory 20, A = 0.4 |
+|---|---|---|---|---|
+| Original (mask-gated) | 52% | 92% | 43% | 88% |
+| Continuous source | 45% | 83% | 23% | 74% |
+
+| Lag centroid (h) by tau bin | 0-0.5 | 0.5-1 | 1-1.5 | 1.5-2 | 2-3 | SSE vs observed |
+|---|---|---|---|---|---|---|
+| Observed | 0.25 | 0.39 | 0.73 | 1.11 | 1.51 | - |
+| Original model, A = 0.3 | 0.17 | 0.34 | 0.81 | 1.30 | 1.27 | 0.108 |
+| Continuous source, A = 0.3 | 0.18 | 0.37 | 0.86 | 1.44 | 2.08 | 0.453 |
+| Continuous source, A = 3 | 0.39 | 0.72 | 1.33 | 1.76 | 2.50 | 1.896 |
+
+Findings: (a) Mask-gating made the synthetic signal easier to detect and inflated the original detection rates, especially for short-memory signals. The continuous-source rates are the more conservative estimates of detectability. (b) **Unexpected:** the close fit of the post hoc SNR diagnostic depended partly on the gating, which truncates long lags. With a continuous source at realistic amplitude, simulated centroids match the observed ones up to tau of about 1.5 h but exceed them at longer transit (1.44 vs 1.11 h; 2.08 vs 1.51 h). Observed lags for the longer pairs are shorter than 10 m-wind transport implies, by roughly 25-30%. Faster transport above 10 m, plume dispersion and the hourly sampling all remain candidate explanations; the data here cannot separate them. The SNR explanation accounts for the short-transit bins only.
+
+**2. Zero-injection calibration.** The original "0/864" at A = 0 re-evaluated one background (the 182-day wind shift) many times. It is **relabelled a single-background sanity check**, not a false-positive rate. Calibration over 40 distinct no-transport backgrounds (new whole-day wind shifts) gives 42 false detections in 1,080 pair tests, **3.9%** (binomial CI 2.8-5.2%, too narrow because tests within a background are dependent). 23 of 40 backgrounds produced at least one detection; the worst background gave 11%. The E05 thresholds are approximately calibrated at the nominal 5%.

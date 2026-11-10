@@ -1,0 +1,5 @@
+model,A,centroid_bin0,centroid_bin1,centroid_bin2,centroid_bin3,centroid_bin4,sse_vs_observed
+continuous source,0.3,0.1807,0.3654,0.8627,1.4363,2.0811,0.4531
+continuous source,3.0,0.3857,0.7182,1.3309,1.7576,2.5027,1.8963
+original (mask-gated),0.3,0.1724,0.3412,0.8064,1.2996,1.272,0.1078
+original (mask-gated),3.0,0.2897,0.5787,1.1619,1.6522,1.73,0.5709

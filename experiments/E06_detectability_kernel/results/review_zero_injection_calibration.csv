@@ -1,0 +1,2 @@
+backgrounds,pair_tests,false_detections,rate,ci_lo,ci_hi,backgrounds_with_any_detection,max_rate_one_background,note
+40,1080,42,0.0389,0.0282,0.0522,23,0.1111,pair tests within a background share CH4 and wind; the CI treats them as independent and is therefore too narrow
