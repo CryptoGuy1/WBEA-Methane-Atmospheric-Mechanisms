@@ -9,9 +9,10 @@ meteorological composition of methane-exceedance reporting in the WBEA monitorin
 |---|---|---|
 | Feasibility check of protocol v2.0 | `e00-feasibility` | archived |
 | R1 research readiness | `r1-readiness` | complete |
-| E02 data quality | `e02-data-quality` | see experiments/E02_data_quality |
-| E03 excursion patterns | `e03-excursion-patterns` | see experiments/E03_excursion_patterns |
-| E04-E07 | - | not started |
+| E02 data quality | `e02-data-quality` | complete (exploratory) |
+| E03 excursion patterns | `e03-excursion-patterns` | complete (exploratory) |
+| E04 H1 stability elasticity (gate) | - | next |
+| E05-E07 | - | not started |
 | E08 confirmation | - | **sealed** (see SEALED_DATA_POLICY.md) |
 
 All development results are **exploratory**. Only E08 produces confirmatory results.
