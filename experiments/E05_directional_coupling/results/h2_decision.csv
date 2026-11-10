@@ -1,0 +1,5 @@
+criterion,value,met
+Pooled D above 95th percentile of wind-shift null (one-sided p < 0.05),p = 0.0010,True
+Pooled D positive under +/-1 h wind-vs-CH4 shift,0.1381; 0.1133,True
+Kernel-shape criterion,evaluated in E06,
+H2 development gate (criteria 1-2),,True

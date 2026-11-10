@@ -1,0 +1,16 @@
+analysis,pooled_D
+primary (leave-pair-out),0.1285
+wind shifted +1 h relative to CH4,0.13805
+wind shifted -1 h relative to CH4,0.11327
+source station CH4 delayed by 1 h (diagnostic),0.0522
+receptor station CH4 delayed by 1 h (diagnostic),0.06573
+no common-mode removal,0.1517
+leave-one-out common mode,0.12655
+"leave-pair-out, AMS 14/18 excluded",0.11698
+season DJF,0.14257
+season MAM,0.12258
+season JJA,0.124
+season SON,0.18226
+stability unstable,0.17796
+stability neutral,0.13997
+stability stable,0.07939

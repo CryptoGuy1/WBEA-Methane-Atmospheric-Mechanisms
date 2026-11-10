@@ -1,0 +1,2 @@
+pooled_D,ci_lo,ci_hi,null_mean,null_p95,p_one_sided,n_pairs,pairs_p_unadj_lt_05,pairs_familywise_lt_05,pairs_D_positive
+0.1285,0.1084,0.15528,-0.00028,0.01392,0.001,27,24,21,27
