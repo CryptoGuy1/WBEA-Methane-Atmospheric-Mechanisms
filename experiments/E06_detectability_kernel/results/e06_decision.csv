@@ -1,0 +1,6 @@
+criterion,value,met
+"(i) Spearman(tau bin, observed centroid) > 0",1.000,True
+(ii) observed centroid inside simulated reference range in >= 4 of 5 bins,1 of 5,False
+H2 criterion 3 (kernel shape),,False
+Reference check: simulated centroid increases with tau,0.956,True
+Calibration: false detection at A = 0 (target about 0.05),20 min: 0.000; 180 min: 0.000,
