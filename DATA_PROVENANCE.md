@@ -12,3 +12,4 @@
 
 Development panel: `data/dev/*.parquet`, built by `src/build/build_dev_panel.py`, SHA-256 in
 `manifests/dev_panel_SHA256SUMS.txt`; 12 stations x 43,104 hours; raw tokens preserved in `<variable>__token` columns.
+| WBEA Monthly Report Sep 2024 + WBEA Glossary | official code legend (Z, C, M), hour-ending MST, zero/span description | 2024 | 2026-11-10 (web) | metadata/WBEA_official_code_verification.md | official |
