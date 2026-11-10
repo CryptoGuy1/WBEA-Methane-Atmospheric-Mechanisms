@@ -15,10 +15,14 @@ Severity: **M** material (fixed now) · **N** non-critical (deferred) · **I** i
 | RB-05 | 2026-11-10 (E04 review) | N | E04 | AMS 1 T10 - T2 proxy much weaker (0.013/SD) than tower or ERA5 | Discuss layer depth and siting; no new analysis unless reviewers ask | Deferred to integrated review |
 | RB-06 | 2026-11-10 (E04 review) | N | E04 | Seasonal heterogeneity (JJA 0.038 vs MAM 0.056) not part of the pre-registered estimand | Descriptive season x S interaction in the manuscript, labelled exploratory | Deferred to integrated review |
 | RB-07 | 2026-11-10 | N | E05, E08 | Per-pair p-values at the 1/1,001 floor | 5,000 shifts in E08 (D-29) | Resolved for E08; development unchanged |
-| RB-08 | 2026-11-10 | N | E05 | Hour sets use wind at the receptor hour only; wind may change during transit | Sensitivity with wind averaged over t-l..t | Deferred to E05+E06 joint review |
-| RB-09 | 2026-11-10 | N | E05 | AMS 9 and AMS 18 alternate 10/20 m wind sensors | Height-stratified D for AMS 9 pairs | Deferred to E05+E06 joint review |
+| RB-08 | 2026-11-10 | N | E05 | Hour sets use wind at the receptor hour only; wind may change during transit | Sensitivity with wind averaged over t-l..t | **Resolved** (joint review): pooled D 0.143 with t-3..t wind vs 0.128; 27/27 positive |
+| RB-09 | 2026-11-10 | N | E05 | AMS 9 and AMS 18 alternate 10/20 m wind sensors | Height-stratified D for AMS 9 pairs | **Resolved as limitation** (joint review): D higher in 10 m hours (6/7 pairs) but 20 m hours fall mostly in 2022-2023; see RB-17 |
 | RB-10 | 2026-11-10 | N | E01, all | Relocation and instrument histories unverified for 11 stations | Parse WBEA Volume III site documents when supplied | Open; awaiting documents |
 | RB-11 | 2026-11-10 | N | E02, all | Official meanings of Z, SP and "." not confirmed | WBEA QAP or provincial code table | Open; awaiting documents |
 | RB-12 | 2026-11-10 | I | all | `run_metadata.json` written before the author rewrite cites pre-rewrite hashes | Mapping in HISTORY_REWRITE.md | Resolved |
 | RB-13 | 2026-11-10 | N | all | pandas FutureWarnings (concat sorting, object dtypes) in logs | Code hygiene pass before E08 freeze | Deferred to integrated review |
 | RB-14 | 2026-11-10 | I | all | GitHub Issues not used: the access token has Contents permission only | Backlog kept as this file | Resolved |
+| RB-15 | 2026-11-10 (E05+E06 review) | N | E06 | Figure 7 shows only the pre-registered A = 3 reference | Add SNR-matched reference band (A = 0.3) as a second layer, labelled post hoc | Deferred to integrated review |
+| RB-16 | 2026-11-10 (E05+E06 review) | N | E06 | Detection thresholds borrowed from the E05 real-data null; conservative (0/864 false detections at A = 0) | State as lower bounds; optional pair-specific nulls on the injection background | Deferred to integrated review |
+| RB-17 | 2026-11-10 (E05+E06 review) | N | E05 | AMS 9 sensor height (10/20 m) confounded with year | Report as limitation; no further analysis unless WBEA history clarifies | Deferred |
+| RB-18 | 2026-11-10 (E05+E06 review) | M | E06, E08 | Kernel-shape criterion used a signal-dominated reference; criterion failed in development | Revised SNR-calibrated criterion frozen for E08 (D-36); development failure reported | **Fixed for E08**; development result unchanged |

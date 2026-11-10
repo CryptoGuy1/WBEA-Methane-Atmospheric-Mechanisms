@@ -14,8 +14,9 @@ meteorological composition of methane-exceedance reporting in the WBEA monitorin
 | E01 geometry and instrumentation | `e01-geometry` | complete |
 | E04 H1 stability elasticity (gate) | `e04-h1-gate-passed` | gate passed (exploratory) |
 | E05 H2 directional coupling | `e05-h2-gate-passed` | gate criteria 1-2 passed (exploratory) |
-| E06 detectability and kernel shape | - | next |
-| E07 composition decomposition | - | not started |
+| E06 detectability and kernel shape | `e06-kernel-criterion-failed` | criterion 3 failed as pre-registered; revised for E08 |
+| E05+E06 joint review | `review-e05-e06` | no material error |
+| E07 composition decomposition | - | next |
 | E08 confirmation | - | **sealed** (see SEALED_DATA_POLICY.md) |
 
 All development results are **exploratory**. Only E08 produces confirmatory results.
