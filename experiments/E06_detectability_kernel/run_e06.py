@@ -98,7 +98,7 @@ for _, r in FAM.iterrows():
 obs = []
 for b in range(len(BINS) - 1):
     rp = pooled_profile(obs_items[b])
-    yr_c = [h2.centroid(pooled_profile([(u, d, m & (idx.year == y).to_numpy()) for u, d, m in obs_items[b]])) for y in range(2021, 2026)]
+    yr_c = [h2.centroid(pooled_profile([(u, d, m & np.asarray(idx.year == y)) for u, d, m in obs_items[b]])) for y in range(2021, 2026)]
     obs.append(dict(tau_bin=b, tau_range=f"{BINS[b]}-{BINS[b + 1]} h", r0=rp[0], r1=rp[1], r2=rp[2], r3=rp[3],
                     centroid=h2.centroid(rp), centroid_min_by_year=np.nanmin(yr_c), centroid_max_by_year=np.nanmax(yr_c),
                     ref_centroid_min=ref[ref.tau_bin == b].centroid.min(), ref_centroid_max=ref[ref.tau_bin == b].centroid.max()))
