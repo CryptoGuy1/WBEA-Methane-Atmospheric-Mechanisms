@@ -1,0 +1,4 @@
+rule,hours
+"core: >=5 of 7 (v2.0 set), S and U5 valid",40334
+"expanded: >=8 of 11, S and U5 valid",39219
+total development hours,43104

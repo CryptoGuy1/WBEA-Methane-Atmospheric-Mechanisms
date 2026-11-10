@@ -1,0 +1,13 @@
+{
+ "run_utc": "2026-11-10T16:58:26+00:00",
+ "git_commit_at_run": "0a70e5d471e34b8e017cf8808f9a588fcb10eec9",
+ "git_dirty": true,
+ "python": "3.12.3",
+ "seed": 20261110,
+ "requirements_sha256": "2bc59bd92c644ccd72559ce5fcf360d3515a93767dc4ce6f866846617a814481",
+ "config_sha256": "c41e076c587c9ea923b6c3d7b28f3fe107a984161426e3a9a0eb077253c7125b",
+ "dev_panel_manifest_sha256": "6372bebc7228bafa514765b40e99710ce9c3861bd008c4251c54dd9d9beb6630",
+ "experiment": "E02_data_quality",
+ "status": "exploratory",
+ "seed_used": 20261112
+}
