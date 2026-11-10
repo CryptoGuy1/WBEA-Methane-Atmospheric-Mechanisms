@@ -1,0 +1,5 @@
+quantity,estimate,ci_lo,ci_hi,note
+"Spearman(lift | month x hour, distance), 66 pairs",-0.8208,-0.8612,-0.7298,"joint 14-day block bootstrap, 2,000"
+"Mantel permutation p (one-sided, negative association)",0.0001,,,"9,999 permutations of station labels"
+"Leave-one-station-out Spearman, min..max",,-0.8639,-0.7558,12 refits
+Spearman within the 10-station oil-sands core only,-0.6418,-0.7407,-0.5101,"45 pairs, excludes AMS 14/18"

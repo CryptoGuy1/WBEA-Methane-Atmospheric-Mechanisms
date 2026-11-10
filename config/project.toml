@@ -43,7 +43,7 @@ wind_classes_ms = [1.0, 2.5]
 day_night = "solar elevation > 0 deg at 57.0N, 111.5W"
 min_cell_hours = 50
 
-[smoke]                                  # D-11 (sensitivity only)
+[smoke]                                  # D-11/D-31: "potential wildfire-influenced period" (PWIP) flag; sensitivity only; key name kept for reproducibility
 firms_radius_km = 100
 firms_min_detections = 10
 firms_persistent_months = 6

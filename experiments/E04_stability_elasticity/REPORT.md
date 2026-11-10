@@ -17,7 +17,7 @@ A1: within a year x month x hour cell, emissions do not co-vary with stability. 
 
 - **Uncertainty:** 7-, 21- and 30-day blocks give 0.042-0.053 at the widest.
 - **Replication:** positive in all five years (0.037-0.059; every CI excludes 0) and all four seasons (JJA 0.038 to MAM 0.056).
-- **Response definition:** dropping any one core station gives 0.043-0.057. Background-subtracted response 0.047; removing station-months below 75% coverage 0.048; excluding smoke hours 0.048. The expanded 11-station response is smaller (0.034, CI 0.029-0.038), as expected when the median includes AMS 14 and AMS 18, which are 40-150 km away from the mining area.
+- **Response definition:** dropping any one core station gives 0.043-0.057. Background-subtracted response 0.047; removing station-months below 75% coverage 0.048; excluding potential wildfire-influenced periods (PWIP) 0.048. The expanded 11-station response is smaller (0.034, CI 0.029-0.038), as expected when the median includes AMS 14 and AMS 18, which are 40-150 km away from the mining area.
 - **Alternative proxies:** ERA5 -log(boundary-layer height) at the AMS 5 cell gives 0.054 (0.047-0.059), an independent reanalysis proxy agreeing with the tower. AMS 5 T75 - T20: 0.045; T45 - T20: 0.038. AMS 1 T10 - T2 gives a much weaker 0.013 (0.007-0.017).
 - **Negative control:** next-day stability S(t+24), given S(t), has coefficient 0.000 (-0.005 to 0.003); S(t) is unchanged at 0.048. No sign of multi-day synoptic confounding.
 - **Baselines:** cell means alone explain R2 = 0.29 of the response. Stability adds a partial R2 of 0.14 given cells and wind. A random-forest meteorological normalisation (OOB R2 0.58) gives a partial-dependence slope of 0.052 ppm per SD, close to the fixed-effects estimate. The piecewise-linear spline is close to linear with mild flattening above +1.5 SD.
@@ -41,3 +41,16 @@ A 1 SD increase in the 20-90 m temperature gradient at AMS 5 accompanies a rise 
 
 ## Figures
 Main Figure 4 (`figure04_stability_elasticity`: partial residuals, spline, random-forest baseline). Main Figure 5 (`figure05_h1_robustness`: forest plot). The random-forest part of Supplementary S3 comes from `results/baseline_rf_partial_dependence.csv`.
+
+## Review checkpoint (2026-11-10)
+Technical and statistical validation under the hybrid review policy (`review_addendum.py`, `results/review_h1_checks.csv`).
+
+| Check | Estimate (ppm/SD) | Uncertainty |
+|---|---|---|
+| Primary, analytic cluster-robust (CR1, 129 fourteen-day clusters) | 0.048 | SE 0.0028; 0.042-0.053 |
+| Primary, block bootstrap (for comparison) | 0.048 | SE 0.0029; 0.041-0.052 |
+| Hours ending 01-06 excluded (nightly Z window; correction 1) | 0.048 | 0.041-0.054 |
+| All 7 core stations valid (fixed composition) | 0.047 | 0.040-0.053 |
+| Median (LAD) regression on cell-demeaned data | 0.050 | - |
+
+Findings: (1) the analytic and bootstrap SEs agree, so the percentile-interval asymmetry is a placement effect, not an inflated or deflated SE; (2) H1 does not depend on the conditional-MAR assumption for Z hours or on changing response composition; (3) heavy tails do not drive the estimate. **No material error; the H1 gate decision stands.** Non-critical items are in REVIEW_BACKLOG.md (RB-04 to RB-06).

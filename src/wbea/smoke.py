@@ -1,4 +1,5 @@
-"""FIRMS-based smoke-day flag (decision D-11; sensitivity use only)."""
+"""Potential wildfire-influenced period (PWIP) flag (decisions D-11, D-31; sensitivity use only).
+Combines FIRMS fire detections and PM2.5; it is NOT a direct smoke-transport measurement."""
 import numpy as np, pandas as pd
 from .geometry import haversine_km
 
