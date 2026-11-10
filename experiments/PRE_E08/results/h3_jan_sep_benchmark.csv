@@ -1,0 +1,4 @@
+version,share,ci_lo,ci_hi,contrasts,median_effective_regimes
+"E07-r3 (Jan-Sep, D-54)",0.0261,-0.0284,0.1238,120,11.0
+"E07-r2 (Jan-Oct, D-47)",0.0193,-0.0351,0.1174,120,12.0
+"E07 original (Jan-Nov, D-40)",0.0269,-0.0396,0.1264,120,12.0
