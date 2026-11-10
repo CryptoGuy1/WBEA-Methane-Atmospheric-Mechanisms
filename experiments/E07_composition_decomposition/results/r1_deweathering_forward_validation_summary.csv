@@ -1,0 +1,3 @@
+test_year,observed_rate,predicted_rate_with_year,predicted_rate_no_year,brier_climatology,brier_with_year,brier_no_year,auc_climatology,auc_with_year,auc_no_year
+2024,0.0496,0.0471,0.0429,0.0464,0.0467,0.0448,0.695,0.7986,0.804
+2025,0.0504,0.0274,0.0291,0.0473,0.0441,0.0443,0.6723,0.819,0.8166

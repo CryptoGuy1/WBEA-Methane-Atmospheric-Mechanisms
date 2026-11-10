@@ -1,0 +1,4 @@
+analysis,share,ci_lo,ci_hi,note
+"Registered primary (18 regimes, 50 h merge rule)",0.0269,,,see h3_sensitivity.csv for CI
+Fixed 6 regimes (stability x day/night; wind pooled; no merging),0.0315,-0.0803,0.1515,300 joint block-bootstrap replicates
+"18 regimes, 25 h merge rule (descriptive)",0.0361,,,median effective regimes 16

@@ -20,7 +20,7 @@
 - **NMHC.** 27-86% of valid NMHC values are exactly zero (left-censored under AMD DQ 4-J). NMHC can only be used as a censored, descriptive variable.
 
 ## Interpretation
-The Z gap removes about one-sixth of station-hours in the hours ending 01-06, which is the period of strongest nocturnal accumulation. Q4 finds no evidence that it is associated with the neighbouring concentrations. Analyses that condition on hour (all H1 models, all H3 regimes) use complete cases under the working assumption of conditional missing-at-random, and each reports a sensitivity analysis that does not rely on it (E04: hours 01-06 excluded; E07: Manski bounds). Unconditional statistics such as raw exceedance counts are biased in level: they under-count night hours, and E07 bounds this.
+The Z gap removes about one-sixth of station-hours in the hours ending 01-06, which is the period of strongest nocturnal accumulation. Q4 finds no evidence that it is associated with the neighbouring concentrations. Analyses that condition on hour (all H1 models, all H3 regimes) use complete cases under the working assumption of conditional missing-at-random, and each reports a sensitivity analysis that does not rely on it (E04: hours 01-06 excluded; E07: extreme missing-outcome scenarios). Unconditional statistics such as raw exceedance counts are biased in level: they under-count night hours, and E07 bounds this.
 
 ## Limitations
 - Q4 tests one form of non-ignorability (bracketing values). A gap that coincides with a brief spike shorter than an hour would not be detected.
