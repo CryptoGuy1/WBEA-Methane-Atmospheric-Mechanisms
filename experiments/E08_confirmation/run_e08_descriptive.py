@@ -14,7 +14,7 @@ from wbea import h2, e08, runmeta
 ap = argparse.ArgumentParser(); ap.add_argument("--mode", choices=["dryrun", "confirm"], required=True)
 ap.add_argument("--panel", required=True); ap.add_argument("--primary", required=True); A = ap.parse_args()
 if A.mode == "confirm":
-    raise SystemExit("confirm mode is not authorised before the protocol-freeze tag")
+    FROZEN_COMMIT = e08.assert_frozen(ROOT)          # release guard: protocol-freeze commit, clean tree
 PRIM = pathlib.Path(A.primary); OUT = PRIM / "descriptive"; OUT.mkdir(exist_ok=True); T0 = time.time()
 def tree_hash(d): return {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(d.iterdir()) if f.is_file()}
 H_BEFORE = tree_hash(PRIM)
@@ -33,7 +33,9 @@ W = {s: composite(P[s]) for s in STU}; blk = e08.block_ids(idx); nblk = blk.max(
 
 # ERA5 for the window, read directly from the raw reanalysis file (meteorology, not a methane outcome)
 def era5_window(stations):
-    ds = nc.Dataset(next(pathlib.Path("/home/claude/raw_ext/era5c").glob("*.nc")))
+    f = pathlib.Path(CFG["data"]["era5_file"])                      # configurable path (release check 2)
+    if hashlib.sha256(f.read_bytes()).hexdigest() != CFG["data"]["era5_sha256"]: raise RuntimeError("ERA5 checksum mismatch")
+    ds = nc.Dataset(f)
     lat, lon = np.array(ds["latitude"][:]), np.array(ds["longitude"][:]); t = pd.to_datetime(np.array(ds["valid_time"][:]), unit="s") - pd.Timedelta(hours=7)
     keep = (t >= START - pd.Timedelta(hours=1)) & (t <= END); XY = XYfun(); res = {}
     for s in stations:
@@ -158,12 +160,16 @@ pd.DataFrame({"bin": [f"{e08.BINS[k]}-{e08.BINS[k + 1]} h" for k in range(5)], "
 
 # ---------------- 7. E10 episode categories with assessability
 CORE10 = [s for s in STU if s not in ("AMS 14", "AMS 18")]
+XD = pd.DataFrame({s: DEV[s]["CH4 (ppm)"] for s in ST}); XD = XD - XD.loc["2021":"2023"].median(); DEV_SD = {}
+for _, r in FAM.iterrows():                                         # E10: pair-specific LPO residual changes over 2021-2025, all usable stations
+    a_, b_ = h2.lpo_residual_levels(XD, r.i, r.j, ST); DEV_SD[(r.i, r.j)] = (np.nanstd(np.diff(a_)), np.nanstd(np.diff(b_)))
 A_ = pd.DataFrame({k: CH[k].gt(P95[k]).astype(float).where(CH[k].notna()) for k in CORE10})
 Wret = pd.concat([A_.shift(1), A_, A_.shift(-1)]).groupby(level=0).max().reindex(idx); Vn = CH[CORE10].notna()
 L = {s: np.zeros(len(idx), bool) for s in STU}; AS = {s: np.zeros(len(idx), bool) for s in STU}
 for _, r in FAM.iterrows():
     Ri, Rj = h2.lpo_residual_levels(X[STU], r.i, r.j, STU); za, zb = np.diff(np.r_[np.nan, Ri]), np.diff(np.r_[np.nan, Rj])
-    za, zb = za / np.nanstd(za), zb / np.nanstd(zb); up, cs = h2.pair_wind(W[r.i], W[r.j], r.bearing); al, rv, _ = h2.sets(r.km, up, cs)
+    sa, sb = DEV_SD[(r.i, r.j)]                                    # development-period standardisation, as in E10 (release check 1)
+    za, zb = za / sa, zb / sb; up, cs = h2.pair_wind(W[r.i], W[r.j], r.bearing); al, rv, _ = h2.sets(r.km, up, cs)
     for recv, z, flow in ((r.j, za, al), (r.i, zb, rv)):
         zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
 eps = []

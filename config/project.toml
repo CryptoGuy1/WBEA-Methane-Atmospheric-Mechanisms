@@ -48,3 +48,8 @@ firms_radius_km = 100
 firms_min_detections = 10
 firms_persistent_months = 6
 pm25_network_median_ugm3 = 30
+
+[data]                                   # release check 2: external data locations and checksums (not scientific settings)
+era5_file = "/home/claude/raw_ext/era5c/reanalysis-era5-single-levels-timeseries-sfcgbn6qfny.nc"
+era5_sha256 = "d35f35349a00ff0652f14c5ca25169cec093477a1c7b6982ef25896821f877c5"
+era5_source = "Copernicus CDS, ERA5 single-levels time series, 0.25 deg, 55.5-57.5N 112.0-110.75W, 2021-01-01 00Z to 2026-11-04 23Z; archive 48b741e5c32ed3ff9358879859669b4.zip"

@@ -145,11 +145,21 @@ def test_h3_run_empty_regime_and_six_groups():
     df2, _, _, _ = e08.h3_run(con, dev, [2021, 2022, 2023, 2024], 2026, st, 0, np.random.default_rng(0), groups=one)
     assert not df2.set_index(["station", "dev_year"]).loc[("A", 2022), "estimable"]
 
-def test_runners_refuse_confirm_and_descriptive_has_no_decisions():
-    import subprocess
-    for script, extra in (("run_e08.py", ["--out", "x"]), ("run_e08_descriptive.py", ["--primary", "x"])):
-        r = subprocess.run([sys.executable, str(ROOT / "experiments/E08_confirmation" / script), "--mode", "confirm", "--panel", "x", *extra],
-                           capture_output=True, text=True)
-        assert r.returncode != 0 and "not authorised" in (r.stdout + r.stderr)
+def test_confirm_mode_guarded_and_descriptive_has_no_decisions():
+    for script in ("run_e08.py", "run_e08_descriptive.py"):
+        src = (ROOT / "experiments/E08_confirmation" / script).read_text()
+        assert 'if A.mode == "confirm":\n    FROZEN_COMMIT = e08.assert_frozen(ROOT)' in src
     src = (ROOT / "experiments/E08_confirmation/run_e08_descriptive.py").read_text()
     assert "h1_decision" not in src and "centroid_rule" not in src and "H_BEFORE == H_AFTER" in src
+
+def test_assert_frozen_release_guard(tmp_path):
+    import subprocess
+    g = lambda *a: subprocess.run(["git", *a], cwd=tmp_path, capture_output=True, text=True, check=True)
+    g("init", "-q"); g("config", "user.email", "t@t"); g("config", "user.name", "t")
+    (tmp_path / "a.txt").write_text("1"); g("add", "a.txt"); g("commit", "-qm", "c1")
+    with pytest.raises(SystemExit): e08.assert_frozen(tmp_path)                  # no tag
+    g("tag", "protocol-freeze"); assert len(e08.assert_frozen(tmp_path)) == 40     # tagged, clean
+    (tmp_path / "a.txt").write_text("2")
+    with pytest.raises(SystemExit): e08.assert_frozen(tmp_path)                  # dirty
+    g("commit", "-qam", "c2")
+    with pytest.raises(SystemExit): e08.assert_frozen(tmp_path)                  # HEAD moved past tag

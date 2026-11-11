@@ -20,7 +20,7 @@ SEED = 20261190; WIN = {"dryrun": ("2025-01-01 01:00", "2025-10-01 00:00", 2025,
                         "confirm": ("2026-01-01 01:00", "2026-10-01 00:00", 2026, [2021, 2022, 2023, 2024, 2025])}[A.mode]
 START, END, CYEAR, DEVYEARS = pd.Timestamp(WIN[0]), pd.Timestamp(WIN[1]), WIN[2], WIN[3]
 if A.mode == "confirm":
-    raise SystemExit("confirm mode is not authorised before the protocol-freeze tag")
+    FROZEN_COMMIT = e08.assert_frozen(ROOT)          # release guard: protocol-freeze commit, clean tree
 DEV = load_dev(); ST = CFG["stations"]["usable"]; CORE = CFG["stations"]["h1_core_response"]
 REF = pd.DataFrame({s: DEV[s]["CH4 (ppm)"] for s in ST}).loc["2021":"2023"]
 MED, P95 = REF.median(), REF.quantile(.95)

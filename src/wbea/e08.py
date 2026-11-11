@@ -168,3 +168,17 @@ def h3_run(conC, devC, devyears, cyear, stations, nboot, rng, groups=None, minh=
             comp.append(cc); tot.append(tt)
         ok_.append(good); bs.append(projection_share(comp, tot) if good else np.nan)
     return df, share, h3_bootstrap_summary(bs, ok_), np.array(bs)
+
+def assert_frozen(root):
+    """Operational release guard for confirm mode (not a scientific setting): HEAD must be the commit tagged
+    `protocol-freeze` and the tracked working tree must be clean."""
+    import subprocess
+    git = lambda *a: subprocess.run(["git", *a], cwd=root, capture_output=True, text=True)
+    tag = git("rev-parse", "-q", "--verify", "protocol-freeze^{commit}").stdout.strip()
+    head = git("rev-parse", "HEAD").stdout.strip()
+    dirty = git("status", "--porcelain", "--untracked-files=no").stdout.strip()
+    if not tag or tag != head:
+        raise SystemExit("confirm mode requires HEAD to be the protocol-freeze commit")
+    if dirty:
+        raise SystemExit("confirm mode requires a clean working tree")
+    return head
