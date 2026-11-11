@@ -46,7 +46,8 @@ def heat(ax, M, xlabel, ticks, ticklabels, minor=None, cov=None, mark_excl=False
 # upper: monthly 2021-2025
 months = sorted(mon.month.unique()); M0 = mon.pivot(index="station", columns="month", values="pct").reindex(STUDY)[months].values
 yi = [k for k, p in enumerate(months) if p.month == 1]
-heat(panel(0), M0, "Month (January 2021 \u2013 November 2025)", yi, [str(months[k].year) for k in yi], [k for k, p in enumerate(months) if p.month in (4, 7, 10)], norm=NORM_M)
+cov_mon = 100 * mon.groupby("station").valid.sum() / mon.groupby("station").hours.sum()     # secondary axis restored: share of valid hours over the plotted months
+heat(panel(0), M0, "Month (January 2021 \u2013 November 2025)", yi, [str(months[k].year) for k in yi], [k for k, p in enumerate(months) if p.month in (4, 7, 10)], cov=cov_mon, norm=NORM_M)
 # middle: daily 2021-2025
 days = np.sort(dev.day.unique()); dd = pd.to_datetime(days)
 M1 = dev.pivot(index="station", columns="day", values="pct").reindex(STUDY)[days].values
@@ -60,6 +61,7 @@ M2 = cf.pivot(index="station", columns="day", values="pct").reindex(STUDY)[d26].
 cov_cf = 100 * cf.groupby("station").valid_hours.sum() / cf.groupby("station").hours.sum()
 mi = [k for k, v in enumerate(dd26) if v.day == 1]
 heat(panel(2), M2, "Day (1 January \u2013 30 September 2026)", mi, [dd26[k].strftime("%b") for k in mi], cov=cov_cf, mark_excl=True, norm=NORM_D)
+fig.text((FIG_W - 1.0) / FIG_W, (FIG_H - TOP - PANEL_H / 2) / FIG_H, "Valid hours, Jan 2021\u2013Nov 2025", rotation=90, ha="right", va="center", fontsize=6.2)
 fig.text((FIG_W - 1.0) / FIG_W, (FIG_H - TOP - PANEL_H - GAP - PANEL_H / 2) / FIG_H, "Valid hours, 2021\u20132025", rotation=90, ha="right", va="center", fontsize=6.2)
 fig.text((FIG_W - 1.0) / FIG_W, (FIG_H - TOP - 3 * PANEL_H - 2 * GAP + PANEL_H / 2) / FIG_H, "Valid hours, 2026", rotation=90, ha="right", va="center", fontsize=6.2)
 # legends (same colours): monthly classes for the upper plot, daily classes for the middle and lower plots

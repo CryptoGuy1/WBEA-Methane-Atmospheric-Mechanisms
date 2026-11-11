@@ -118,3 +118,6 @@ Validated data, the frozen pair list and all experimental results are unchanged.
 - A single shared 95% boundary was tried first and rejected. Typical months (about 93-96%) flipped between classes and falsely suggested widespread data problems.
 - The completeness definition is unchanged (valid hours / hours in cell).
 - Size 174.5 x 162.0 mm. CAS check: 0 errors, 0 overfull; Fig. 2 and caption on p.4; References p.6. Validation 24/24. The cividis version remains in git history (commit 95e43ef).
+
+## Revision 4b: secondary axis restored on the upper (monthly) plot
+The right-hand percentages had been omitted from the upper plot as near-duplicates of the middle plot. They are restored, since every original component is to be kept. They are computed from the plotted months (Jan 2021 - Nov 2025) and differ from the middle plot by at most 0.003% (identical at one decimal). Validation 24/24; CAS check unchanged (Fig. 2 p.4, References p.6; 0 errors, 0 overfull).
