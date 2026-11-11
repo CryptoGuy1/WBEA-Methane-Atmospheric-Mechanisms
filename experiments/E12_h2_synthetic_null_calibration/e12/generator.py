@@ -93,6 +93,13 @@ def generate(scenario, seed, coords, pair_wind_fn=None, pairs=None, amp=0.0, lag
         for _, r in pairs.iterrows():
             up, cs = pair_wind_fn(W[r.i], W[r.j], r.bearing)
             al = (up >= 1) & (cs >= 0.707); rv = (up <= -1) & (cs <= -0.707)
+            if lag == "transit":                                   # P1T (DEVIATIONS D3): lag = clip(round(tau_ij(t)), 1, 3) h
+                with np.errstate(invalid="ignore", divide="ignore"):
+                    L = np.clip(np.round(np.nan_to_num(r.km / (3.6 * np.abs(up)), nan=1.0)), 1, 3).astype(int)
+                qi = np.choose(L - 1, [np.r_[np.zeros(l), q[r.i][:-l]] for l in (1, 2, 3)])
+                qj = np.choose(L - 1, [np.r_[np.zeros(l), q[r.j][:-l]] for l in (1, 2, 3)])
+                X[r.j] = X[r.j] + np.where(al, 0.8 * amp * qi, 0.0); X[r.i] = X[r.i] + np.where(rv, 0.8 * amp * qj, 0.0)
+                continue
             X[r.j] = X[r.j] + np.where(al, 0.8 * amp * np.nan_to_num(np.r_[np.full(lag, np.nan), q[r.i][:-lag]]), 0.0)
             X[r.i] = X[r.i] + np.where(rv, 0.8 * amp * np.nan_to_num(np.r_[np.full(lag, np.nan), q[r.j][:-lag]]), 0.0)
     CH = pd.DataFrame(X, index=IDX)

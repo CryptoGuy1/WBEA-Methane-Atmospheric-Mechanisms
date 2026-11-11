@@ -1,0 +1,72 @@
+{
+ "procedure": "pre-registered pilot rule (P1) and the same rule for P1T (DEVIATIONS D3); final configs fixed before production",
+ "pilot_P1_median_D": {
+  "0.005": 0.00988,
+  "0.0073": 0.0129,
+  "0.0105": 0.0323,
+  "0.0153": 0.05426,
+  "0.0222": 0.08772,
+  "0.0322": 0.12049,
+  "0.0467": 0.14805,
+  "0.0677": 0.16916,
+  "0.0982": 0.18621,
+  "0.1425": 0.19241,
+  "0.2068": 0.19858,
+  "0.3": 0.19857
+ },
+ "pilot_P1T_median_D": {
+  "0.005": 0.00473,
+  "0.0073": 0.01461,
+  "0.0105": 0.02453,
+  "0.0153": 0.04659,
+  "0.0222": 0.07779,
+  "0.0322": 0.1122,
+  "0.0467": 0.13807,
+  "0.0677": 0.14979,
+  "0.0982": 0.17151,
+  "0.1425": 0.17059,
+  "0.2068": 0.17598,
+  "0.3": 0.17881
+ },
+ "configs": {
+  "P1_t007": {
+   "amp": 0.018545832425105525,
+   "lag": 1,
+   "target_median_D": 0.07
+  },
+  "P1_t013": {
+   "amp": 0.03720266375098448,
+   "lag": 1,
+   "target_median_D": 0.13
+  },
+  "P1_ceiling": {
+   "amp": 0.3,
+   "lag": 1,
+   "target_median_D": null,
+   "pilot_median_D": 0.1985703796114036,
+   "note": "targets 0.21/0.29/0.40 unreachable; largest pre-registered amplitude"
+  },
+  "P1_L2": {
+   "amp": 0.3,
+   "lag": 2,
+   "note": "pre-registered: amplitude of the 0.21 target (clamped to 0.30 by the pilot rule)"
+  },
+  "P1_L3": {
+   "amp": 0.3,
+   "lag": 3,
+   "note": "as P1_L2"
+  },
+  "P1T_t013": {
+   "amp": 0.042175239543981266,
+   "lag": "transit",
+   "target_median_D": 0.13
+  },
+  "P1T_ceiling": {
+   "amp": 0.3,
+   "lag": "transit",
+   "target_median_D": null,
+   "pilot_median_D": 0.17881224758904274,
+   "note": "targets >= 0.21 unreachable"
+  }
+ }
+}
