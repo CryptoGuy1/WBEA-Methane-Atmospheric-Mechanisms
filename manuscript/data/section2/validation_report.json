@@ -81,7 +81,7 @@
  },
  "fig02_ch4_availability_text_inside_no_panel_labels": {
   "passed": true,
-  "detail": "192 words, all inside page: True; panel labels: []"
+  "detail": "209 words, all inside page: True; panel labels: []"
  },
  "fig01_wbea_network_vector_embedded": {
   "passed": true,
