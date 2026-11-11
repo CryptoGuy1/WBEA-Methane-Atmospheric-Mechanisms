@@ -1,0 +1,4 @@
+regime,onsets,onset_share,hour_share,enrichment,ci_lo,ci_hi
+stable-low-wind,229.0,0.1639,0.0665,2.4635,2.04,2.8813
+intermediate,1004.0,0.7187,0.5224,1.3756,1.2949,1.4753
+advective,164.0,0.1174,0.411,0.2856,0.2197,0.3553

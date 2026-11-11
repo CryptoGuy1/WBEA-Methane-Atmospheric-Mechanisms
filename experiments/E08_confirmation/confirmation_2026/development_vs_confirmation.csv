@@ -1,0 +1,6 @@
+estimand,development_full,development_reduced_network,confirmation_2026,decision
+H1 wind-adjusted association (ppm/SD),0.048 (0.041 to 0.052) [E04],0.045 (0.039 to 0.048),0.052 (0.039 to 0.069),True
+H1 next-day negative control (ppm/SD),0.000 (-0.005 to 0.003) [E04],0.0006 (-0.0037 to 0.0029),-0.0187 (-0.0268 to -0.0051); ratio -0.34 (-0.51 to -0.09),not flagged (|ratio| < 0.5)
+H2 pooled directional contrast D,"0.128 (0.108 to 0.155) [E05, 27 pairs]","0.131 [E05 weights, 21 pairs]","0.288, p = 0.0040 (K = 246), 21 pairs",True
+H2 lag centroids (h) by transit bin,"0.25, 0.39, 0.73, 1.11, 1.51 [E06]",-,"0.13, 0.35, 0.56, 0.98, 1.12",True
+H3 meteorology-mix share (Jan-Sep),"0.026 (-0.028 to 0.124) [E07-r3, all year pairs]","0.025 [E07-r3 contrasts, 110 without AMS 2]","0.011 (-0.020 to 0.043), 55 contrasts",False

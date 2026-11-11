@@ -1,0 +1,131 @@
+{
+ "log": {
+  "mode": "confirm",
+  "window": [
+   "2026-01-01 01:00:00",
+   "2026-10-01 00:00:00"
+  ],
+  "hours": 6552,
+  "station_coverage": {
+   "AMS 1": 0.9388,
+   "AMS 2": 0.4118,
+   "AMS 5": 0.951,
+   "AMS 6": 0.9344,
+   "AMS 7": 0.9162,
+   "AMS 9": 0.9432,
+   "AMS 11": 0.9498,
+   "AMS 13": 0.9006,
+   "AMS 14": 0.9426,
+   "AMS 18": 0.9344,
+   "AMS 23": 0.815,
+   "AMS 30": 0.8553
+  },
+  "excluded_stations": [
+   "AMS 2"
+  ]
+ },
+ "H1": {
+  "n_primary": 4472,
+  "n_joint": 4401,
+  "b1_primary": 0.05203865514163186,
+  "b1_primary_ci": [
+   0.03905775654239831,
+   0.06948332875639722
+  ],
+  "b1_joint": 0.054621589756653266,
+  "b_nc": -0.018721921849912438,
+  "b_nc_ci": [
+   -0.02683898987558387,
+   -0.005076424015901541
+  ],
+  "ratio_nc": -0.34275680977652223,
+  "ratio_nc_ci": [
+   -0.5088360310390019,
+   -0.09228404857127123
+  ],
+  "S_coverage": 0.8980463980463981,
+  "core_stations": [
+   "AMS 1",
+   "AMS 6",
+   "AMS 7",
+   "AMS 11",
+   "AMS 13",
+   "AMS 23"
+  ],
+  "evaluable": true,
+  "decision": {
+   "a_primary_ci_above_0": true,
+   "b_negative_control_ok": true,
+   "confirmed": true
+  }
+ },
+ "H2": {
+  "pairs_used": 21,
+  "pairs_dropped": [],
+  "K": 246,
+  "min_p": 0.004048582995951417,
+  "evaluable": true,
+  "pooled_D": 0.2879317084641316,
+  "p": 0.004048582995951417,
+  "pooled_D_wind_plus1h": 0.2936957375619285,
+  "pooled_D_wind_minus1h": 0.25720740954454513,
+  "centroids": [
+   0.1295414197241322,
+   0.34899892150739387,
+   0.5604929133396094,
+   0.9750792383576461,
+   1.1179551225736832
+  ],
+  "centroid_n": [
+   2903,
+   5042,
+   4828,
+   4401,
+   5884
+  ],
+  "centroid_diff_ci": [
+   0.7438147314436366,
+   1.5389832605533778
+  ],
+  "centroid_rule": {
+   "estimable_bins": 5,
+   "first_bin_estimable": true,
+   "rho": 0.9999999999999999,
+   "rho_threshold": 0.9,
+   "diff_ci_lo": 0.7438147314436366,
+   "evaluable": true,
+   "met": true
+  },
+  "null_by_offset_tercile": {
+   "mean": {
+    "long": -0.0003,
+    "medium": 0.0028,
+    "short": 0.0005
+   },
+   "std": {
+    "long": 0.0423,
+    "medium": 0.0417,
+    "short": 0.0398
+   }
+  },
+  "wind_eligible_hours_total": 54886,
+  "methane_complete_hours_total": 42133,
+  "criteria": {
+   "i_p_lt_005": true,
+   "ii_positive_under_pm1h": true,
+   "iii_centroid": true
+  },
+  "confirmed": true
+ },
+ "H3": {
+  "contrasts_planned": 55,
+  "contrasts_estimable": 55,
+  "share": 0.011018334785993391,
+  "nonestimable_fraction": 0.0,
+  "ci_lo": -0.019868611545975162,
+  "ci_hi": 0.042768201954171504,
+  "evaluable": true,
+  "confirmed": false
+ },
+ "runtime_s": 11.6
+}

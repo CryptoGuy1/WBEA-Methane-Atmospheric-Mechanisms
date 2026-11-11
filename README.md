@@ -25,7 +25,7 @@ meteorological composition of methane-exceedance reporting in the WBEA monitorin
 | E10 episode typology (X1) | `e10-typology-not-supported` | not supported (V1 failed) |
 | E11 station contribution (X3) | `e11-x3` | descriptive; no single station drives H1 or H2 |
 | Updated integrated review E01-E11 | `integrated-review-2` | complete; EMS primary target |
-| E08 confirmation | - | **sealed**; draft protocol in PROTOCOL_E08_DRAFT.md (not frozen) |
+| E08 confirmation (2026 Jan-Sep) | `protocol-freeze` (2b7c79e) + `e08-confirmation` | H1 confirmed; H2 confirmed; H3 not confirmed |
 
 All development results are **exploratory**. Only E08 produces confirmatory results.
 

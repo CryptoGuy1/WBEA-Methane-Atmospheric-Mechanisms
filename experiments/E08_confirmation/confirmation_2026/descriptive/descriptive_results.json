@@ -1,0 +1,46 @@
+{
+ "h2_verification": {
+  "null_matrix_identical_to_primary": true,
+  "Dobs_identical": true,
+  "pooled_recomputed": 0.2879317084641316,
+  "pooled_primary": 0.2879317084641316,
+  "weights_sum_to_1": true,
+  "weights_equal_inverse_null_variance": true,
+  "complete_counts_lib_equals_direct": true,
+  "pairs_familywise_lt_005": 14,
+  "K": 246
+ },
+ "h1_descriptive": {
+  "b1": 0.05203865514163186,
+  "percentile_ci": [
+   0.03905775654239831,
+   0.06948332875639722
+  ],
+  "primary_ci_reproduced": true,
+  "basic_ci": [
+   0.034593981526866505,
+   0.0650195537408654
+  ],
+  "cr1_ci": [
+   0.0366886678111674,
+   0.06738864247209653
+  ],
+  "cr1_se": 0.00783162618901253,
+  "era5_proxy_b": 0.05847927122158474,
+  "era5_proxy_ci": [
+   0.04741334594257441,
+   0.07108740432678809
+  ]
+ },
+ "h3_descriptive": {
+  "share_18_regimes": 0.011018334785993391,
+  "share_primary": 0.011018334785993391,
+  "share_6_regimes": 0.012294668962308531,
+  "ci_6_regimes": [
+   -0.021380973468630743,
+   0.04161458277642773
+  ]
+ },
+ "guard_primary_outputs_unchanged": true,
+ "runtime_s": 11.1
+}

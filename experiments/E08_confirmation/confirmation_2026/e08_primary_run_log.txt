@@ -1,0 +1,77 @@
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08.py:42: Pandas4Warning: Starting with pandas version 4.0 all arguments of median will be keyword-only.
+  Y = X[core].median(1).where(X[core].notna().sum(1) >= 5)
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08.py:42: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  Y = X[core].median(1).where(X[core].notna().sum(1) >= 5)
+{
+ "H1": {
+  "b1": 0.05203865514163186,
+  "ci": [
+   0.03905775654239831,
+   0.06948332875639722
+  ],
+  "b_nc": -0.018721921849912438,
+  "b_nc_ci": [
+   -0.02683898987558387,
+   -0.005076424015901541
+  ],
+  "decision": {
+   "a_primary_ci_above_0": true,
+   "b_negative_control_ok": true,
+   "confirmed": true
+  }
+ },
+ "H2": {
+  "pooled_D": 0.2879317084641316,
+  "p": 0.004048582995951417,
+  "pm1h": [
+   0.2936957375619285,
+   0.25720740954454513
+  ],
+  "centroids": [
+   0.1295414197241322,
+   0.34899892150739387,
+   0.5604929133396094,
+   0.9750792383576461,
+   1.1179551225736832
+  ],
+  "rule": {
+   "estimable_bins": 5,
+   "first_bin_estimable": true,
+   "rho": 0.9999999999999999,
+   "rho_threshold": 0.9,
+   "diff_ci_lo": 0.7438147314436366,
+   "evaluable": true,
+   "met": true
+  },
+  "confirmed": true,
+  "dropped": [],
+  "wind_eligible": 54886,
+  "methane_complete": 42133,
+  "null_by_offset": {
+   "mean": {
+    "long": -0.0003,
+    "medium": 0.0028,
+    "short": 0.0005
+   },
+   "std": {
+    "long": 0.0423,
+    "medium": 0.0417,
+    "short": 0.0398
+   }
+  }
+ },
+ "H3": {
+  "contrasts_planned": 55,
+  "contrasts_estimable": 55,
+  "share": 0.011018334785993391,
+  "nonestimable_fraction": 0.0,
+  "ci_lo": -0.019868611545975162,
+  "ci_hi": 0.042768201954171504,
+  "evaluable": true,
+  "confirmed": false
+ },
+ "excluded": [
+  "AMS 2"
+ ],
+ "runtime": 11.6
+}
