@@ -1,4 +1,4 @@
-"""Fig. 2 (revision 2) and Fig. S1: daily CH4 availability (unchanged data and classes); exact canvas sizes; no titles or
+"""Fig. 2 (revision 3: width = CAS textwidth 174.5 mm; data, classes and layout otherwise unchanged) and Fig. S1: daily CH4 availability (unchanged data and classes); exact canvas sizes; no titles or
 panel labels. Adds Fig. S1b: monthly completeness for 2021-2025 (supplementary option), from the same hourly indicators."""
 import numpy as np, pandas as pd
 from matplotlib.colors import ListedColormap, BoundaryNorm
@@ -24,7 +24,7 @@ def daily(csv, stem, width_mm, height_mm, xlabel, year_ticks, mark_excluded, leg
     M = d.pivot(index="station", columns="day", values="valid_hours").reindex(STUDY)
     cov = d.groupby("station").valid_hours.sum() / d.groupby("station").hours.sum()
     fig, ax = layout(width_mm, height_mm, (26.0 if width_mm > 100 else 25.0) if mark_excluded else 12.0, 15.0, bottom_mm, 1.5)
-    ax.pcolormesh(np.r_[np.arange(len(days)), len(days)], np.arange(len(STUDY) + 1), M.values, cmap=CMAP, norm=NORM, edgecolors="none", rasterized=False)
+    ax.pcolormesh(np.r_[np.arange(len(days)), len(days)], np.arange(len(STUDY) + 1), M.values, cmap=CMAP, norm=NORM, edgecolors="face", linewidth=0.15, rasterized=False)   # face-coloured edges remove PDF anti-aliasing seams
     ax.set_ylim(len(STUDY), 0); ax.set_yticks(np.arange(len(STUDY)) + 0.5, [f"{s} (excluded)" if (s in EXCLUDED and mark_excluded) else s for s in STUDY])
     for t in ax.get_yticklabels():
         if "excluded" in t.get_text(): t.set_color("#737373")
@@ -41,11 +41,11 @@ def daily(csv, stem, width_mm, height_mm, xlabel, year_ticks, mark_excluded, leg
                title="Valid hourly CH$_4$ observations per day (proportion of 24 h)", title_fontsize=6.5)
     save_exact(fig, stem); return cov
 
-c26 = daily(DATA / "ch4_daily_availability_2026_jan_sep.csv", "fig02_ch4_availability_2026", 180, 70, "2026 (hour-ending MST; one column = one day)",
+c26 = daily(DATA / "ch4_daily_availability_2026_jan_sep.csv", "fig02_ch4_availability_2026", 174.5, 70, "2026 (hour-ending MST; one column = one day)",
             False, True, 2, 21.0)
 daily(DATA / "ch4_daily_availability_2026_jan_sep.csv", "fig02_ch4_availability_2026_single_column", 90, 92, "2026 (one column = one day)",
       False, True, 1, 33.0)
-daily(DATA / "ch4_daily_availability_2021_2025.csv", "figS1_ch4_availability_2021_2025", 180, 70,
+daily(DATA / "ch4_daily_availability_2021_2025.csv", "figS1_ch4_availability_2021_2025", 174.5, 70,
       "1 Jan 2021 - 1 Dec 2025 (hour-ending MST; one column = one day; minor ticks at quarters)", True, False, 2, 21.0)
 
 # ---- Fig. S1b (option): monthly completeness, 2021-2025, from the same daily file
@@ -55,7 +55,7 @@ m = m[m.month != pd.Period("2025-12", "M")]                        # 1 Dec 2025 
 m.to_csv(DATA / "ch4_monthly_availability_2021_2025.csv", index=False)
 months = sorted(m.month.unique()); M = m.pivot(index="station", columns="month", values="pct").reindex(STUDY)
 MB = [0, 50, 75, 90, 100.01]; MC = ["#d94801", "#fdae6b", "#9ecae1", "#2171b5"]
-fig, ax = layout(180, 66, 12.0, 15.0, 17.0, 1.5)
+fig, ax = layout(174.5, 66, 12.0, 15.0, 17.0, 1.5)
 ax.pcolormesh(np.arange(len(months) + 1), np.arange(len(STUDY) + 1), M.values, cmap=ListedColormap(MC), norm=BoundaryNorm(MB, 4), edgecolors="white", linewidth=0.3)
 ax.set_ylim(len(STUDY), 0); ax.set_yticks(np.arange(len(STUDY)) + 0.5, STUDY)
 yi = [k for k, p in enumerate(months) if p.month == 1]; ax.set_xticks(yi, [str(months[k].year) for k in yi], ha="left")
@@ -66,5 +66,5 @@ cov = d.groupby("station").valid_hours.sum() / d.groupby("station").hours.sum();
 fig.legend(handles=[Patch(fc=c, ec="none", label=l) for c, l in zip(MC, ["< 50%", "50-75%", "75-90%", ">= 90% (normal operation about 95.8%)"])],
            loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, 0.005), fontsize=6.5, handlelength=1.3, columnspacing=1.2,
            title="Valid hourly CH$_4$ observations per month", title_fontsize=6.5)
-save_exact(fig, "figS1b_ch4_availability_2021_2025_monthly")
+save_exact(fig, "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025")
 print("fig02, single-column, S1 daily and S1b monthly written"); print({s: round(100 * c26[s], 1) for s in STUDY})

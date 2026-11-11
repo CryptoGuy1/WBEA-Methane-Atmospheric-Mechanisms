@@ -21,8 +21,22 @@ check("first_last_days", str(pd.read_csv(DATA / "ch4_daily_availability_2026_jan
 conf = {d.station.iloc[0]: d for d in (pd.read_parquet(f) for f in (ROOT / "sealed/e08_panel").glob("AMS*.parquet"))}
 nonpos = sum(int((d["CH4 (ppm)"] <= 0).sum()) for d in conf.values()); tokvals = sum(int(d["CH4 (ppm)"][d["CH4 (ppm)__token"].isin(["Z", "C", "."])].notna().sum()) for d in conf.values())
 check("no_missing_as_zero", nonpos == 0 and tokvals == 0, f"CH4 <= 0: {nonpos}; coded hours with numeric value: {tokvals}")
-SPEC = {"fig01_wbea_network": (180.0, 158.0), "fig02_ch4_availability_2026": (180.0, 70.0), "fig02_ch4_availability_2026_single_column": (90.0, 92.0),
-        "figS1_ch4_availability_2021_2025": (180.0, 70.0), "figS1b_ch4_availability_2021_2025_monthly": (180.0, 66.0)}
+SPEC = {"fig01_wbea_network": (174.5, 118.0), "fig02_ch4_availability_2026": (174.5, 70.0), "fig02_ch4_availability_2026_single_column": (90.0, 92.0),
+        "figS1_ch4_availability_2021_2025": (174.5, 70.0), "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025": (174.5, 66.0)}
+comp = json.loads((DATA / "fig01_components.json").read_text())
+check("fig01_all_components_present", comp["map_components"] == 3 and comp["regional_context"] and comp["network_map"]["pair_lines"] == 21
+      and comp["cluster_map"]["pair_lines"] == 21 and comp["network_map"]["stations"] == sorted(STUDY) and comp["cluster_map"]["stations"] == sorted(STUDY) and len(comp["cluster_map"]["labelled_stations"]) == 10
+      and comp["network_labelled"] == ["AMS 14", "AMS 18"] and comp["panel_letters"] == [],
+      f"3 maps; network and enlarged maps each plot all 12 stations (by gid) and 21 pair lines; enlarged map: 21 pair lines, 10 labelled cluster stations; AMS 14/18 labelled on network map; panel letters: {comp['panel_letters']}")
+d26 = pd.read_csv(DATA / "ch4_daily_availability_2026_jan_sep.csv")
+check("fig02_all_rows_and_days", sorted(d26.station.unique()) == sorted(STUDY) and d26.day.nunique() == 273, "12 station rows x 273 daily columns")
+import hashlib
+H0 = {"ch4_daily_availability_2026_jan_sep.csv": "3437362b65ac7088", "ch4_daily_availability_2021_2025.csv": "77a6cbf51d15d8f6",
+      "pairs_frozen.csv": "3c6270da973e531d", "stations_study.csv": "fcc9a89e7e62a968"}
+check("validated_data_unchanged", all(hashlib.sha256((DATA / f).read_bytes()).hexdigest().startswith(h) for f, h in H0.items()), "SHA-256 prefixes equal those recorded before revision 3")
+fz1 = subprocess.run(["git", "diff", "--stat", "protocol-freeze", "--", "src/wbea", "config", "PROTOCOL_E08_DRAFT_v2.md", "experiments/E08_confirmation/run_e08.py", "experiments/E08_confirmation/run_e08_descriptive.py"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+fz2 = subprocess.run(["git", "diff", "--stat", "e08-confirmation", "--", "experiments/E08_confirmation/confirmation_2026"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+check("frozen_files_unchanged", fz1 == "" and fz2 == "", "empty diff vs protocol-freeze (code, config, protocol) and e08-confirmation (results)")
 for stem, (wmm, hmm) in SPEC.items():
     info = subprocess.run(["pdfinfo", str(FIG / f"{stem}.pdf")], capture_output=True, text=True).stdout
     pw, ph = [float(v) for v in re.search(r"Page size:\s+([\d.]+) x ([\d.]+)", info).groups()]

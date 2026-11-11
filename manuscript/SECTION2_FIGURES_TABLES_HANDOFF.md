@@ -81,3 +81,14 @@ Validated data, the frozen pair list and all experimental results are unchanged.
 - No oil sands region polygon (official layer not available here).
 - DejaVu Sans font (Arial not available).
 - CAS `\textwidth` is 174.5 mm, so 180 mm figures print at 97%. Producing them at exactly 174.5 mm would avoid scaling if preferred.
+
+---
+# Revision 3: FINAL (consolidated specification; supersedes revision 2)
+- **Fig. 1:** all three original map components restored (regional context, full network, enlarged cluster), with no panel letters and no internal titles. Exactly 174.5 x 118.0 mm, the CAS `\textwidth`, so it prints at 100%. All 12 stations and all 21 frozen pairs appear on both network maps (automated component inventory). The revision-2 single-map version is archived (`archive_v2/`), not used.
+- **Fig. 2:** unchanged design and data at 174.5 x 70.0 mm. A PDF rendering defect (hairline seams between daily cells at screen resolution) is fixed without changing data.
+- **Fig. S1:** original daily version retained (174.5 x 70.0 mm), plus a clearly labelled ALTERNATIVE monthly version (174.5 x 66.0 mm; aggregation = valid / total hours per month; no interpolation).
+- **Table 1:** unchanged from revision 2 (`table*`, verified content).
+- **Table 2:** adds descriptive data-availability ranges per temporal partition: development 90.6-94.2%, reference 90.1-94.3%, confirmation 81.5-95.1% excluding AMS 2 at 41.2%.
+  - Corrected reference-period end to **31 Dec 2023 23:00**, matching the frozen selection `.loc["2021":"2023"]` (26,279 h). Under hour-ending, the 1 Jan 2024 00:00 value, which belongs to 31 Dec, is not in the reference set. This is a one-hour subtlety worth stating in Methods.
+- **Validation:** 30/30 checks (components, data hashes, frozen files, dimensions, text bounds, panel letters, fonts, vector). CAS double-column compile with `figure*` at `\textwidth`: 0 errors, 0 overfull boxes; pages rendered and inspected.
+- **Remaining limitations (unchanged):** relocation history incomplete for 10 stations; no oil sands polygon; DejaVu Sans font; the optional single-column Fig. 2 remains 90 mm.

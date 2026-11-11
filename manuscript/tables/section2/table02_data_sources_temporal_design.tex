@@ -14,16 +14,16 @@ Station locations & Latitude, longitude (WGS84) & WBEA site documents (2024) & -
 \bottomrule
 \end{tabularx}
 \par\medskip
-\begin{tabularx}{\textwidth}{@{}ll>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\textwidth}{@{}llc>{\raggedright\arraybackslash}X@{}}
 \toprule
-Temporal partition & Dates (MST, hour-ending) & Use \\
+Temporal partition & Dates (MST, hour-ending) & Valid CH$_4$ hours by station & Use \\
 \midrule
-Development & 1 Jan 2021 01:00 -- 2 Dec 2025 00:00 & Exploratory analysis and method development \\
-Reference & 1 Jan 2021 -- 31 Dec 2023 & Fixed station medians, thresholds and stability scaling \\
-Confirmation & 1 Jan 2026 01:00 -- 1 Oct 2026 00:00 & Independent confirmation (sealed until methods were frozen) \\
+Development & 1 Jan 2021 01:00 -- 2 Dec 2025 00:00 & 90.6--94.2\% & Exploratory analysis and method development \\
+Reference & 1 Jan 2021 01:00 -- 31 Dec 2023 23:00 & 90.1--94.3\% & Fixed station medians, thresholds and stability scaling \\
+Confirmation & 1 Jan 2026 01:00 -- 1 Oct 2026 00:00 & 81.5--95.1\%\textsuperscript{a} & Independent confirmation, sealed until methods were frozen \\
 \bottomrule
 \end{tabularx}
 \par\smallskip\begin{minipage}{\textwidth}\footnotesize
-All timestamps are Mountain Standard Time (UTC$-$7, no daylight saving) and refer to the end of the hourly averaging period, as in WBEA reporting. Missing-value handling, station and pair eligibility, and comparison windows are described in Section~3.
+All timestamps are Mountain Standard Time (UTC$-$7, no daylight saving) and refer to the end of the hourly averaging period, as in WBEA reporting. Valid CH$_4$ hours: range across stations of the share of hours with a valid value (zero/span, calibration and invalid hours count as missing). Missing-value handling, station and pair eligibility, and comparison windows are described in Section~3. \textsuperscript{a}Excluding AMS~2 (41.2\%), which fell below the 50\% completeness criterion.
 \end{minipage}
 \end{table*}

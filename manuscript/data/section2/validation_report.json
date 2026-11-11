@@ -39,17 +39,33 @@
   "passed": true,
   "detail": "CH4 <= 0: 0; coded hours with numeric value: 0"
  },
+ "fig01_all_components_present": {
+  "passed": true,
+  "detail": "3 maps; network and enlarged maps each plot all 12 stations (by gid) and 21 pair lines; enlarged map: 21 pair lines, 10 labelled cluster stations; AMS 14/18 labelled on network map; panel letters: []"
+ },
+ "fig02_all_rows_and_days": {
+  "passed": true,
+  "detail": "12 station rows x 273 daily columns"
+ },
+ "validated_data_unchanged": {
+  "passed": true,
+  "detail": "SHA-256 prefixes equal those recorded before revision 3"
+ },
+ "frozen_files_unchanged": {
+  "passed": true,
+  "detail": "empty diff vs protocol-freeze (code, config, protocol) and e08-confirmation (results)"
+ },
  "fig01_wbea_network_exact_size": {
   "passed": true,
-  "detail": "180.00 x 158.02 mm (spec 180.0 x 158.0)"
+  "detail": "174.50 x 118.00 mm (spec 174.5 x 118.0)"
  },
  "fig01_wbea_network_text_inside_no_panel_labels": {
   "passed": true,
-  "detail": "99 words, all inside page: True; panel labels: []"
+  "detail": "95 words, all inside page: True; panel labels: []"
  },
  "fig02_ch4_availability_2026_exact_size": {
   "passed": true,
-  "detail": "180.00 x 70.00 mm (spec 180.0 x 70.0)"
+  "detail": "174.50 x 70.00 mm (spec 174.5 x 70.0)"
  },
  "fig02_ch4_availability_2026_text_inside_no_panel_labels": {
   "passed": true,
@@ -65,23 +81,23 @@
  },
  "figS1_ch4_availability_2021_2025_exact_size": {
   "passed": true,
-  "detail": "180.00 x 70.00 mm (spec 180.0 x 70.0)"
+  "detail": "174.50 x 70.00 mm (spec 174.5 x 70.0)"
  },
  "figS1_ch4_availability_2021_2025_text_inside_no_panel_labels": {
   "passed": true,
   "detail": "93 words, all inside page: True; panel labels: []"
  },
- "figS1b_ch4_availability_2021_2025_monthly_exact_size": {
+ "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025_exact_size": {
   "passed": true,
-  "detail": "180.00 x 66.00 mm (spec 180.0 x 66.0)"
+  "detail": "174.50 x 66.00 mm (spec 174.5 x 66.0)"
  },
- "figS1b_ch4_availability_2021_2025_monthly_text_inside_no_panel_labels": {
+ "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025_text_inside_no_panel_labels": {
   "passed": true,
   "detail": "79 words, all inside page: True; panel labels: []"
  },
  "fig01_wbea_network_vector_embedded": {
   "passed": true,
-  "detail": "fonts embedded: True (3 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+  "detail": "fonts embedded: True (2 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
  },
  "fig02_ch4_availability_2026_vector_embedded": {
   "passed": true,
@@ -95,7 +111,7 @@
   "passed": true,
   "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
  },
- "figS1b_ch4_availability_2021_2025_monthly_vector_embedded": {
+ "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025_vector_embedded": {
   "passed": true,
   "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
  },

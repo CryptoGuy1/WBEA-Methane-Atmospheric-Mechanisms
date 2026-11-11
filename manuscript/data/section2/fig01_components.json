@@ -1,0 +1,55 @@
+{
+ "map_components": 3,
+ "regional_context": true,
+ "network_map": {
+  "stations": [
+   "AMS 1",
+   "AMS 11",
+   "AMS 13",
+   "AMS 14",
+   "AMS 18",
+   "AMS 2",
+   "AMS 23",
+   "AMS 30",
+   "AMS 5",
+   "AMS 6",
+   "AMS 7",
+   "AMS 9"
+  ],
+  "pair_lines": 21
+ },
+ "cluster_map": {
+  "stations": [
+   "AMS 1",
+   "AMS 11",
+   "AMS 13",
+   "AMS 14",
+   "AMS 18",
+   "AMS 2",
+   "AMS 23",
+   "AMS 30",
+   "AMS 5",
+   "AMS 6",
+   "AMS 7",
+   "AMS 9"
+  ],
+  "pair_lines": 21,
+  "labelled_stations": [
+   "AMS 1",
+   "AMS 11",
+   "AMS 13",
+   "AMS 2",
+   "AMS 23",
+   "AMS 30",
+   "AMS 5",
+   "AMS 6",
+   "AMS 7",
+   "AMS 9"
+  ]
+ },
+ "network_labelled": [
+  "AMS 14",
+  "AMS 18"
+ ],
+ "panel_letters": []
+}

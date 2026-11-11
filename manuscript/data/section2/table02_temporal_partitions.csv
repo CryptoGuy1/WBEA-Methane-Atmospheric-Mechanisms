@@ -1,4 +1,4 @@
-partition,dates,use
-Development,1 Jan 2021 01:00 -- 2 Dec 2025 00:00,Exploratory analysis and method development
-Reference,1 Jan 2021 -- 31 Dec 2023,"Fixed station medians, thresholds and stability scaling"
-Confirmation,1 Jan 2026 01:00 -- 1 Oct 2026 00:00,Independent confirmation (sealed until methods were frozen)
+partition,dates,valid_ch4_hours_station_range,use
+Development,1 Jan 2021 01:00 -- 2 Dec 2025 00:00,90.6--94.2\%,Exploratory analysis and method development
+Reference,1 Jan 2021 01:00 -- 31 Dec 2023 23:00,90.1--94.3\%,"Fixed station medians, thresholds and stability scaling"
+Confirmation,1 Jan 2026 01:00 -- 1 Oct 2026 00:00,81.5--95.1\%\textsuperscript{a},"Independent confirmation, sealed until methods were frozen"

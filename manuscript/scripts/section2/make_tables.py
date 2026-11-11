@@ -29,18 +29,23 @@ D = [("Methane", "CH$_4$ (ppm)", "WBEA continuous monitoring, final validated da
      ("Air temperature", "Temperature ($^\\circ$C) at 2--90~m; AMS~5 tower gradient", "WBEA continuous monitoring", "1~h", "2021--2026"),
      ("Boundary-layer height", "ERA5 boundary-layer height (m)", "Copernicus Climate Change Service, ERA5", "1~h", "2021--2026"),
      ("Station locations", "Latitude, longitude (WGS84)", "WBEA site documents (2024)", "--", "--")]
-T = [("Development", "1 Jan 2021 01:00 -- 2 Dec 2025 00:00", "Exploratory analysis and method development"),
-     ("Reference", "1 Jan 2021 -- 31 Dec 2023", "Fixed station medians, thresholds and stability scaling"),
-     ("Confirmation", "1 Jan 2026 01:00 -- 1 Oct 2026 00:00", "Independent confirmation (sealed until methods were frozen)")]
+dv = pd.read_csv(DATA / "ch4_daily_availability_2021_2025.csv", parse_dates=["day"]); cf = pd.read_csv(DATA / "ch4_daily_availability_2026_jan_sep.csv")
+def rng(d):
+    v = 100 * d.groupby("station").valid_hours.sum() / d.groupby("station").hours.sum(); return f"{v.min():.1f}--{v.max():.1f}\\%", v
+r_dev, _ = rng(dv); r_ref, _ = rng(dv[dv.day.dt.year <= 2023]); r_cf, v_cf = rng(cf)
+r_cf = f"{v_cf.drop('AMS 2').min():.1f}--{v_cf.max():.1f}\\%\\textsuperscript{{a}}"
+T = [("Development", "1 Jan 2021 01:00 -- 2 Dec 2025 00:00", r_dev, "Exploratory analysis and method development"),
+     ("Reference", "1 Jan 2021 01:00 -- 31 Dec 2023 23:00", r_ref, "Fixed station medians, thresholds and stability scaling"),
+     ("Confirmation", "1 Jan 2026 01:00 -- 1 Oct 2026 00:00", r_cf, "Independent confirmation, sealed until methods were frozen")]
 L = [r"\begin{table*}[t]", r"\centering", r"\caption{Observational datasets and temporal design of the methane-monitoring analysis.}", r"\label{tab:data}",
      r"\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xll@{}}", r"\toprule", r"Dataset & Variables (units) & Source & Resolution & Years \\", r"\midrule"]
 L += [" & ".join(x) + r" \\" for x in D] + [r"\bottomrule", r"\end{tabularx}", r"\par\medskip",
-      r"\begin{tabularx}{\textwidth}{@{}ll>{\raggedright\arraybackslash}X@{}}", r"\toprule", r"Temporal partition & Dates (MST, hour-ending) & Use \\", r"\midrule"]
-L += [f"{a} & {b} & {c} \\\\" for a, b, c in T]
+      r"\begin{tabularx}{\textwidth}{@{}llc>{\raggedright\arraybackslash}X@{}}", r"\toprule", r"Temporal partition & Dates (MST, hour-ending) & Valid CH$_4$ hours by station & Use \\", r"\midrule"]
+L += [f"{a} & {b} & {c} & {d} \\\\" for a, b, c, d in T]
 L += [r"\bottomrule", r"\end{tabularx}", r"\par\smallskip\begin{minipage}{\textwidth}\footnotesize",
-      r"All timestamps are Mountain Standard Time (UTC$-$7, no daylight saving) and refer to the end of the hourly averaging period, as in WBEA reporting. Missing-value handling, station and pair eligibility, and comparison windows are described in Section~3.",
+      r"All timestamps are Mountain Standard Time (UTC$-$7, no daylight saving) and refer to the end of the hourly averaging period, as in WBEA reporting. Valid CH$_4$ hours: range across stations of the share of hours with a valid value (zero/span, calibration and invalid hours count as missing). Missing-value handling, station and pair eligibility, and comparison windows are described in Section~3. \textsuperscript{a}Excluding AMS~2 (41.2\%), which fell below the 50\% completeness criterion.",
       r"\end{minipage}", r"\end{table*}"]
 (TAB / "table02_data_sources_temporal_design.tex").write_text("\n".join(L) + "\n")
 pd.DataFrame(D, columns=["dataset", "variables", "source", "resolution", "years"]).to_csv(DATA / "table02_datasets.csv", index=False)
-pd.DataFrame(T, columns=["partition", "dates", "use"]).to_csv(DATA / "table02_temporal_partitions.csv", index=False)
+pd.DataFrame(T, columns=["partition", "dates", "valid_ch4_hours_station_range", "use"]).to_csv(DATA / "table02_temporal_partitions.csv", index=False)
 print(T)
