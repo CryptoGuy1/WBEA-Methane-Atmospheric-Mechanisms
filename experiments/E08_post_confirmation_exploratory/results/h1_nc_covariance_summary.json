@@ -1,0 +1,14 @@
+{
+ "label": "POST-CONFIRMATION EXPLORATORY; registered H1 result unchanged",
+ "dev_b_nc_range": [
+  -0.0021557383179996816,
+  0.003297515694558412
+ ],
+ "dev_corr_within_range": [
+  0.060059332810693,
+  0.29946091405279596
+ ],
+ "conf_b_nc": -0.018721921849912438,
+ "conf_corr_within": 0.1457799946864721,
+ "spearman_bnc_vs_corrwithin_6_periods": 0.14285714285714285
+}

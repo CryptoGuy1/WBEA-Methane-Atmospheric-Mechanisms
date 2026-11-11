@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/netmech/__init__.py
+src/netmech/e08.py
+src/netmech/geometry.py
+src/netmech/h2.py
+src/netmech/synthetic.py
+src/netmech.egg-info/PKG-INFO
+src/netmech.egg-info/SOURCES.txt
+src/netmech.egg-info/dependency_links.txt
+src/netmech.egg-info/requires.txt
+src/netmech.egg-info/top_level.txt
+tests/test_netmech.py

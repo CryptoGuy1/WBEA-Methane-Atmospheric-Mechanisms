@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netmech"
+version = "0.1.0"
+description = "Falsification-tested estimators for accumulation and advection signatures in air-monitoring networks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT (pending project approval)"}
+dependencies = ["numpy>=1.26", "pandas>=2.1", "scipy>=1.11"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
