@@ -1,0 +1,3 @@
+reference,bin0_ref,bin1_ref,bin2_ref,bin3_ref,bin4_ref,bin0_obs,bin1_obs,bin2_obs,bin3_obs,bin4_obs,SSE
+"mask-gated, A = 0.3 (E06 corrections)",0.1724,0.3412,0.8064,1.2996,1.272,0.3039,0.3081,0.5109,1.3136,1.4296,0.1307
+"continuous source, A = 0.3, 50 replicates (E09-r1)",0.1839,0.3603,0.8352,1.4322,2.0308,0.3039,0.3081,0.5109,1.3136,1.4296,0.4977

@@ -1,0 +1,67 @@
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:77: Pandas4Warning: Starting with pandas version 4.0 all arguments of median will be keyword-only.
+  core = [s for s in CORE if s in STU]; Y = X[core].median(1).where(X[core].notna().sum(1) >= 5)
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:77: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  core = [s for s in CORE if s in STU]; Y = X[core].median(1).where(X[core].notna().sum(1) >= 5)
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/src/wbea/e08.py:70: RuntimeWarning: Mean of empty slice
+  frac = 1 - estimable.mean(); s = shares[estimable]
+/usr/local/lib/python3.12/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py:168: RuntimeWarning: All-NaN slice encountered
+  zl = np.nanmax(np.vstack([np.r_[np.full(l, np.nan), z[:-l]] for l in (1, 2, 3)]), 0); L[recv] |= flow & (zl >= 1); AS[recv] |= flow
+Traceback (most recent call last):
+  File "/home/claude/WBEA-Methane-Atmospheric-Mechanisms/experiments/E08_confirmation/run_e08_descriptive.py", line 182, in <module>
+    assert H_BEFORE == H_AFTER, "primary outputs were modified by the descriptive runner"
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError: primary outputs were modified by the descriptive runner
