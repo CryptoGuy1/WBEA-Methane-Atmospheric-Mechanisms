@@ -32,8 +32,8 @@ Splitter: 12 stations x 6,552 hours = 78,624 rows; source hashes verified; outpu
 
 | Test | Result | Rule outcome (dry run) |
 |---|---|---|
-| H1 primary b1 (core median, cells, log wind) | 0.048 (0.032 to 0.064), n = 6,014 | (a) met |
-| H1 joint model: b1_joint / b_nc | b_nc 0.0002 (-0.0094 to 0.0070) | (b) not flagged; this is not proof of no confounding |
+| H1 primary b1 (core median, cells, log wind) | 0.048 (0.032 to 0.064), n = 6,187 hours (S coverage 100%) | (a) met |
+| H1 joint model (n = 6,163): b1_joint 0.049; b_nc 0.0002 (-0.0094 to 0.0070); ratio b_nc/b1_joint 0.003 (-0.18 to 0.15), paired bootstrap | (b) not flagged; this is not proof of no confounding |
 | H2 pooled D | 0.184, p = 0.0040 (= 1/247, floor), K = 246, 27/27 pairs | (i) met |
 | H2 +/-1 h wind shift | 0.169 / 0.153 | (ii) met |
 | H2 lag centroids (h) | 0.30, 0.31, 0.51, 1.31, 1.43; 5 bins; rho 1.0; c_last - c_first CI lower 0.37 | (iii) met |
