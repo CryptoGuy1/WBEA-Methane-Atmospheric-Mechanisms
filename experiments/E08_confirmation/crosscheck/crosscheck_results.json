@@ -1,0 +1,21 @@
+{
+ "H1": {
+  "e08_point": 0.047520729313986924,
+  "e04_point": 0.04752,
+  "e08_joint_nc": -3.845758258365785e-05,
+  "e04_nc": -4e-05
+ },
+ "H2": {
+  "max_abs_pair_D_difference": 4.9679899091076285e-06,
+  "pooled_with_E05_weights": 0.12850732195366812,
+  "e05_pooled": 0.1283
+ },
+ "H3": {
+  "contrasts": 48,
+  "max_abs_d_composition": 3.05307483554982e-05,
+  "max_abs_d_total": 0.00017787056467121268,
+  "same_n_groups": 48,
+  "share_e08_subset": -0.00737110120664809,
+  "share_e07r3_same_subset": -0.007154896554516543
+ }
+}
