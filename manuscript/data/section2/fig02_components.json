@@ -1,0 +1,28 @@
+{
+ "canvas_mm": [
+  174.5,
+  155.0
+ ],
+ "panels": [
+  {
+   "name": "monthly 2021-2025",
+   "rows": 12,
+   "cols": 59,
+   "nan_cells": 0
+  },
+  {
+   "name": "daily 2021-2025",
+   "rows": 12,
+   "cols": 1796,
+   "nan_cells": 0
+  },
+  {
+   "name": "daily Jan-Sep 2026",
+   "rows": 12,
+   "cols": 273,
+   "nan_cells": 0
+  }
+ ],
+ "definition": "100 * valid hourly CH4 values / hours in cell (Z, C, '.' and blanks are not valid)",
+ "colormap": "cividis, 0-100%, shared"
+}

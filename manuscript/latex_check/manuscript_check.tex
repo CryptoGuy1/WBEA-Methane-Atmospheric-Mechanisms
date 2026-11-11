@@ -1,0 +1,50 @@
+% Representative full-length Elsevier CAS (cas-dc 2.3) document: Sections 1-3, Figs 1-2, Tables 1-2, bibliography.
+% Placement rules: figure*[!t] declared near first reference; \FloatBarrier at section boundaries; \clearpage before References.
+\documentclass[a4paper,fleqn]{cas-dc}
+\usepackage[authoryear]{natbib}
+\usepackage{booktabs,graphicx,tabularx,lipsum}
+\usepackage[section]{placeins}
+\let\WriteBookmarks\relax
+\shorttitle{WBEA methane monitoring}
+\shortauthors{B. Nweke}
+\begin{document}
+\let\printorcid\relax
+\title [mode = title]{Representative layout check: WBEA methane monitoring manuscript}
+\author[1]{Benjamin Nweke}
+\affiliation[1]{organization={University of Wyoming}, country={USA}}
+\maketitle
+
+\section{Introduction}
+Continuous monitoring networks are increasingly used to interpret methane concentrations near industrial sources \citep{Xu2026,Saha2025}. Directional and meteorological methods have a long history in air-quality analysis \citep{Uria2014,Grange2019}.
+\lipsum[1-4]
+
+\section{Study area and data}
+\subsection{Monitoring network}
+The study uses hourly observations from the Wood Buffalo Environmental Association (WBEA) network in northern Alberta, Canada (Fig.~\ref{fig:network}; Table~\ref{tab:stations}).
+\begin{figure*}[!t]
+\centering\includegraphics[width=\textwidth]{../figures/section2/fig01_wbea_network.pdf}
+\caption{Geographic location and spatial configuration of the Wood Buffalo Environmental Association (WBEA) atmospheric methane monitoring network in northern Alberta, Canada. The maps show the regional location of the study area, the distribution of the 12 monitoring stations, and an enlarged view of the station cluster along the Athabasca River (dashed box). Lines connecting monitoring stations indicate the 21 station pairs eligible for statistical comparison in the 2026 confirmation analysis rather than observed methane transport pathways. The station excluded under the prespecified data-completeness criterion (AMS~2) is shown as an open square. Base data: Natural Earth; station coordinates: WBEA site documents (2024).}\label{fig:network}
+\end{figure*}
+\input{../tables/section2/table01_station_characteristics.tex}
+\lipsum[5-6]
+\subsection{Datasets and temporal design}
+Datasets and temporal partitions are summarised in Table~\ref{tab:data}; observation availability is shown in Fig.~\ref{fig:avail}.
+\input{../tables/section2/table02_data_sources_temporal_design.tex}
+\begin{figure*}[!t]
+\centering\includegraphics[width=\textwidth]{../figures/section2/fig02_ch4_availability.pdf}
+\caption{Availability of hourly methane (CH$_4$) observations at the 12 WBEA monitoring stations. Upper plot: monthly completeness, January 2021 -- November 2025 (development period). Middle plot: daily completeness over the same period. Lower plot: daily completeness, 1 January -- 30 September 2026 (confirmation period). In all three plots completeness is the percentage of hours in the month or day with a valid CH$_4$ value; hours flagged for zero/span checks, calibration, maintenance or invalidity count as missing, and no values are interpolated. Under normal operation one hour per day is used for the automated zero/span check (23 of 24 hours valid; marked on the colour bar). Values at right give each station's share of valid hours in the period. Times are Mountain Standard Time, hour-ending. $^\dagger$AMS~2 was excluded from the 2026 confirmation analysis (41.2\% valid hours).}\label{fig:avail}
+\end{figure*}
+\lipsum[7-9]
+
+\section{Methods}
+\lipsum[10-16]
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem[Grange and Carslaw(2019)]{Grange2019} Grange, S.K., Carslaw, D.C., 2019. Using meteorological normalisation to detect interventions in air quality time series. Science of the Total Environment 653, 578--588.
+\bibitem[Saha et al.(2025)]{Saha2025} Saha, S., et al., 2025. Dispersion based recurrent neural network model for methane monitoring in Albertan tailings ponds. Journal of Environmental Management 395, 127748.
+\bibitem[Uria-Tellaetxe and Carslaw(2014)]{Uria2014} Uria-Tellaetxe, I., Carslaw, D.C., 2014. Conditional bivariate probability function for source identification. Environmental Modelling \& Software 59, 1--9.
+\bibitem[Xu et al.(2026)]{Xu2026} Xu, et al., 2026. Physics-informed spatiotemporal analysis of methane concentrations in an oil sands region. Journal of Environmental Management 405, 129618.
+\end{thebibliography}
+\label{refs:start}
+\end{document}

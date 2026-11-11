@@ -21,8 +21,15 @@ check("first_last_days", str(pd.read_csv(DATA / "ch4_daily_availability_2026_jan
 conf = {d.station.iloc[0]: d for d in (pd.read_parquet(f) for f in (ROOT / "sealed/e08_panel").glob("AMS*.parquet"))}
 nonpos = sum(int((d["CH4 (ppm)"] <= 0).sum()) for d in conf.values()); tokvals = sum(int(d["CH4 (ppm)"][d["CH4 (ppm)__token"].isin(["Z", "C", "."])].notna().sum()) for d in conf.values())
 check("no_missing_as_zero", nonpos == 0 and tokvals == 0, f"CH4 <= 0: {nonpos}; coded hours with numeric value: {tokvals}")
-SPEC = {"fig01_wbea_network": (174.5, 118.0), "fig02_ch4_availability_2026": (174.5, 70.0), "fig02_ch4_availability_2026_single_column": (90.0, 92.0),
-        "figS1_ch4_availability_2021_2025": (174.5, 70.0), "figS1_ALTERNATIVE_monthly_ch4_availability_2021_2025": (174.5, 66.0)}
+SPEC = {"fig01_wbea_network": (174.5, 118.0), "fig02_ch4_availability": (174.5, 155.0)}
+c2 = json.loads((DATA / "fig02_components.json").read_text())
+check("fig02_combined_components", [(p["rows"], p["cols"], p["nan_cells"]) for p in c2["panels"]] == [(12, 59, 0), (12, 1796, 0), (12, 273, 0)] and "cividis" in c2["colormap"],
+      "upper monthly 12x59, middle daily 12x1796, lower daily 12x273; no missing cells (missing hours are 0%, not blank); one cividis 0-100% scale")
+dv_ = pd.read_csv(DATA / "ch4_daily_availability_2021_2025.csv", parse_dates=["day"]); mm = pd.read_csv(DATA / "ch4_monthly_availability_2021_2025.csv")
+dv_["m"] = dv_.day.dt.to_period("M").astype(str); rec_ = dv_[dv_.m != "2025-12"].groupby(["station", "m"]).valid_hours.sum() / dv_[dv_.m != "2025-12"].groupby(["station", "m"]).hours.sum()
+check("same_completeness_definition", np.allclose(np.sort(100 * rec_.values), np.sort(mm.pct.values)), "monthly % = sum(valid hours)/sum(hours) of the same daily records used in the daily plots")
+aux = (ROOT / "manuscript/latex_check/manuscript_check.aux").read_text(); pg = {k: int(v) for k, v in re.findall(r"newlabel\{(fig:network|fig:avail|tab:stations|tab:data|refs:start)\}\{\{[^}]*\}\{(\d+)\}", aux)}
+check("floats_before_references", len(pg) == 5 and max(pg[k] for k in ("fig:network", "fig:avail", "tab:stations", "tab:data")) < pg["refs:start"], f"pages: {pg}")
 comp = json.loads((DATA / "fig01_components.json").read_text())
 check("fig01_all_components_present", comp["map_components"] == 3 and comp["regional_context"] and comp["network_map"]["pair_lines"] == 21
       and comp["cluster_map"]["pair_lines"] == 21 and comp["network_map"]["stations"] == sorted(STUDY) and comp["cluster_map"]["stations"] == sorted(STUDY) and len(comp["cluster_map"]["labelled_stations"]) == 10

@@ -92,3 +92,20 @@ Validated data, the frozen pair list and all experimental results are unchanged.
   - Corrected reference-period end to **31 Dec 2023 23:00**, matching the frozen selection `.loc["2021":"2023"]` (26,279 h). Under hour-ending, the 1 Jan 2024 00:00 value, which belongs to 31 Dec, is not in the reference set. This is a one-hour subtlety worth stating in Methods.
 - **Validation:** 30/30 checks (components, data hashes, frozen files, dimensions, text bounds, panel letters, fonts, vector). CAS double-column compile with `figure*` at `\textwidth`: 0 errors, 0 overfull boxes; pages rendered and inspected.
 - **Remaining limitations (unchanged):** relocation history incomplete for 10 stations; no oil sands polygon; DejaVu Sans font; the optional single-column Fig. 2 remains 90 mm.
+
+---
+# Revision 4: combined Fig. 2 and manuscript placement (final)
+- **Fig. 2 (combined), `fig02_ch4_availability.{pdf,svg}` + `_600dpi.png`:** 174.50 x 155.00 mm (CAS `\textwidth`).
+  - Upper: monthly 2021-2025 (12 x 59). Middle: daily 2021-2025 (12 x 1,796). Lower: daily Jan-Sep 2026 (12 x 273).
+  - One completeness definition for all three: 100 x valid hourly CH4 / hours in the cell. The monthly values are verified to equal aggregation of the same daily records.
+  - Continuous **cividis** 0-100% with one shared, labelled vector colour bar, marking 23/24 h (normal operation with the daily zero/span hour).
+  - Station identifiers and time axes on all plots. No titles or panel letters (the caption describes the upper, middle and lower plots). Right-hand period percentages shown for 2021-2025 and 2026 only, avoiding duplication. AMS 2 marked † in the 2026 plot.
+  - Fully vector: 0 embedded raster images. The default Matplotlib colour bar embedded a bitmap, so it was replaced by 256 vector cells.
+  - Script: `scripts/section2/make_fig02_combined.py`.
+- **Individual availability figures:** archived (`figures/section2/archive_v3_individual/`). Script retained as `make_fig02_individual.py`, writing to the archive. Source daily data unchanged (SHA-256 verified).
+- **Fig. 1:** unchanged (three components, no letters, 174.5 x 118.0 mm).
+- **LaTeX placement:** representative full-length CAS document `latex_check/manuscript_check.{tex,pdf}` (Sections 1-3, both `figure*[!t]` declared right after their first citation, both `table*`, `\usepackage[section]{placeins}` plus `\FloatBarrier`, `\clearpage` before References, bibliography).
+  - Result: 0 errors, 0 overfull boxes, 6 pages.
+  - Pages (from `.aux`): Fig. 1 p.2, Table 1 p.2, Table 2 p.3, Fig. 2 p.4, References p.6. **All floats precede the References.** Fig. 2 and its caption fit on one page.
+  - Reusable snippet: `latex_check/FIGURE_PLACEMENT_SNIPPET.tex`.
+- **Validation:** 24/24 automated checks pass (`data/section2/validation_report.json`), including combined-figure components, same completeness definition, floats-before-references, exact sizes, text inside page, no panel letters, embedded fonts, no raster, data hashes and frozen files.

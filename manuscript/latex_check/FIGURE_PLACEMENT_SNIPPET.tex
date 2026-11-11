@@ -1,0 +1,18 @@
+% Section 2 float placement for the manuscript (Elsevier CAS double column).
+% Preamble:  \usepackage{graphicx,booktabs,tabularx}  \usepackage[section]{placeins}
+% Declare each figure* immediately after the paragraph that first cites it; [!t] places it at the top of a page.
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig01_wbea_network.pdf}
+  \caption{...}\label{fig:wbea_network}
+\end{figure*}
+% ... first reference to Fig. 2 ...
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig02_ch4_availability.pdf}
+  \caption{...}\label{fig:ch4_availability}
+\end{figure*}
+\FloatBarrier          % end of Section 2 (placeins [section] option also flushes floats at each \section)
+% ... Sections 3+ ...
+\clearpage             % immediately before the References: all pending floats are output first
+% \bibliography{...}

@@ -4,6 +4,7 @@ import numpy as np, pandas as pd
 from matplotlib.colors import ListedColormap, BoundaryNorm
 from matplotlib.patches import Patch
 from common import plt, MM, DATA, STUDY, EXCLUDED, save_exact
+import common; save_exact.__globals__["FIG"] = common.FIG / "archive_v3_individual"   # individual figures archived (superseded by combined Fig. 2)
 BINS = [-0.5, 0.5, 11.5, 22.5, 24.5]
 COLS = ["#d94801", "#fdae6b", "#9ecae1", "#2171b5"]
 LABELS = ["0 h (0%)", "1-11 h (4-46%)", "12-22 h (50-92%)", "23-24 h (96-100%; normal operation with one daily zero/span hour)"]

@@ -2,7 +2,14 @@
 
 **Fig. 1.** Geographic location and spatial configuration of the Wood Buffalo Environmental Association (WBEA) atmospheric methane monitoring network in northern Alberta, Canada. The maps show the regional location of the study area, the distribution of the 12 monitoring stations, and an enlarged view of the station cluster along the Athabasca River (dashed box). Lines connecting monitoring stations indicate the 21 station pairs eligible for statistical comparison in the 2026 confirmation analysis rather than observed methane transport pathways. The station excluded under the prespecified data-completeness criterion (AMS 2) is shown as an open square. Base data: Natural Earth; station coordinates: WBEA site documents (2024).
 
-**Fig. 2.** Temporal availability of hourly methane concentration observations across the WBEA monitoring network from January to September 2026. Each cell shows the number of valid hourly observations at a station on one day (proportion of 24 h); under normal operation one hour per day is used for the automated zero/span check, so a normally operating day has 23 valid hours. Fully missing, partially observed and normally observed days are distinguished; the values at right give each station's share of valid hours over the period.
+**Fig. 2 (combined, final).** Availability of hourly methane (CH4) observations at the 12 WBEA monitoring stations.
+- Upper plot: monthly completeness, January 2021 - November 2025 (development period).
+- Middle plot: daily completeness over the same period.
+- Lower plot: daily completeness, 1 January - 30 September 2026 (confirmation period).
+
+In all three plots completeness is the percentage of hours in the month or day with a valid CH4 value. Hours flagged for zero/span checks, calibration, maintenance or invalidity count as missing, and no values are interpolated. Under normal operation one hour per day is used for the automated zero/span check (23 of 24 hours valid; marked on the colour bar). Values at right give each station's share of valid hours in the period. Times are Mountain Standard Time, hour-ending. † AMS 2 was excluded from the 2026 confirmation analysis (41.2% valid hours).
+
+(The individual 2026, daily 2021-2025 and monthly 2021-2025 figures are archived in `archive_v3_individual/` and superseded by the combined Fig. 2.)
 
 **Fig. S1 (original, daily).** Daily availability of hourly methane observations at the 12 stations, 1 January 2021 - 1 December 2025 (development period), coded as in Fig. 2. No station was excluded in this period.
 
