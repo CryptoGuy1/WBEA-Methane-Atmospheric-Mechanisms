@@ -14,6 +14,12 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 7, "axes.labelsi
                      "xtick.labelsize": 6.5, "ytick.labelsize": 6.5, "legend.fontsize": 6.5, "axes.linewidth": 0.5,
                      "xtick.major.width": 0.5, "ytick.major.width": 0.5, "pdf.fonttype": 42, "ps.fonttype": 42,
                      "svg.fonttype": "none", "savefig.dpi": 600, "figure.dpi": 150})
+def save_exact(fig, stem):
+    """Save WITHOUT bbox cropping so the PDF/SVG page equals the canvas (exact, documented dimensions)."""
+    for ext in ("pdf", "svg"):
+        fig.savefig(FIG / f"{stem}.{ext}", metadata={"Date": None} if ext == "svg" else {"CreationDate": None})
+    fig.savefig(FIG / f"{stem}_600dpi.png", dpi=600); plt.close(fig)
+
 def save(fig, stem):
     for ext in ("pdf", "svg"):
         fig.savefig(FIG / f"{stem}.{ext}", bbox_inches="tight", pad_inches=0.02, metadata={"Date": None} if ext == "svg" else {"CreationDate": None})

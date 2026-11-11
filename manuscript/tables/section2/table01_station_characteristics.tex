@@ -1,11 +1,10 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
-\caption{Geographic characteristics and observational variables of the WBEA atmospheric monitoring stations included in the study.}
+\caption{Geographic characteristics and meteorological measurement heights of the WBEA atmospheric monitoring stations included in the study.}
 \label{tab:stations}
-\small
-\begin{tabular}{llrrll}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrll@{}}
 \toprule
-Station & Name & Lat. ($^\circ$N) & Long. ($^\circ$W) & Wind heights (m)\textsuperscript{a} & Air temperature heights (m) \\
+Station & Name & Latitude ($^\circ$N) & Longitude ($^\circ$W) & Wind height (m) & Temperature height (m) \\
 \midrule
 AMS 1 & Fort McKay - Bertha Ganter & 57.1894 & 111.6406 & 10 & 2, 10 \\
 AMS 2 & Mildred Lake & 57.0500 & 111.5641 & 10 & 2 \\
@@ -20,7 +19,8 @@ AMS 18 & Stony Mountain & 55.6215 & 111.1728 & 10, 20 & 2 \\
 AMS 23 & Fort Hills & 57.3489 & 111.6397 & 10 & 2 \\
 AMS 30 & Ells River & 57.2412 & 111.7221 & 10 & 2 \\
 \bottomrule
-\end{tabular}
-\par\smallskip\footnotesize
-\textit{Notes.} Hourly methane (CH$_4$, ppm) is measured at all 12 stations by WBEA continuous total hydrocarbon/methane/non-methane hydrocarbon analysers with a daily automated zero/span check (WBEA SOP-ANA-008); the analyser model is verified from site documentation only for AMS~5 (Thermo~55i). Coordinates: WBEA 2024 site documents. Heights list variables with at least 5\% valid hours in 2021--2025 exports. \textsuperscript{a}Where both 10 and 20~m are listed, 10~m is used when valid and 20~m otherwise. AMS~5 provides the 20--90~m tower temperature gradient used for atmospheric stability. Station relocations before 2024 have not been verified.
-\end{table}
+\end{tabular*}
+\par\smallskip\begin{minipage}{\textwidth}\footnotesize
+Coordinates (WGS84) from WBEA 2024 site documents. Heights (m above ground) list variables with at least 5\% valid hourly values in the 2021--2025 exports; where 10 and 20~m are both listed, the 10~m sensor is used when valid. Methane, total hydrocarbons and non-methane hydrocarbons are reported together at every station (ppm, hourly) by WBEA's continuous hydrocarbon analysers, with an automated zero/span check that occupies one hour per day and is flagged in the data (WBEA SOP-ANA-008; WBEA monthly reports). The analyser model is documented here only for AMS~5 (Thermo~55i, installed 2021); WBEA reports analyser replacements at AMS~5 and AMS~23 in September 2024. AMS~5 has a meteorological tower with sensors at 20--90~m; its 90 minus 20~m temperature difference is the stability measure.
+\end{minipage}
+\end{table*}

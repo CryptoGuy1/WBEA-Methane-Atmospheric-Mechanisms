@@ -1,23 +1,29 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
-\caption{Observational datasets, temporal partitions, and preprocessing characteristics used in the methane-monitoring analysis.}
+\caption{Observational datasets and temporal design of the methane-monitoring analysis.}
 \label{tab:data}
-\small
-\begin{tabular}{p{0.22\linewidth}p{0.52\linewidth}p{0.19\linewidth}}
+\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xll@{}}
 \toprule
-Item & Specification & Source \\
+Dataset & Variables (units) & Source & Resolution & Years \\
 \midrule
-Methane (CH$_4$) & Hourly averages (ppm), WBEA continuous monitoring, final validated data (exported 9 Nov 2026) & WBEA \\
-Surface wind & Hourly speed and direction; 10~m where valid, otherwise 20~m; converted to m\,s$^{-1}$ & WBEA \\
-Atmospheric stability & AMS~5 tower temperature difference, 90~m minus 20~m ($^\circ$C); ERA5 boundary-layer height as an independent proxy & WBEA; Copernicus ERA5 \\
-Station coordinates & Latitude/longitude, WGS84 (Table~\ref{tab:stations}) & WBEA site documents (2024) \\
-Temporal resolution & 1~h & -- \\
-Time convention & Mountain Standard Time (UTC$-$7, no daylight saving), hour-ending & WBEA monthly reports \\
-Development period & 1 Jan 2021 01:00 -- 2 Dec 2025 00:00 (1,796 days); exploratory analysis & -- \\
-Fixed reference period & 2021--2023: station medians, 95th-percentile thresholds, stability standardisation and terciles & -- \\
-Independent confirmation period & 1 Jan 2026 01:00 -- 1 Oct 2026 00:00 (273 days); sealed until methods were frozen; final validated under WBEA's 30-day rule & WBEA \\
-Seasonal comparison windows & 1 Jan -- 30 Sep of each year, used only where development and confirmation years are compared & -- \\
-Missing values & Zero/span (Z), calibration (C) and invalid/maintenance (.) hours treated as missing, never as zero; no imputation; stations with $<50$\% valid CH$_4$ hours in the confirmation period excluded & WBEA monthly report (Sep 2024); Alberta AMD Ch.~6 \\
+Methane & CH$_4$ (ppm) & WBEA continuous monitoring, final validated data & 1~h & 2021--2026 \\
+Surface wind & Speed (m\,s$^{-1}$) and direction ($^\circ$) & WBEA continuous monitoring & 1~h & 2021--2026 \\
+Air temperature & Temperature ($^\circ$C) at 2--90~m; AMS~5 tower gradient & WBEA continuous monitoring & 1~h & 2021--2026 \\
+Boundary-layer height & ERA5 boundary-layer height (m) & Copernicus Climate Change Service, ERA5 & 1~h & 2021--2026 \\
+Station locations & Latitude, longitude (WGS84) & WBEA site documents (2024) & -- & -- \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{tabularx}
+\par\medskip
+\begin{tabularx}{\textwidth}{@{}ll>{\raggedright\arraybackslash}X@{}}
+\toprule
+Temporal partition & Dates (MST, hour-ending) & Use \\
+\midrule
+Development & 1 Jan 2021 01:00 -- 2 Dec 2025 00:00 & Exploratory analysis and method development \\
+Reference & 1 Jan 2021 -- 31 Dec 2023 & Fixed station medians, thresholds and stability scaling \\
+Confirmation & 1 Jan 2026 01:00 -- 1 Oct 2026 00:00 & Independent confirmation (sealed until methods were frozen) \\
+\bottomrule
+\end{tabularx}
+\par\smallskip\begin{minipage}{\textwidth}\footnotesize
+All timestamps are Mountain Standard Time (UTC$-$7, no daylight saving) and refer to the end of the hourly averaging period, as in WBEA reporting. Missing-value handling, station and pair eligibility, and comparison windows are described in Section~3.
+\end{minipage}
+\end{table*}

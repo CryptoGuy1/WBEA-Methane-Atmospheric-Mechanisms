@@ -39,6 +39,46 @@
   "passed": true,
   "detail": "CH4 <= 0: 0; coded hours with numeric value: 0"
  },
+ "fig01_wbea_network_exact_size": {
+  "passed": true,
+  "detail": "180.00 x 158.02 mm (spec 180.0 x 158.0)"
+ },
+ "fig01_wbea_network_text_inside_no_panel_labels": {
+  "passed": true,
+  "detail": "99 words, all inside page: True; panel labels: []"
+ },
+ "fig02_ch4_availability_2026_exact_size": {
+  "passed": true,
+  "detail": "180.00 x 70.00 mm (spec 180.0 x 70.0)"
+ },
+ "fig02_ch4_availability_2026_text_inside_no_panel_labels": {
+  "passed": true,
+  "detail": "88 words, all inside page: True; panel labels: []"
+ },
+ "fig02_ch4_availability_2026_single_column_exact_size": {
+  "passed": true,
+  "detail": "90.00 x 92.00 mm (spec 90.0 x 92.0)"
+ },
+ "fig02_ch4_availability_2026_single_column_text_inside_no_panel_labels": {
+  "passed": true,
+  "detail": "86 words, all inside page: True; panel labels: []"
+ },
+ "figS1_ch4_availability_2021_2025_exact_size": {
+  "passed": true,
+  "detail": "180.00 x 70.00 mm (spec 180.0 x 70.0)"
+ },
+ "figS1_ch4_availability_2021_2025_text_inside_no_panel_labels": {
+  "passed": true,
+  "detail": "93 words, all inside page: True; panel labels: []"
+ },
+ "figS1b_ch4_availability_2021_2025_monthly_exact_size": {
+  "passed": true,
+  "detail": "180.00 x 66.00 mm (spec 180.0 x 66.0)"
+ },
+ "figS1b_ch4_availability_2021_2025_monthly_text_inside_no_panel_labels": {
+  "passed": true,
+  "detail": "79 words, all inside page: True; panel labels: []"
+ },
  "fig01_wbea_network_vector_embedded": {
   "passed": true,
   "detail": "fonts embedded: True (3 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
@@ -52,6 +92,10 @@
   "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
  },
  "figS1_ch4_availability_2021_2025_vector_embedded": {
+  "passed": true,
+  "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+ },
+ "figS1b_ch4_availability_2021_2025_monthly_vector_embedded": {
   "passed": true,
   "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
  },

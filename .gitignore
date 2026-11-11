@@ -13,3 +13,4 @@ __pycache__/
 # Manuscript outputs (descriptive figures and derived availability counts only; no CH4 concentration values)
 !manuscript/figures/**/*.pdf
 !manuscript/data/
+!manuscript/latex_check/*.pdf

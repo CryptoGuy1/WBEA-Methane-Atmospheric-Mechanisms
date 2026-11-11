@@ -21,7 +21,18 @@ check("first_last_days", str(pd.read_csv(DATA / "ch4_daily_availability_2026_jan
 conf = {d.station.iloc[0]: d for d in (pd.read_parquet(f) for f in (ROOT / "sealed/e08_panel").glob("AMS*.parquet"))}
 nonpos = sum(int((d["CH4 (ppm)"] <= 0).sum()) for d in conf.values()); tokvals = sum(int(d["CH4 (ppm)"][d["CH4 (ppm)__token"].isin(["Z", "C", "."])].notna().sum()) for d in conf.values())
 check("no_missing_as_zero", nonpos == 0 and tokvals == 0, f"CH4 <= 0: {nonpos}; coded hours with numeric value: {tokvals}")
-for stem in ("fig01_wbea_network", "fig02_ch4_availability_2026", "fig02_ch4_availability_2026_single_column", "figS1_ch4_availability_2021_2025"):
+SPEC = {"fig01_wbea_network": (180.0, 158.0), "fig02_ch4_availability_2026": (180.0, 70.0), "fig02_ch4_availability_2026_single_column": (90.0, 92.0),
+        "figS1_ch4_availability_2021_2025": (180.0, 70.0), "figS1b_ch4_availability_2021_2025_monthly": (180.0, 66.0)}
+for stem, (wmm, hmm) in SPEC.items():
+    info = subprocess.run(["pdfinfo", str(FIG / f"{stem}.pdf")], capture_output=True, text=True).stdout
+    pw, ph = [float(v) for v in re.search(r"Page size:\s+([\d.]+) x ([\d.]+)", info).groups()]
+    check(f"{stem}_exact_size", abs(pw * 25.4 / 72 - wmm) < 0.1 and abs(ph * 25.4 / 72 - hmm) < 0.1, f"{pw * 25.4 / 72:.2f} x {ph * 25.4 / 72:.2f} mm (spec {wmm} x {hmm})")
+    words = subprocess.run(["pdftotext", "-bbox", str(FIG / f"{stem}.pdf"), "-"], capture_output=True, text=True).stdout
+    boxes = [tuple(float(v) for v in m) for m in re.findall(r'xMin="([\d.-]+)" yMin="([\d.-]+)" xMax="([\d.-]+)" yMax="([\d.-]+)"', words)]
+    inside = all(b[0] >= -0.5 and b[1] >= -0.5 and b[2] <= pw + 0.5 and b[3] <= ph + 0.5 for b in boxes)
+    texts = re.findall(r">([^<]+)</word>", words); panel = [t for t in texts if re.fullmatch(r"\([a-z]\)", t.strip())]
+    check(f"{stem}_text_inside_no_panel_labels", inside and not panel, f"{len(boxes)} words, all inside page: {inside}; panel labels: {panel}")
+for stem in SPEC:
     pdf = FIG / f"{stem}.pdf"; fonts = subprocess.run(["pdffonts", str(pdf)], capture_output=True, text=True).stdout.splitlines()[2:]
     emb = all(l.split()[-5] == "yes" for l in fonts if l.strip()); imgs = subprocess.run(["pdfimages", "-list", str(pdf)], capture_output=True, text=True).stdout.splitlines()[2:]
     svg = (FIG / f"{stem}.svg").read_text(); png = FIG / f"{stem}_600dpi.png"

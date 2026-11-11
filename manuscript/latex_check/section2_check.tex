@@ -1,0 +1,26 @@
+% Compilation check of Section 2 tables and figures in the Elsevier CAS double-column class (cas-dc 2.3).
+\documentclass[a4paper,fleqn]{cas-dc}
+\usepackage[authoryear]{natbib}
+\usepackage{booktabs,graphicx,tabularx}
+\let\WriteBookmarks\relax
+\shorttitle{WBEA methane: Section 2}
+\shortauthors{B. Nweke}
+\begin{document}
+\let\printorcid\relax
+\title [mode = title]{Section 2 layout check}
+\author[1]{Benjamin Nweke}
+\affiliation[1]{organization={University of Wyoming}, country={USA}}
+\maketitle
+\section{Study area and data}
+Placeholder text for column width. The WBEA network (Fig.~\ref{fig:network}) comprises twelve stations considered in this study (Table~\ref{tab:stations}); datasets and temporal design are summarised in Table~\ref{tab:data}, and data availability in Fig.~\ref{fig:avail}.
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{../figures/section2/fig01_wbea_network.pdf}
+\caption{Geographical distribution of the Wood Buffalo Environmental Association atmospheric methane monitoring stations in northern Alberta, Canada. Station locations are shown using official monitoring-network coordinates. Lines connecting monitoring stations represent eligible statistical comparisons rather than verified methane transport pathways.}\label{fig:network}
+\end{figure*}
+\input{../tables/section2/table01_station_characteristics.tex}
+\input{../tables/section2/table02_data_sources_temporal_design.tex}
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{../figures/section2/fig02_ch4_availability_2026.pdf}
+\caption{Temporal availability of hourly methane concentration observations at the WBEA monitoring stations from January to September 2026. The colour scale represents the proportion of valid hourly observations within each day. Missing measurements are distinguished from valid concentration measurements.}\label{fig:avail}
+\end{figure*}
+\end{document}

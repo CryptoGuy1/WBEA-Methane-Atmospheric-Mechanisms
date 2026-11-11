@@ -58,3 +58,26 @@ Visual inspection was done on the renders. Several layout problems were found an
 
 ## Repository note
 `.gitignore` excludes all `*.pdf` files and every `data/` directory, safeguards for WBEA data and copyrighted papers. Two scoped exceptions were added so that the manuscript PDFs and derived availability counts can be committed: `!manuscript/figures/**/*.pdf` and `!manuscript/data/`. Raw WBEA data (`data/dev`, `sealed/`) and reference PDFs (`literature/pdf`) remain ignored (verified). The derived files contain daily counts of valid hours and validity codes, not methane concentrations.
+
+---
+# Revision 2 (editorial and presentation revision, 2026-11-11)
+Validated data, the frozen pair list and all experimental results are unchanged. v1 figures, tables and scripts are preserved (`figures/section2/archive_v1/`, `tables/section2/archive_v1/`, `scripts/section2/make_fig0*_v1.py`).
+
+## What changed
+| Item | Revision |
+|---|---|
+| Fig. 1 | One coherent UTM 12N map (92 x 149 mm map area) with a compact, unlabelled location inset; no titles or panel labels; 7 pt station labels; all 21 frozen pairs; AMS 18 shown by an off-map position note; simplified 6-entry legend. Exact 180.0 x 158.0 mm |
+| Fig. 2 | Same data and daily classes; exact 180.0 x 70.0 mm; legend gives hours and proportion of the day; label clipping fixed. 90 mm variant: 90.0 x 92.0 mm |
+| Fig. S1 | Daily version retained (180.0 x 70.0 mm). New monthly option **S1b** (180.0 x 66.0 mm), recommended for readability |
+| Table 1 | `table*` full width; station, name, verified coordinates, wind and temperature heights; instrument note limited to verified statements (co-reported THC/CH4/NMHC at all 12 stations, checked in the exports; daily zero/span per SOP-ANA-008 and monthly reports; Thermo 55i only for AMS 5; Sep 2024 analyser replacements at AMS 5 and AMS 23) |
+| Table 2 | Simplified: datasets (variables, source, resolution, years) and temporal partitions (dates, use), with a timestamp-convention note. Selection and preprocessing rules moved to `tables/section2/METHODS_NOTES_moved_from_Table2.md` |
+| LaTeX check | Compiled in Elsevier CAS double column (`cas-dc` 2.3, from the official template via a public GitHub mirror) with figures and tables: **0 errors, 0 overfull boxes** (after fixing an initial 313 pt overflow in Table 2 by switching to `tabularx`). PDF in `latex_check/` |
+| Relocations | `data/section2/STATION_RELOCATION_CHECK.md`: AMS 1 (est. 1997) and AMS 23 (est. 2017) predate the study, with no relocation mentioned; the other 10 stations could not be verified here (documents too large to retrieve). Download steps and suggested manuscript wording given |
+| Comparison | `figures/section2/FIGURE_REVISION_COMPARISON.md`: exact v1 vs v2 dimensions and final checklist |
+| Validation | 26/26 automated checks pass (exact sizes, text inside page, no panel labels, vector/fonts, data checks) |
+
+## Remaining limitations
+- Station relocation history incomplete (10 of 12 stations).
+- No oil sands region polygon (official layer not available here).
+- DejaVu Sans font (Arial not available).
+- CAS `\textwidth` is 174.5 mm, so 180 mm figures print at 97%. Producing them at exactly 174.5 mm would avoid scaling if preferred.
