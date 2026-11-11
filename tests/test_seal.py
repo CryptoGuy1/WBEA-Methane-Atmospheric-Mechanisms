@@ -4,7 +4,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from wbea.io import load_dev, CUT
 
-ALLOWED_RAW_READERS = {"src/build/build_dev_panel.py"}          # one-time builder; stops at cutoff
+ALLOWED_RAW_READERS = {"src/build/build_dev_panel.py", "src/build/build_e08_panel.py"}   # designated readers only          # one-time builder; stops at cutoff
 RAW_PATTERNS = re.compile(r"(\.xlsx|/mnt/user-data/uploads|raw_station|FinalData_export|sealed/)")
 
 def test_dev_panel_ends_at_cutoff():
