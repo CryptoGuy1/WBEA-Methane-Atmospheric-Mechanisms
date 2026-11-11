@@ -10,3 +10,6 @@ literature/pdf/
 *.pdf
 __pycache__/
 .ipynb_checkpoints/
+# Manuscript outputs (descriptive figures and derived availability counts only; no CH4 concentration values)
+!manuscript/figures/**/*.pdf
+!manuscript/data/

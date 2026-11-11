@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "ne_10m_populated_places_selected",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Fort Chipewyan", "latitude": 58.717099, "longitude": -111.149996 }, "geometry": { "type": "Point", "coordinates": [ -111.149996, 58.717099 ] } },
+{ "type": "Feature", "properties": { "name": "Fort McMurray", "latitude": 56.733319, "longitude": -111.383315 }, "geometry": { "type": "Point", "coordinates": [ -111.383315, 56.733319 ] } },
+{ "type": "Feature", "properties": { "name": "Calgary", "latitude": 51.084938, "longitude": -114.081944 }, "geometry": { "type": "Point", "coordinates": [ -114.081944, 51.084938 ] } },
+{ "type": "Feature", "properties": { "name": "Edmonton", "latitude": 53.551971, "longitude": -113.501928 }, "geometry": { "type": "Point", "coordinates": [ -113.501928, 53.551971 ] } }
+]
+}

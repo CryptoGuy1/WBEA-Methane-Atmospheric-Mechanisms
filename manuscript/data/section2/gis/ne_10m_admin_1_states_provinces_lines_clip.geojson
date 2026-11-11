@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "ne_10m_admin_1_states_provinces_lines_clip",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Saskatchewan - Alberta", "featurecla": "Admin-1 boundary" }, "geometry": { "type": "LineString", "coordinates": [ [ -109.999973, 59.2 ], [ -109.999973, 58.968804 ], [ -109.999973, 58.625052 ], [ -109.999973, 58.281327 ], [ -109.999973, 57.937575 ], [ -109.999973, 57.593849 ], [ -109.999973, 57.250098 ], [ -109.999973, 56.906294 ], [ -109.999973, 56.562543 ], [ -109.999973, 56.218817 ], [ -109.999973, 55.875065 ], [ -109.999973, 55.531339 ], [ -109.999973, 55.187588 ], [ -109.999973, 54.843836 ], [ -109.999973, 54.8 ] ] } }
+]
+}

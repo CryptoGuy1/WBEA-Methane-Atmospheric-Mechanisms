@@ -1,0 +1,12 @@
+item,specification,source
+Methane (CH$_4$),"Hourly averages (ppm), WBEA continuous monitoring, final validated data (exported 9 Nov 2026)",WBEA
+Surface wind,"Hourly speed and direction; 10~m where valid, otherwise 20~m; converted to m\,s$^{-1}$",WBEA
+Atmospheric stability,"AMS~5 tower temperature difference, 90~m minus 20~m ($^\circ$C); ERA5 boundary-layer height as an independent proxy",WBEA; Copernicus ERA5
+Station coordinates,"Latitude/longitude, WGS84 (Table~\ref{tab:stations})",WBEA site documents (2024)
+Temporal resolution,1~h,--
+Time convention,"Mountain Standard Time (UTC$-$7, no daylight saving), hour-ending",WBEA monthly reports
+Development period,"1 Jan 2021 01:00 -- 2 Dec 2025 00:00 (1,796 days); exploratory analysis",--
+Fixed reference period,"2021--2023: station medians, 95th-percentile thresholds, stability standardisation and terciles",--
+Independent confirmation period,1 Jan 2026 01:00 -- 1 Oct 2026 00:00 (273 days); sealed until methods were frozen; final validated under WBEA's 30-day rule,WBEA
+Seasonal comparison windows,"1 Jan -- 30 Sep of each year, used only where development and confirmation years are compared",--
+Missing values,"Zero/span (Z), calibration (C) and invalid/maintenance (.) hours treated as missing, never as zero; no imputation; stations with $<50$\% valid CH$_4$ hours in the confirmation period excluded",WBEA monthly report (Sep 2024); Alberta AMD Ch.~6

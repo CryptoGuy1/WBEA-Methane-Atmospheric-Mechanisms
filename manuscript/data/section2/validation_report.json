@@ -1,0 +1,62 @@
+{
+ "coordinates_match_metadata": {
+  "passed": true,
+  "detail": "12 stations, exact"
+ },
+ "pairs_equal_frozen_and_recomputed": {
+  "passed": true,
+  "detail": "21 pairs; identical to frozen h2_pairs.csv and to the <=30 km rule on 11 stations"
+ },
+ "coverage_2026_matches_frozen": {
+  "passed": true,
+  "detail": "max abs diff 4.10e-05 (frozen stored to 4 dp)"
+ },
+ "excluded_station_rule": {
+  "passed": true,
+  "detail": "stations < 50%: ['AMS 2']"
+ },
+ "days_and_hours_273": {
+  "passed": true,
+  "detail": "273 days x 12 stations, 24 h each (hour-ending: 00:00 assigned to previous day)"
+ },
+ "hour_accounting_273": {
+  "passed": true,
+  "detail": "valid + Z + C + '.' + other = 24 for every station-day"
+ },
+ "days_and_hours_1796": {
+  "passed": true,
+  "detail": "1796 days x 12 stations, 24 h each (hour-ending: 00:00 assigned to previous day)"
+ },
+ "hour_accounting_1796": {
+  "passed": true,
+  "detail": "valid + Z + C + '.' + other = 24 for every station-day"
+ },
+ "first_last_days": {
+  "passed": true,
+  "detail": "2026: 1 Jan - 30 Sep"
+ },
+ "no_missing_as_zero": {
+  "passed": true,
+  "detail": "CH4 <= 0: 0; coded hours with numeric value: 0"
+ },
+ "fig01_wbea_network_vector_embedded": {
+  "passed": true,
+  "detail": "fonts embedded: True (3 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+ },
+ "fig02_ch4_availability_2026_vector_embedded": {
+  "passed": true,
+  "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+ },
+ "fig02_ch4_availability_2026_single_column_vector_embedded": {
+  "passed": true,
+  "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+ },
+ "figS1_ch4_availability_2021_2025_vector_embedded": {
+  "passed": true,
+  "detail": "fonts embedded: True (1 font(s)); raster images in PDF: 0; SVG text as text: True; PNG dpi: 600"
+ },
+ "tables_booktabs_no_results": {
+  "passed": true,
+  "detail": "booktabs rules present; no vertical lines; no experiment IDs, hypothesis results or significance language"
+ }
+}
