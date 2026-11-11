@@ -109,3 +109,12 @@ Validated data, the frozen pair list and all experimental results are unchanged.
   - Pages (from `.aux`): Fig. 1 p.2, Table 1 p.2, Table 2 p.3, Fig. 2 p.4, References p.6. **All floats precede the References.** Fig. 2 and its caption fit on one page.
   - Reusable snippet: `latex_check/FIGURE_PLACEMENT_SNIPPET.tex`.
 - **Validation:** 24/24 automated checks pass (`data/section2/validation_report.json`), including combined-figure components, same completeness definition, floats-before-references, exact sizes, text inside page, no panel letters, embedded fonts, no raster, data hashes and frozen files.
+
+## Revision 4a: colours reverted (researcher request)
+- Combined Fig. 2 uses the **previous four-colour scheme** (#d94801, #fdae6b, #9ecae1, #2171b5) with the **previous class limits**:
+  - daily cells (middle, lower plots): 0 / 1-11 / 12-22 / 23-24 valid hours;
+  - monthly cells (upper plot): < 50 / 50-75 / 75-90 / >= 90%;
+  - two compact legends in the same colours replace the cividis colour bar.
+- A single shared 95% boundary was tried first and rejected. Typical months (about 93-96%) flipped between classes and falsely suggested widespread data problems.
+- The completeness definition is unchanged (valid hours / hours in cell).
+- Size 174.5 x 162.0 mm. CAS check: 0 errors, 0 overfull; Fig. 2 and caption on p.4; References p.6. Validation 24/24. The cividis version remains in git history (commit 95e43ef).

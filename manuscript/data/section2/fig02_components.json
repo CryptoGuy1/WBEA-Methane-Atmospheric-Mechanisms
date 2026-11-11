@@ -1,7 +1,7 @@
 {
  "canvas_mm": [
   174.5,
-  155.0
+  162.0
  ],
  "panels": [
   {
@@ -24,5 +24,5 @@
   }
  ],
  "definition": "100 * valid hourly CH4 values / hours in cell (Z, C, '.' and blanks are not valid)",
- "colormap": "cividis, 0-100%, shared"
+ "colormap": "four classes, previous colours #d94801 #fdae6b #9ecae1 #2171b5; daily: 0|1-11|12-22|23-24 h; monthly: <50|50-75|75-90|>=90%"
 }

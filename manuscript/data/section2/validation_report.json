@@ -41,7 +41,7 @@
  },
  "fig02_combined_components": {
   "passed": true,
-  "detail": "upper monthly 12x59, middle daily 12x1796, lower daily 12x273; no missing cells (missing hours are 0%, not blank); one cividis 0-100% scale"
+  "detail": "upper monthly 12x59, middle daily 12x1796, lower daily 12x273; no missing cells (missing hours are 0%, not blank); previous four-colour scheme: daily hour classes (middle, lower), monthly % classes (upper)"
  },
  "same_completeness_definition": {
   "passed": true,
@@ -77,11 +77,11 @@
  },
  "fig02_ch4_availability_exact_size": {
   "passed": true,
-  "detail": "174.50 x 155.00 mm (spec 174.5 x 155.0)"
+  "detail": "174.50 x 162.00 mm (spec 174.5 x 162.0)"
  },
  "fig02_ch4_availability_text_inside_no_panel_labels": {
   "passed": true,
-  "detail": "164 words, all inside page: True; panel labels: []"
+  "detail": "192 words, all inside page: True; panel labels: []"
  },
  "fig01_wbea_network_vector_embedded": {
   "passed": true,

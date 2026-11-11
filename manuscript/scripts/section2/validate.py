@@ -21,10 +21,10 @@ check("first_last_days", str(pd.read_csv(DATA / "ch4_daily_availability_2026_jan
 conf = {d.station.iloc[0]: d for d in (pd.read_parquet(f) for f in (ROOT / "sealed/e08_panel").glob("AMS*.parquet"))}
 nonpos = sum(int((d["CH4 (ppm)"] <= 0).sum()) for d in conf.values()); tokvals = sum(int(d["CH4 (ppm)"][d["CH4 (ppm)__token"].isin(["Z", "C", "."])].notna().sum()) for d in conf.values())
 check("no_missing_as_zero", nonpos == 0 and tokvals == 0, f"CH4 <= 0: {nonpos}; coded hours with numeric value: {tokvals}")
-SPEC = {"fig01_wbea_network": (174.5, 118.0), "fig02_ch4_availability": (174.5, 155.0)}
+SPEC = {"fig01_wbea_network": (174.5, 118.0), "fig02_ch4_availability": (174.5, 162.0)}
 c2 = json.loads((DATA / "fig02_components.json").read_text())
-check("fig02_combined_components", [(p["rows"], p["cols"], p["nan_cells"]) for p in c2["panels"]] == [(12, 59, 0), (12, 1796, 0), (12, 273, 0)] and "cividis" in c2["colormap"],
-      "upper monthly 12x59, middle daily 12x1796, lower daily 12x273; no missing cells (missing hours are 0%, not blank); one cividis 0-100% scale")
+check("fig02_combined_components", [(p["rows"], p["cols"], p["nan_cells"]) for p in c2["panels"]] == [(12, 59, 0), (12, 1796, 0), (12, 273, 0)] and "previous colours" in c2["colormap"],
+      "upper monthly 12x59, middle daily 12x1796, lower daily 12x273; no missing cells (missing hours are 0%, not blank); previous four-colour scheme: daily hour classes (middle, lower), monthly % classes (upper)")
 dv_ = pd.read_csv(DATA / "ch4_daily_availability_2021_2025.csv", parse_dates=["day"]); mm = pd.read_csv(DATA / "ch4_monthly_availability_2021_2025.csv")
 dv_["m"] = dv_.day.dt.to_period("M").astype(str); rec_ = dv_[dv_.m != "2025-12"].groupby(["station", "m"]).valid_hours.sum() / dv_[dv_.m != "2025-12"].groupby(["station", "m"]).hours.sum()
 check("same_completeness_definition", np.allclose(np.sort(100 * rec_.values), np.sort(mm.pct.values)), "monthly % = sum(valid hours)/sum(hours) of the same daily records used in the daily plots")
