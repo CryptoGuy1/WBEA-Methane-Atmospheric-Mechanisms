@@ -108,3 +108,48 @@ def test_splitter_matches_dev_panel_on_2025_window():
     assert st == "AMS 1" and len(df) == 48
     np.testing.assert_array_equal(df["CH4 (ppm)"].to_numpy(), dev["CH4 (ppm)"].to_numpy())
     assert list(df["CH4 (ppm)__token"]) == list(dev["CH4 (ppm)__token"])
+
+# ---------------- added: max-T, pooled weighting, H3 with 4 and 5 development years, runner guards
+def test_maxT_and_pooled_weights():
+    rng = np.random.default_rng(3); null = rng.normal(0, [0.05, 0.1, 0.2], (246, 3)); obs = np.array([1.0, 0.0, 0.0])
+    Z, p = e08.maxT_adjust(obs, null); assert p[0] == 1 / 247 and p[1] > 0.05 and Z[0] > Z[1]
+    pooled, pn, w = e08.pooled_inverse_null_variance(obs, null)
+    assert w.sum() == pytest.approx(1) and np.allclose(w, (1 / null.var(0)) / (1 / null.var(0)).sum())
+    assert pooled == pytest.approx((w * obs).sum()) and pn.shape == (246,)
+
+def _synthetic_counts(stations, years, rng, nb=20, empty=None):
+    out = {}
+    for s in stations:
+        out[s] = {}
+        for y in years:
+            H = rng.integers(5, 15, (nb, 18)).astype(float); X = np.floor(H * rng.random((nb, 18)) * 0.2)
+            if empty == (s, y): H[:, 7] = 0; X[:, 7] = 0
+            out[s][y] = (H, X)
+    return out
+
+@pytest.mark.parametrize("devyears", [[2021, 2022, 2023, 2024], [2021, 2022, 2023, 2024, 2025]])
+def test_h3_run_four_and_five_development_years(devyears):
+    rng = np.random.default_rng(4); st = ["A", "B", "C"]
+    con = _synthetic_counts(st, [2026], rng); dev = _synthetic_counts(st, devyears, rng)
+    df, share, summ, bs = e08.h3_run(con, dev, devyears, 2026, st, 50, np.random.default_rng(5))
+    assert len(df) == len(st) * len(devyears) and df.estimable.all()
+    assert np.allclose(df.composition + df.within, df.total) and np.isfinite(share) and summ["evaluable"] and len(bs) == 50
+
+def test_h3_run_empty_regime_and_six_groups():
+    rng = np.random.default_rng(6); st = ["A", "B"]
+    con = _synthetic_counts(st, [2026], rng); dev = _synthetic_counts(st, [2021, 2022, 2023, 2024], rng, empty=("A", 2022))
+    six = [np.array([s_ * 6 + w * 2 + nt for w in range(3)]) for nt in (0, 1) for s_ in range(3)]
+    df, _, _, _ = e08.h3_run(con, dev, [2021, 2022, 2023, 2024], 2026, st, 0, np.random.default_rng(0), groups=six)
+    assert df.estimable.all() and (df.n_groups == 6).all()          # cell 7 empty but pooled inside a six-regime group
+    one = [np.array([k]) for k in range(18)]
+    df2, _, _, _ = e08.h3_run(con, dev, [2021, 2022, 2023, 2024], 2026, st, 0, np.random.default_rng(0), groups=one)
+    assert not df2.set_index(["station", "dev_year"]).loc[("A", 2022), "estimable"]
+
+def test_runners_refuse_confirm_and_descriptive_has_no_decisions():
+    import subprocess
+    for script, extra in (("run_e08.py", ["--out", "x"]), ("run_e08_descriptive.py", ["--primary", "x"])):
+        r = subprocess.run([sys.executable, str(ROOT / "experiments/E08_confirmation" / script), "--mode", "confirm", "--panel", "x", *extra],
+                           capture_output=True, text=True)
+        assert r.returncode != 0 and "not authorised" in (r.stdout + r.stderr)
+    src = (ROOT / "experiments/E08_confirmation/run_e08_descriptive.py").read_text()
+    assert "h1_decision" not in src and "centroid_rule" not in src and "H_BEFORE == H_AFTER" in src

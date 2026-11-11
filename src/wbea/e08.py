@@ -80,7 +80,7 @@ def fe_coefs(arr, cell):
     n = np.bincount(cell); m = np.vstack([np.bincount(cell, arr[:, j], minlength=len(n)) for j in range(arr.shape[1])]).T / np.maximum(n, 1)[:, None]
     Z = arr - m[cell]; return np.linalg.lstsq(Z[:, 1:], Z[:, 0], rcond=None)[0]
 
-def h1_estimate(Y, S, Snext, LU, idx, nboot, rng):
+def h1_estimate(Y, S, Snext, LU, idx, nboot, rng, return_draws=False):
     cellraw = (idx.year * 10000 + idx.month * 100 + idx.hour).to_numpy(); blk = block_ids(idx)
     ub = np.unique(blk); pos = {b: np.where(blk == b)[0] for b in ub}
     d1 = np.column_stack([Y, S, LU]); ok1 = np.isfinite(d1).all(1)
@@ -96,7 +96,8 @@ def h1_estimate(Y, S, Snext, LU, idx, nboot, rng):
     return dict(n_primary=int(ok1.sum()), n_joint=int(ok2.sum()), b1_primary=float(b_p),
                 b1_primary_ci=(float(np.percentile(bp, 2.5)), float(np.percentile(bp, 97.5))),
                 b1_joint=float(b_j[0]), b_nc=float(b_j[1]), b_nc_ci=(float(np.percentile(bn, 2.5)), float(np.percentile(bn, 97.5))),
-                ratio_nc=float(b_j[1] / b_j[0]), ratio_nc_ci=(float(np.percentile(bn / bj, 2.5)), float(np.percentile(bn / bj, 97.5))))
+                ratio_nc=float(b_j[1] / b_j[0]), ratio_nc_ci=(float(np.percentile(bn / bj, 2.5)), float(np.percentile(bn / bj, 97.5))),
+                **({"draws_primary": bp, "draws_joint_b1": bj, "draws_nc": bn} if return_draws else {}))
 
 BINS = [0, 0.5, 1.0, 1.5, 2.0, 3.0]
 
@@ -125,3 +126,45 @@ def h2_centroids(Slist, w=None):
         c = (p * np.arange(4)).sum(1) / possum
     nlag0 = sum(S[:, :, 0, 0].sum(0) for S in Slist) if w is None else None
     return c, possum, nlag0
+
+# =====================================================================  added for descriptive outputs and testing
+def maxT_adjust(Dobs, Dnull):
+    """Family-wise max-T adjusted one-sided p per pair over the SAME finite shift set:
+    Z = (D - mean_null) / sd_null; p_fw = (1 + #{max_k Z_null_k >= Z_obs}) / (K + 1)."""
+    Dobs, Dnull = np.asarray(Dobs, float), np.asarray(Dnull, float)
+    mu, sd = Dnull.mean(0), Dnull.std(0); Z = (Dobs - mu) / sd; maxZ = ((Dnull - mu) / sd).max(1)
+    return Z, np.array([(1 + int((maxZ >= z).sum())) / (len(maxZ) + 1) for z in Z])
+
+def pooled_inverse_null_variance(Dobs, Dnull):
+    """Pooled D with weights 1/var of each pair's D over the finite shifts; returns pooled, pooled null, weights."""
+    prec = 1 / np.asarray(Dnull).var(0); w = prec / prec.sum()
+    return float((w * np.asarray(Dobs)).sum()), np.asarray(Dnull) @ w, w
+
+def h3_run(conC, devC, devyears, cyear, stations, nboot, rng, groups=None, minh=50):
+    """H3 core. conC[s][cyear] and devC[s][y] are (H[block, 18], X[block, 18]) count arrays.
+    Merge groups fixed on full data (unless `groups` given, e.g. the six-regime sensitivity); ONE confirmation-year
+    block draw per replicate shared by all contrasts; development years resampled within year; replicate
+    non-estimable if any contrast has an empty merged group. Returns contrasts DataFrame, share, bootstrap summary."""
+    rows, G = [], {}
+    for s in stations:
+        hc, xc = conC[s][cyear][0].sum(0), conC[s][cyear][1].sum(0)
+        for y in devyears:
+            hd, xd = devC[s][y][0].sum(0), devC[s][y][1].sum(0)
+            g = groups if groups is not None else merge_groups(hc, hd, minh); G[(s, y)] = g
+            cc, ww, tt, ok = kitagawa_groups(hc, xc, hd, xd, g)
+            rows.append(dict(station=s, dev_year=y, composition=cc, within=ww, total=tt, estimable=ok, n_groups=len(g)))
+    df = pd.DataFrame(rows); est = df[df.estimable]
+    share = projection_share(est.composition, est.total) if len(est) else np.nan
+    nbc = conC[stations[0]][cyear][0].shape[0]; nbd = {y: devC[stations[0]][y][0].shape[0] for y in devyears}
+    bs, ok_ = [], []
+    for _ in range(nboot):
+        wc = np.bincount(rng.integers(0, nbc, nbc), minlength=nbc).astype(float)
+        wd = {y: np.bincount(rng.integers(0, nbd[y], nbd[y]), minlength=nbd[y]).astype(float) for y in devyears}
+        comp, tot, good = [], [], True
+        for s, y in zip(est.station, est.dev_year):
+            cc, _, tt, ok = kitagawa_groups((wc[:, None] * conC[s][cyear][0]).sum(0), (wc[:, None] * conC[s][cyear][1]).sum(0),
+                                            (wd[y][:, None] * devC[s][y][0]).sum(0), (wd[y][:, None] * devC[s][y][1]).sum(0), G[(s, y)])
+            if not ok: good = False; break
+            comp.append(cc); tot.append(tt)
+        ok_.append(good); bs.append(projection_share(comp, tot) if good else np.nan)
+    return df, share, h3_bootstrap_summary(bs, ok_), np.array(bs)

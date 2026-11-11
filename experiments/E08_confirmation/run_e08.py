@@ -72,7 +72,7 @@ if h2out["evaluable"]:
         for h in (+1, -1):
             up, cs = h2.pair_wind(W[r.i], W[r.j], r.bearing, h); al, rv, tau = h2.sets(r.km, up, cs)
             Dpm[h][p] = h2.D_stat(q["dri"], q["drj"], al, rv, h2.weights(tau, al, rv))
-    prec = 1 / Dnull.var(0); pooled = float((prec * Dobs).sum() / prec.sum()); pn = Dnull @ prec / prec.sum()
+    pooled, pn, wts = e08.pooled_inverse_null_variance(Dobs, Dnull); prec = 1 / Dnull.var(0)
     pm = {h: float((prec * Dpm[h]).sum() / prec.sum()) for h in (+1, -1)}
     # centroid
     Sl = []
@@ -96,7 +96,8 @@ if h2out["evaluable"]:
                  methane_complete_hours_total=int(sum(q["methane_complete_aligned"] + q["methane_complete_reversed"] for q in pairs)))
     h2out["criteria"] = dict(i_p_lt_005=h2out["p"] < 0.05, ii_positive_under_pm1h=pm[+1] > 0 and pm[-1] > 0, iii_centroid=crule["met"])
     h2out["confirmed"] = bool(all(h2out["criteria"].values())) if crule["evaluable"] else None
-    pd.DataFrame([dict(pair=q["pair"], D=Dobs[p], null_sd=float(Dnull[:, p].std()), p_unadj=e08.finite_shift_p(Dobs[p], Dnull[:, p]),
+    np.save(OUT / "h2_null_matrix.npy", Dnull); np.save(OUT / "h2_Dobs.npy", Dobs)
+    pd.DataFrame([dict(pair=q["pair"], D=Dobs[p], null_sd=float(Dnull[:, p].std()), weight=float(wts[p]), p_unadj=e08.finite_shift_p(Dobs[p], Dnull[:, p]),
                        wind_eligible_hours=q["wind_eligible"], methane_complete_aligned=q["methane_complete_aligned"],
                        methane_complete_reversed=q["methane_complete_reversed"]) for p, q in enumerate(pairs)]).round(5).to_csv(OUT / "h2_pairs.csv", index=False)
 
@@ -122,30 +123,10 @@ def unit_counts(panel, years_index, years_list, thr, stations):
 S_ALL = pd.concat([(DEV["AMS 5"]["AT90 (C)"] - DEV["AMS 5"]["AT20 (C)"]), (P["AMS 5"]["AT90 (C)"] - P["AMS 5"]["AT20 (C)"])])
 S_ALL = S_ALL[~S_ALL.index.duplicated(keep="last")]
 devC = unit_counts(DEV, DEV["AMS 1"].index, DEVYEARS, P95, STU); conC = unit_counts(P, idx, [CYEAR], P95, STU)
-contr, groups = [], {}
-for s in STU:
-    hc, xc = conC[s][CYEAR][0].sum(0), conC[s][CYEAR][1].sum(0)
-    for y in DEVYEARS:
-        hd, xd = devC[s][y][0].sum(0), devC[s][y][1].sum(0); g = e08.merge_groups(hc, hd); groups[(s, y)] = g
-        cc, ww, tt, ok = e08.kitagawa_groups(hc, xc, hd, xd, g)
-        contr.append(dict(station=s, dev_year=y, composition=cc, within=ww, total=tt, estimable=ok, n_groups=len(g)))
-contr = pd.DataFrame(contr); contr.round(6).to_csv(OUT / "h3_contrasts.csv", index=False)
-estc = contr[contr.estimable]; h3 = {"contrasts_planned": len(contr), "contrasts_estimable": len(estc)}
-h3["share"] = e08.projection_share(estc.composition, estc.total) if len(estc) else np.nan
-rng = np.random.default_rng(SEED + 3); bs, bok = [], []
-for _ in range(A.nboot_h3):
-    wc_ = np.bincount(rng.integers(0, 20, 20), minlength=20).astype(float)                 # ONE confirmation-year draw, all contrasts
-    wd_ = {y: np.bincount(rng.integers(0, 20, 20), minlength=20).astype(float) for y in DEVYEARS}
-    comp, tot, ok_all = [], [], True
-    for s, y in zip(estc.station, estc.dev_year):
-        Hc, Xc = (wc_[:, None] * conC[s][CYEAR][0]).sum(0), (wc_[:, None] * conC[s][CYEAR][1]).sum(0)
-        Hd, Xd = (wd_[y][:, None] * devC[s][y][0]).sum(0), (wd_[y][:, None] * devC[s][y][1]).sum(0)
-        cc, _, tt, ok = e08.kitagawa_groups(Hc, Xc, Hd, Xd, groups[(s, y)])
-        if not ok: ok_all = False; break
-        comp.append(cc); tot.append(tt)
-    bok.append(ok_all); bs.append(e08.projection_share(comp, tot) if ok_all else np.nan)
-summ = e08.h3_bootstrap_summary(bs, bok); h3.update(summ)
-h3["evaluable"] = bool(summ["evaluable"] and len(estc) >= 30)
+contr, share3, summ, _ = e08.h3_run(conC, devC, DEVYEARS, CYEAR, STU, A.nboot_h3, np.random.default_rng(SEED + 3))
+contr.round(6).to_csv(OUT / "h3_contrasts.csv", index=False)
+h3 = {"contrasts_planned": len(contr), "contrasts_estimable": int(contr.estimable.sum()), "share": share3}; h3.update(summ)
+h3["evaluable"] = bool(summ["evaluable"] and h3["contrasts_estimable"] >= 30)
 h3["confirmed"] = bool(summ["ci_lo"] > 0 or summ["ci_hi"] < 0) if h3["evaluable"] else None
 
 res = dict(log=log, H1=h1, H2={k: v for k, v in h2out.items()}, H3=h3, runtime_s=round(time.time() - T0, 1))
