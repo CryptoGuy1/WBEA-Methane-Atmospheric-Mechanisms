@@ -31,7 +31,7 @@ def regional_wind(rng, tilt=False, diurnal=False):
     sec = np.empty(N, int); sec[0] = rng.choice(8, p=np.array(PARAMS["stationary"][0]) / sum(PARAMS["stationary"][0]))
     u = rng.random(N)
     for t in range(1, N):
-        sec[t] = np.searchsorted(np.cumsum(T[SEASON[t]][sec[t - 1]]), u[t])
+        sec[t] = min(np.searchsorted(np.cumsum(T[SEASON[t]][sec[t - 1]]), u[t]), 7)     # clamp inside loop (fix, DEVIATIONS D1)
     sec = np.minimum(sec, 7); wd = (45.0 * sec + rng.uniform(-22.5, 22.5, N)) % 360
     mu = np.array(PARAMS["logspeed_mean_season_hour"])[SEASON, HOUR]
     ws = np.exp(mu + ar1(rng, PARAMS["logspeed_ar1_phi"], PARAMS["logspeed_resid_sd"])).clip(0.3)
