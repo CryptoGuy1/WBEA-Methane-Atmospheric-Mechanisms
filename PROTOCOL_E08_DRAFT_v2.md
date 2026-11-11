@@ -40,7 +40,7 @@ Station CH4 medians and P95 thresholds; S mean and SD; stability tercile cuts (-
 - **Null:** all K = 246 admissible whole-day circular shifts of the wind series (14 to 259 days); p = (1 + #{pooled D_k >= observed}) / (K + 1); minimum p = 1/247 = 0.0040 (D-48).
 - **Criterion (i):** p < 0.05.
 - **Criterion (ii):** pooled D > 0 with wind shifted +1 h and -1 h relative to CH4.
-- **Criterion (iii), lag centroid** (D-46; reconciled here; preserves the development intention of a monotonic increase):
+- **Criterion (iii), ordered lag-centroid trend allowing limited inversions** (D-46; reconciled here; preserves the development intention of an increasing centroid without requiring strict monotonicity):
   - Transit bins: 0-0.5, 0.5-1, 1-1.5, 1.5-2, 2-3 h. A bin is estimable if it holds >= 500 aligned pair-hours and its positive-part lag profile sums to more than 0.
   - Centroid c_b = sum over l = 0..3 of l x max(r_bl, 0) / sum of max(r_bl, 0).
   - **Met if:** at least 4 bins are estimable, including the first; AND Spearman rho (bin midpoint vs c_b, average ranks for ties) >= 0.9 with 5 bins or >= 0.8 with 4 bins (each allows at most one adjacent inversion); AND c_last - c_first > 0 with a 14-day block-bootstrap 95% CI excluding 0 (1,000 replicates).
