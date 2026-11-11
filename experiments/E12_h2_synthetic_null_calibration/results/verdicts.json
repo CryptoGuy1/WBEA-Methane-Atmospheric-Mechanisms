@@ -1,0 +1,28 @@
+{
+ "Q1_null_calibration": "inconclusive",
+ "Q1_by_scenario": {
+  "N0": "calibrated",
+  "N1a": "inconclusive",
+  "N2a": "calibrated",
+  "N3": "calibrated"
+ },
+ "Q2_seasonal_confounding": "sensitive",
+ "Q2_alternatives": {
+  "primary": "inflated",
+  "within-season shift": "inconclusive",
+  "truncated shift": "inconclusive"
+ },
+ "Q3_power": {
+  "P1_t007": "adequate power",
+  "P1_t013": "adequate power",
+  "P1_ceiling": "adequate power",
+  "P1_L2": "adequate power",
+  "P1_L3": "limited power",
+  "P1T_t013": "adequate power",
+  "P1T_ceiling": "adequate power"
+ },
+ "Q3_power_at_D_ge_0_21": "inconclusive: not testable with the tested coupling models (DEVIATIONS D4)",
+ "Q4_falsification_rejection_rate": 1.0,
+ "total_replicates": 4100,
+ "total_not_evaluable": 0
+}
