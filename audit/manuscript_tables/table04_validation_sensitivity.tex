@@ -1,0 +1,19 @@
+\begin{table*}[!t]
+\centering
+\caption{Post-confirmation validation of the directional-coupling test: synthetic calibration, power, falsification and seasonal-shift sensitivity.}
+\label{tab:validation}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.15\textwidth}@{}}
+\toprule
+Analysis & Scenario & Result & Classification \\
+\midrule
+Null calibration (synthetic) & Baseline; common driver with delays; seasonal drift; autocorrelation and gaps & Rejection 4.6\%, 5.4\%, 4.8\%, 4.6\% & Inconclusive\textsuperscript{a} \\
+Seasonal confounding (synthetic) & Non-wind-locked lead--lag co-varying with seasonal wind regimes & 23.8\% (20.3--27.7\%); within-season shifts 5.2\% & Sensitive \\
+Power (synthetic) & Injected wind-conditioned coupling, $D$ = 0.07--0.20; true lag 3~h & 100\% (each $\geq$98.1\%); 0\% at 3~h lag & Adequate; long-lag blind spot \\
+Falsification (synthetic) & Wind-advected shared signal, no inter-station methane transport & 100\% rejection; median $D$ = 0.13 & Rejection does not identify transport \\
+Seasonal shifts (2026 data) & Calendar quarters; cold/warm halves; each quarter separately & 0/63, 0/93 and 0/63--65 surrogates $\geq$ observed & Robust (strengthens) \\
+\bottomrule
+\end{tabularx}
+\par\smallskip\begin{minipage}{\textwidth}\footnotesize
+Synthetic results: 500 replicates per null, 200 per power configuration, 11-station geometry with the 21 confirmation pairs; Wilson 95\% intervals. All analyses are post-confirmation and exploratory and do not alter the registered decisions. \textsuperscript{a}Point rates near nominal; one scenario's upper interval (0.077) exceeded the pre-registered 0.075 margin.
+\end{minipage}
+\end{table*}
