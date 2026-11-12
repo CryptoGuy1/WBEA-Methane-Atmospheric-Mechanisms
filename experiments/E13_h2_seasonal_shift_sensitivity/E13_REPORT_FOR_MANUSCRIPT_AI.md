@@ -4,10 +4,10 @@
 
 ## 1. Bottom line
 **The 2026 H2 statistic remains extreme under every pre-registered season-restricted reference.**
-- **Pooled configurations.** Calendar quarters and cold/warm halves, with own or frozen weights: 0 of 63 and 0 of 93 surrogates reached the observed value, p at the floor (1/64 = 0.0156; 1/94 = 0.0106), and the observed D lies 7.2-7.7 null SDs above the surrogate mean.
+- **Pooled configurations.** Calendar quarters and the alternative calendar-based seasonal blocks (January-April and May-September), with own or frozen weights: 0 of 63 and 0 of 93 surrogates reached the observed value, p at the floor (1/64 = 0.0156; 1/94 = 0.0106), and the observed D lies 7.2-7.7 null SDs above the surrogate mean.
 - **Each quarter analysed separately:** the same, with D = 0.347, 0.216 and 0.201.
 
-Under the pre-registered rule the outcome is **"strengthens"**. Precisely: E13 strengthens the *statistical robustness of the H2 result to the choice of shift reference*, addressing the seasonal-exchangeability concern raised by E12. **It does not strengthen any physical-transport interpretation.** E12's falsification result (an advected shared signal is always detected) and its 3 h lag blind spot are unaffected.
+Under the pre-registered rule the outcome is **"strengthens"**. The observed directional statistic remained extreme under both season-restricted shift references, indicating that its statistical significance was not dependent on the original whole-period shift construction. E13 evaluated two predefined partitioning strategies, not every possible form of seasonal confounding; within that scope it addresses the seasonal-exchangeability concern raised by E12. **It does not strengthen any physical-transport interpretation.** E12's falsification result (an advected shared signal is always detected) and its 3 h lag blind spot are unaffected.
 
 ## 2. Motivation and literature context
 Time-shift (circular or truncated) surrogates preserve each series' autocorrelation and test only alignment. Their validity rests on exchangeability or stationarity assumptions:
@@ -43,7 +43,7 @@ U^{(k)}(t) = U\big(a_b + ((t - a_b - 24k) \bmod L_b)\big), \qquad t \in [a_b, a_
 
 The same k is applied to every block; methane is not shifted.
 - C1: Jan-Mar / Apr-Jun / Jul-Sep (90/91/92 d; k = 14-76; K = 63).
-- C2: Jan-Apr / May-Sep (120/153 d; k = 14-106; K = 93).
+- C2: alternative calendar-based seasonal blocks, Jan-Apr / May-Sep (120/153 d; k = 14-106; K = 93); boundaries predefined, not derived from observed meteorological transitions.
 - Monthly blocks were considered and rejected: at most 4 admissible shifts.
 
 The procedure is implemented as within-block FFT circular cross-correlations of the six per-hour moment series with each mask, checked in tests against an explicit within-block roll, including wraparound.
@@ -65,8 +65,8 @@ The procedure is implemented as within-block FFT circular cross-correlations of 
 | R0 frozen whole-period (reproduction) | 246 | 0.0040 | **0.2879** | 0 | **0.0040** | 0.0010 | 0.0410 | 0.070 / 0.095 / 0.101 | 6.99 | (frozen) |
 | **C1-w** quarters, own weights | 63 | 0.0156 | 0.2871 | 0 | **0.0156** | 0.0056 | 0.0373 | 0.057 / 0.063 / 0.067 | 7.55 | **remains unusual** |
 | C1-f quarters, frozen weights | 63 | 0.0156 | 0.2879 | 0 | 0.0156 | 0.0046 | 0.0394 | 0.058 / 0.063 / 0.066 | 7.19 | remains unusual |
-| **C2-w** halves, own weights | 93 | 0.0106 | 0.2877 | 0 | **0.0106** | 0.0065 | 0.0366 | 0.075 / 0.095 / 0.099 | 7.68 | **remains unusual** |
-| C2-f halves, frozen weights | 93 | 0.0106 | 0.2879 | 0 | 0.0106 | 0.0063 | 0.0372 | 0.076 / 0.097 / 0.101 | 7.56 | remains unusual |
+| **C2-w** calendar blocks Jan-Apr/May-Sep, own weights | 93 | 0.0106 | 0.2877 | 0 | **0.0106** | 0.0065 | 0.0366 | 0.075 / 0.095 / 0.099 | 7.68 | **remains unusual** |
+| C2-f calendar blocks Jan-Apr/May-Sep, frozen weights | 93 | 0.0106 | 0.2879 | 0 | 0.0106 | 0.0063 | 0.0372 | 0.076 / 0.097 / 0.101 | 7.56 | remains unusual |
 
 **Weighting effect:** negligible. Observed pooled D is 0.2871-0.2879 across weightings; the largest single-pair weight share is 0.113 (C1 own) against 0.078 (frozen).
 
@@ -106,14 +106,15 @@ C1-w and C2-w both "remain unusual", so the outcome is **"strengthens"**.
 - **Not about longer lags.** E12 showed coupling at a 3 h true lag is missed; E13 inherits that blind spot.
 - **Do not read the p-values as a ranking.** A larger p under season-restricted shifts (0.0156 vs 0.0040) reflects fewer surrogates, not weaker evidence.
 - **Do not compare per-quarter D across seasons.** They use different hours, pairs and weights.
+- **C2 uses calendar-based seasonal blocks.** The January-April and May-September boundaries were predefined in the plan as alternative calendar-based blocks; they were not derived from observed meteorological transitions and are not independently established meteorological seasons. The plan's snow-cover/growing-season rationale is a motivating description only.
 - **Only one alternative grouping was tested** (C2). Other boundaries (for example snowmelt dates) were not tried, to avoid boundary selection; monthly blocks are infeasible.
 - **Same data, same uncertainties.** The 2026 data remain subject to WBEA's annual validation review; AMS 2 is excluded as in E08.
 
 ## 8. Implications for the EMS manuscript
-- **Statement.** E13 *strengthens* the statistical robustness of the confirmed H2 result to the choice of shift reference, and *does not change* its interpretive limits.
+- **Statement.** The observed directional statistic remained extreme under both season-restricted shift references, indicating that its statistical significance was not dependent on the original whole-period shift construction. E13 *does not change* the interpretive limits of H2: statistical directional dependence is not demonstrated physical methane transport.
 - **Recommended wording:**
 
-  > "Because whole-period circular shifts can be anti-conservative under seasonal confounding (E12), we repeated the reference construction with shifts restricted to calendar quarters and to cold/warm halves (post-confirmation exploratory). The 2026 statistic exceeded all 63 and 93 surrogates respectively (p at the reference floors of 1/64 and 1/94; observed D 0.288 against maximum surrogate values of 0.067 and 0.099), and remained extreme when each quarter was analysed separately (D = 0.35, 0.22, 0.20). The directional-coupling result is therefore not an artefact of mixing seasons in the shift reference; it remains compatible with, but does not demonstrate, wind-driven transport."
+  > "Because whole-period circular shifts can be anti-conservative under seasonal confounding (E12), we repeated the reference construction with shifts restricted to calendar quarters and to two alternative calendar-based seasonal blocks, January-April and May-September (post-confirmation exploratory). The 2026 statistic exceeded all 63 and 93 surrogates respectively (p at the reference floors of 1/64 and 1/94; observed D 0.288 against maximum surrogate values of 0.067 and 0.099), and remained extreme when each quarter was analysed separately (D = 0.35, 0.22, 0.20). The observed directional statistic remained extreme under both season-restricted shift references, indicating that its statistical significance was not dependent on the original whole-period shift construction. It remains statistical directional dependence compatible with, but not demonstrating, physical methane transport."
 - **Placement:** Figure `e13_fig1_reference_distributions` in the main text, next to the E12 calibration figure, or in the SI if space is limited. `e13_fig2_per_season` and both tables in the SI.
 
 ## 9. Outputs

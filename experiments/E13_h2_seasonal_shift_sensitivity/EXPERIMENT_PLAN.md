@@ -58,3 +58,7 @@ Within-season shifts assume exchangeability *within* each block. Seasonal transi
 
 ## 8. Outputs
 `results/e13_summary.csv`, `results/e13_surrogates_*.csv`, `results/e13_per_season.csv`, `results/e13_results.json`; figures comparing the reference distributions; `E13_REPORT_FOR_MANUSCRIPT_AI.md`; `E13_MANUSCRIPT_HANDOFF.md`; `DEVIATIONS.md`.
+
+---
+## Terminology addendum (added at closure, 2026-11-11; the pre-registered text above is unchanged)
+Partition C2 (January-April / May-September) is an **alternative calendar-based seasonal block** scheme. Its boundaries were predefined here and were **not derived from observed meteorological transitions**. The "cold vs warm half" label and the snow-cover/growing-season rationale above are motivating descriptions, not established meteorological seasons. The figure `e13_fig1_reference_distributions` (not regenerated at closure) labels this partition "cold/warm halves (C2)"; read it as these calendar-based blocks.

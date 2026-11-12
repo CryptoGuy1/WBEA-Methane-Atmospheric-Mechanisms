@@ -4,7 +4,7 @@
 **Unchanged:** E08 (`protocol-freeze` 2b7c79e, `e08-confirmation` 4c011a8) and E12 (0ebdff7), test-verified.
 
 ## Verdict
-**Strengthens** (pre-registered rule): the 2026 H2 statistic remains extreme under season-restricted shift references (quarters: 0/63 surrogates >= observed; cold/warm halves: 0/93; each quarter separately: 0/63, 0/64, 0/65). It addresses the seasonal-exchangeability concern from E12. It does **not** strengthen a transport interpretation.
+**Strengthens** (pre-registered rule): the 2026 H2 statistic remains extreme under season-restricted shift references (calendar quarters: 0/63 surrogates >= observed; alternative calendar-based blocks January-April/May-September: 0/93; each quarter separately: 0/63, 0/64, 0/65). It addresses the seasonal-exchangeability concern from E12. It does **not** strengthen a transport interpretation.
 
 ## Use in the paper
 - **Main or SI figure:** `figures/e13_fig1_reference_distributions` (frozen vs C1 vs C2 reference distributions).
@@ -12,11 +12,13 @@
 - **Text:** report section 8 wording.
 
 ## Safe claims
-- The result is not an artefact of mixing seasons in the shift reference.
+- The observed directional statistic remained extreme under both season-restricted shift references, indicating that its statistical significance was not dependent on the original whole-period shift construction.
 - The observed D (0.288) exceeds every surrogate under every tested reference (maximum 0.101).
 - The effect is present in each quarter (D = 0.35, 0.22, 0.20).
 
 ## Do not claim
+- That E13 rules out every form of seasonal confounding (two predefined partitioning strategies were tested), or that the January-April/May-September blocks are meteorological seasons (they are predefined calendar-based blocks).
+- That statistical directional dependence demonstrates physical methane transport.
 - That the season-restricted p-values are exact, or that they rank against 1/247 (they are at different floors).
 - That E13 confirms transport, transit times or emissions.
 - That per-quarter D values compare across seasons.
