@@ -1,0 +1,69 @@
+   scenario   n  rejections  rate  wilson_lo  wilson_hi         classification   D_q50  p_q50
+         N0 500          23 0.046     0.0308     0.0681             calibrated  0.0008 0.4737
+        N1a 500          27 0.054     0.0374     0.0774           inconclusive  0.0005 0.4717
+        N1b 200         200 1.000     0.9812     1.0000 no verdict (by design)  0.1318 0.0040
+        N2a 500          24 0.048     0.0325     0.0704             calibrated  0.0001 0.5000
+        N2b 500         119 0.238     0.2028     0.2772               inflated  0.0123 0.1579
+         N3 500          23 0.046     0.0308     0.0681             calibrated  0.0004 0.4858
+P1T_ceiling 200         200 1.000     0.9812     1.0000         adequate power  0.1768 0.0040
+   P1T_t013 200         200 1.000     0.9812     1.0000         adequate power  0.1307 0.0040
+      P1_L2 200         200 1.000     0.9812     1.0000         adequate power  0.1078 0.0040
+      P1_L3 200           0 0.000     0.0000     0.0188          limited power -0.0398 1.0000
+ P1_ceiling 200         200 1.000     0.9812     1.0000         adequate power  0.1953 0.0040
+    P1_t007 200         200 1.000     0.9812     1.0000         adequate power  0.0686 0.0040
+    P1_t013 200         200 1.000     0.9812     1.0000         adequate power  0.1307 0.0040
+   scenario              method   n  rejections  rate  wilson_lo  wilson_hi         classification
+         N0 within-season shift 500          31 0.062     0.0440     0.0867           inconclusive
+         N0     truncated shift 500          16 0.032     0.0198     0.0513             calibrated
+        N1a within-season shift 500          33 0.066     0.0474     0.0912           inconclusive
+        N1a     truncated shift 500          31 0.062     0.0440     0.0867           inconclusive
+        N1b within-season shift 200         200 1.000     0.9812     1.0000 no verdict (by design)
+        N1b     truncated shift 200         200 1.000     0.9812     1.0000 no verdict (by design)
+        N2a within-season shift 500          21 0.042     0.0276     0.0634             calibrated
+        N2a     truncated shift 500          21 0.042     0.0276     0.0634             calibrated
+        N2b within-season shift 500          26 0.052     0.0357     0.0751           inconclusive
+        N2b     truncated shift 500          34 0.068     0.0491     0.0935           inconclusive
+         N3 within-season shift 500          23 0.046     0.0308     0.0681             calibrated
+         N3     truncated shift 500          25 0.050     0.0341     0.0728             calibrated
+P1T_ceiling within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+P1T_ceiling     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+   P1T_t013 within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+   P1T_t013     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+      P1_L2 within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+      P1_L2     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+      P1_L3 within-season shift 200           0 0.000     0.0000     0.0188          limited power
+      P1_L3     truncated shift 200           0 0.000     0.0000     0.0188          limited power
+ P1_ceiling within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+ P1_ceiling     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+    P1_t007 within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+    P1_t007     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+    P1_t013 within-season shift 200         200 1.000     0.9812     1.0000         adequate power
+    P1_t013     truncated shift 200         200 1.000     0.9812     1.0000         adequate power
+{
+ "Q1_null_calibration": "inconclusive",
+ "Q1_by_scenario": {
+  "N0": "calibrated",
+  "N1a": "inconclusive",
+  "N2a": "calibrated",
+  "N3": "calibrated"
+ },
+ "Q2_seasonal_confounding": "sensitive",
+ "Q2_alternatives": {
+  "primary": "inflated",
+  "within-season shift": "inconclusive",
+  "truncated shift": "inconclusive"
+ },
+ "Q3_power": {
+  "P1_t007": "adequate power",
+  "P1_t013": "adequate power",
+  "P1_ceiling": "adequate power",
+  "P1_L2": "adequate power",
+  "P1_L3": "limited power",
+  "P1T_t013": "adequate power",
+  "P1T_ceiling": "adequate power"
+ },
+ "Q3_power_at_D_ge_0_21": "inconclusive: not testable with the tested coupling models (DEVIATIONS D4)",
+ "Q4_falsification_rejection_rate": 1.0,
+ "total_replicates": 4100,
+ "total_not_evaluable": 0
+}
