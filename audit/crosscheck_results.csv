@@ -1,0 +1,133 @@
+area,item,reported,saved,tolerance,match
+E08 primary,H1 b1,0.052,0.05203865514163186,0.0005,True
+E08 primary,H1 CI lo,0.039,0.03905775654239831,0.0005,True
+E08 primary,H1 CI hi,0.069,0.06948332875639722,0.0005,True
+E08 primary,H1 n,4472,4472,0,True
+E08 primary,H1 b1_joint,0.055,0.054621589756653266,0.0005,True
+E08 primary,H1 b_nc,-0.0187,-0.018721921849912438,5e-05,True
+E08 primary,H1 b_nc CI lo,-0.0268,-0.02683898987558387,5e-05,True
+E08 primary,H1 b_nc CI hi,-0.0051,-0.005076424015901541,5e-05,True
+E08 primary,H1 ratio,-0.34,-0.34275680977652223,0.005,True
+E08 primary,H1 ratio CI lo,-0.51,-0.5088360310390019,0.005,True
+E08 primary,H1 ratio CI hi,-0.09,-0.09228404857127123,0.005,True
+E08 primary,H2 pooled D,0.287931708,0.2879317084641316,5e-10,True
+E08 primary,H2 p,0.004048582995951417,0.004048582995951417,1e-12,True
+E08 primary,H2 K,246,246,0,True
+E08 primary,H2 pairs,21,21,0,True
+E08 primary,H2 +1h,0.294,0.2936957375619285,0.0005,True
+E08 primary,H2 -1h,0.257,0.25720740954454513,0.0005,True
+E08 primary,H2 rho,1.0,0.9999999999999999,1e-09,True
+E08 primary,H2 centroid diff CI lo,0.74,0.7438147314436366,0.005,True
+E08 primary,H2 wind-eligible h,54886,54886,0,True
+E08 primary,H2 methane-complete h,42133,42133,0,True
+E08 primary,H3 share,0.011,0.011018334785993391,0.0005,True
+E08 primary,H3 CI lo,-0.02,-0.019868611545975162,0.0005,True
+E08 primary,H3 CI hi,0.043,0.042768201954171504,0.0005,True
+E08 primary,H3 contrasts,55,55,0,True
+E08 primary,AMS 2 coverage,0.4118,0.4118,5e-05,True
+E08 primary,H2 centroid bin0,0.13,0.1295414197241322,0.005,True
+E08 primary,H2 centroid bin1,0.35,0.34899892150739387,0.005,True
+E08 primary,H2 centroid bin2,0.56,0.5604929133396094,0.005,True
+E08 primary,H2 centroid bin3,0.98,0.9750792383576461,0.005,True
+E08 primary,H2 centroid bin4,1.12,1.1179551225736832,0.005,True
+E08 primary,H1 decision,True,True,0,True
+E08 primary,H2 decision,True,True,0,True
+E08 primary,H3 decision,False,False,0,True
+E08 descriptive,ERA5 proxy,0.058,0.05847927122158474,0.0005,True
+E08 descriptive,CR1 SE,0.0078,0.00783162618901253,5e-05,True
+E08 descriptive,max-T pairs < 0.05,14,14,0,True
+E08 descriptive,F5 stable-low-wind enrichment,2.46,2.4635,0.005,True
+E08 descriptive,F5 advective enrichment,0.29,0.2856,0.005,True
+E08 descriptive,six-regime share,0.012,0.012294668962308531,0.0005,True
+E08 descriptive,kernel SSE mask-gated,0.19,0.1914,0.005,True
+E08 descriptive,kernel SSE continuous,1.12,1.1208,0.005,True
+Post-confirmation exploratory,AMS 18 denominator share 2026,0.929,0.9293273902344369,0.0005,True
+Post-confirmation exploratory,AMS 18 share development,0.39,0.3904836028634802,0.0005,True
+Post-confirmation exploratory,share excl. AMS 18,-0.085,-0.08519587659069265,0.0005,True
+Post-confirmation exploratory,"2026 corr(S,S+24) within",0.146,0.1457799946864721,0.0005,True
+Post-confirmation exploratory,"2026 corr(CH4,S+24) within",-0.043,-0.0432,0.0005,True
+Post-confirmation exploratory,Spearman b_nc vs corr,0.14,0.14285714285714285,0.005,True
+E06 kernel,saved columns,(see E06 REPORT),tau_bin;tau_range;r0;r1;r2;r3;centroid;centroid_min_by_year;centroid_max_by_year;ref_centroid_min;ref_centroid_max,,True
+E12,N0 primary rate,0.046,0.046,0.0005,True
+E12,N0 Wilson lo,0.031,0.0308451083708162,0.0005,True
+E12,N0 Wilson hi,0.068,0.0680777927682732,0.0005,True
+E12,N1a primary rate,0.054,0.054,0.0005,True
+E12,N1a Wilson lo,0.037,0.0373743501810575,0.0005,True
+E12,N1a Wilson hi,0.077,0.077426561510647,0.0005,True
+E12,N2a primary rate,0.048,0.048,0.0005,True
+E12,N2a Wilson lo,0.033,0.0324652069413531,0.0005,False
+E12,N2a Wilson hi,0.07,0.07042719683589,0.0005,True
+E12,N3 primary rate,0.046,0.046,0.0005,True
+E12,N3 Wilson lo,0.031,0.0308451083708162,0.0005,True
+E12,N3 Wilson hi,0.068,0.0680777927682732,0.0005,True
+E12,N2b primary rate,0.238,0.238,0.0005,True
+E12,N2b Wilson lo,0.203,0.2027590191807921,0.0005,True
+E12,N2b Wilson hi,0.277,0.2772361352210613,0.0005,True
+E12,N2b within-season shift rate,0.052,0.052,0.0005,True
+E12,N2b truncated shift rate,0.068,0.068,0.0005,True
+E12,N0 within-season shift rate,0.062,0.062,0.0005,True
+E12,N1a within-season shift rate,0.066,0.066,0.0005,True
+E12,N2a within-season shift rate,0.042,0.042,0.0005,True
+E12,N3 within-season shift rate,0.046,0.046,0.0005,True
+E12,N1b primary rate,1.0,1.0,0.0005,True
+E12,P1_L3 primary rate,0.0,0.0,0.0005,True
+E12,P1_t007 median D,0.069,0.0685678766762568,0.0005,True
+E12,P1_t013 median D,0.131,0.1306584895292781,0.0005,True
+E12,P1_ceiling median D,0.195,0.1953358707088807,0.0005,True
+E12,P1_L2 median D,0.108,0.1077709694148802,0.0005,True
+E12,P1_L3 median D,-0.04,-0.0397594970497333,0.0005,True
+E12,P1T_t013 median D,0.131,0.1307145468604807,0.0005,True
+E12,P1T_ceiling median D,0.177,0.1767776872055288,0.0005,True
+E12,N1b median D,0.132,0.1317949500208971,0.0005,True
+E12,N2b median D,0.012,0.0122943270689115,0.0005,True
+E12,P1_t007 power,1.0,1.0,0,True
+E12,P1_t013 power,1.0,1.0,0,True
+E12,P1_ceiling power,1.0,1.0,0,True
+E12,P1_L2 power,1.0,1.0,0,True
+E12,P1T_t013 power,1.0,1.0,0,True
+E12,P1T_ceiling power,1.0,1.0,0,True
+E12,Q1 verdict,inconclusive,inconclusive,0,True
+E12,Q2 verdict,sensitive,sensitive,0,True
+E12,total replicates,4100,4100,0,True
+E12,not evaluable,0,0,0,True
+E13 vs E08,R0 pooled D == E08 pooled D,0.2879317084641316,0.2879317084641315,1e-12,True
+E13 vs E08,R0 p == E08 p,0.004048582995951417,0.0040485829959514,1e-12,True
+E13 vs E08,R0 K,246,246,0,True
+E13,C1-w K,63,63,0,True
+E13,C1-w p,0.015625,0.015625,1e-09,True
+E13,C1-w pooled D,0.2871,0.287129124827655,5e-05,True
+E13,C1-w null max,0.067,0.0668175554304917,0.0005,True
+E13,C1-w z,7.55,7.545406124753162,0.005,True
+E13,C1-f K,63,63,0,True
+E13,C1-f p,0.015625,0.015625,1e-09,True
+E13,C1-f pooled D,0.2879,0.2879317084641315,5e-05,True
+E13,C1-f null max,0.066,0.0655192959361295,0.0005,True
+E13,C1-f z,7.19,7.188496685496396,0.005,True
+E13,C2-w K,93,93,0,True
+E13,C2-w p,0.010638297872340425,0.0106382978723404,1e-09,True
+E13,C2-w pooled D,0.2877,0.2877466412854457,5e-05,True
+E13,C2-w null max,0.099,0.0993162690016201,0.0005,True
+E13,C2-w z,7.68,7.675689415122085,0.005,True
+E13,C2-f K,93,93,0,True
+E13,C2-f p,0.010638297872340425,0.0106382978723404,1e-09,True
+E13,C2-f pooled D,0.2879,0.2879317084641314,5e-05,True
+E13,C2-f null max,0.101,0.1013208052880676,0.0005,True
+E13,C2-f z,7.56,7.563948297323579,0.005,True
+E13,Jan-Mar D,0.347,0.3468978983191531,0.0005,True
+E13,Jan-Mar K,63,63,0,True
+E13,Jan-Mar pairs,21,21,0,True
+E13,Jan-Mar surrogates>=obs,0,0,0,True
+E13,Apr-Jun D,0.216,0.2164211486429632,0.0005,True
+E13,Apr-Jun K,64,64,0,True
+E13,Apr-Jun pairs,21,21,0,True
+E13,Apr-Jun surrogates>=obs,0,0,0,True
+E13,Jul-Sep D,0.201,0.2012638411191999,0.0005,True
+E13,Jul-Sep K,65,65,0,True
+E13,Jul-Sep pairs,20,20,0,True
+E13,Jul-Sep surrogates>=obs,0,0,0,True
+E13 definitions,C1 blocks in code,True,True,0,True
+E13 definitions,C2 blocks in code,True,True,0,True
+E13 definitions,C1 shifts 14-76 in code,True,True,0,True
+E13 definitions,C2 shifts 14-106 in code,True,True,0,True
+E13 definitions,"plan states C1 K=63, C2 K=93",True,True,0,True
+E13,overall outcome,strengthens,strengthens,0,True
