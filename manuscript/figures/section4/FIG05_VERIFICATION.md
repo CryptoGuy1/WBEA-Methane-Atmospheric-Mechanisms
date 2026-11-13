@@ -70,3 +70,15 @@ Outputs: `fig05_directional_coupling_results.{pdf,svg}` (vector, 0 raster images
 - No clipping; all text inside the page (automated `pdftotext -bbox` check).
 - **Minor marker overlap:** the 2026 points at 26.4-27.3 km and the development points at about 16 km and 26 km partly overlap but stay distinguishable. No values were shifted.
 - **Remaining ambiguity:** the development and 2026 null ticks come from different reference constructions (1,000 random vs 246 finite shifts) and windows. The caption should say so.
+
+---
+## Editorial revision (final)
+- **Removed** the in-panel labels "2021–2025, 27 pairs" (a) and "2026, 21 pairs" (b); these details belong in the caption.
+- **Numerical values unchanged.** A pixel comparison of the old and new 600 dpi renders found exactly two changed regions, located where the two labels were; every data mark, tick, range, histogram bar and axis is pixel-identical. All plotted values are written to `fig05_plotted_values.json`.
+- **Null-reference indicators correctly mapped**, checked by reading the plotted marker coordinates back from the figure:
+  - (a) each tick lies at the same separation as its pair's observation and at that pair's saved `null_p95` (27/27, same row of `h2_pair_statistics.csv`);
+  - (b) each tick lies at its pair's separation and equals the 95th percentile of the matching null-matrix column (21/21; column p = row p of `h2_pairs.csv`, as in `run_e08.py`);
+  - every observation is drawn once at its own separation.
+  The ticks remain null-reference thresholds, not confidence intervals.
+- **(d)** Development year ranges (thin dark vertical bars) and the simulated reference ranges (light orange boxes) remain visually distinct; neither is labelled a confidence interval. The dotted centroid = transit-time diagonal remains a descriptive reference only.
+- Exports: PDF 174.5 x 122.0 mm (vector, fonts embedded, 0 raster images), SVG, PNG and TIFF at 600 dpi; all text inside the page; inspected at 150 dpi print width with no clipping.

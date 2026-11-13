@@ -58,8 +58,6 @@ hdl = [plt.Line2D([], [], marker="o", ls="", c="#555555", ms=3.6, label="Family-
        plt.Line2D([], [], c="#555555", lw=0.6, label="95% block-bootstrap CI (development only)"),
        plt.Line2D([], [], marker="_", ls="", c=C_NULL, ms=5.5, mew=1.0, label="Shifted-wind null, 95th percentile")]
 axs[0].legend(handles=hdl, frameon=False, loc="upper right", fontsize=6.0, handlelength=1.4, labelspacing=0.35, borderaxespad=0.1)
-axs[0].text(0.98, 0.50, "2021–2025, 27 pairs", transform=axs[0].transAxes, ha="right", fontsize=6.3, color=C_DEV)
-axs[1].text(0.98, 0.93, "2026, 21 pairs", transform=axs[1].transAxes, ha="right", fontsize=6.3, color=C_CONF, fontweight="bold")
 # (c) 2026 whole-period shifted-wind reference
 ax = axs[2]; ax.axvline(0, c=C_GRID, lw=0.6, zorder=0)
 ax.hist(pn, bins=np.arange(-0.12, 0.125, 0.01), color="#bdbdbd", ec="white", lw=0.4, zorder=1)
@@ -82,6 +80,21 @@ hd = [plt.Line2D([], [], marker="o", c=C_DEV, ms=3.8, lw=0.7, label="2021–2025
       plt.Rectangle((0, 0), 1, 1, fc=C_REF, alpha=0.75, label="Development simulated reference range"),
       plt.Line2D([], [], ls=(0, (1.5, 1.5)), c=C_NULL, lw=0.7, label="Centroid = transit time")]
 ax.legend(handles=hd, frameon=False, loc="upper left", fontsize=5.9, handlelength=1.6, labelspacing=0.3, borderaxespad=0.0)
+# ---- editorial-revision checks: null-reference ticks aligned with their own pairs; plotted values unchanged
+def plotted(ax, marker):
+    pts = [l for l in ax.lines if l.get_marker() == marker]
+    return np.concatenate([l.get_xdata() for l in pts]), np.concatenate([l.get_ydata() for l in pts])
+for ax_, km_, y_, p95_ in ((axs[0], d5.km.values, d5.D.values, d5.null_p95.values), (axs[1], h.km.values, h.D.values, h.null_p95.values)):
+    tx, ty = plotted(ax_, "_"); assert np.array_equal(tx, km_) and np.array_equal(ty, p95_)          # tick k = pair k (same row)
+    ox, oy = plotted(ax_, "o"); order = np.lexsort((oy, ox)); ref = np.lexsort((y_, km_))
+    assert np.array_equal(ox[order], km_[ref]) and np.array_equal(oy[order], y_[ref])                 # every observation drawn once at its own separation
+assert np.array_equal(h.null_p95.values, np.percentile(N, 95, axis=0))                              # column p of the null matrix = pair p of h2_pairs.csv
+dump = dict(a_pairs=list(d5.pair), a_D=d5.D.round(5).tolist(), a_null_p95=d5.null_p95.round(5).tolist(), a_ci=[d5.ci_lo.round(5).tolist(), d5.ci_hi.round(5).tolist()],
+            b_pairs=list(h.pair), b_km=h.km.round(5).tolist(), b_D=h.D.round(5).tolist(), b_null_p95=np.round(h.null_p95.values, 6).tolist(), b_fw=h.fw.astype(int).tolist(),
+            c_pooled=pooled, c_p=p_shift, c_hist=np.histogram(pn, bins=np.arange(-0.12, 0.125, 0.01))[0].tolist(),
+            d_dev=kern.centroid.tolist(), d_dev_range=[kern.centroid_min_by_year.tolist(), kern.centroid_max_by_year.tolist()],
+            d_ref=[kern.ref_centroid_min.tolist(), kern.ref_centroid_max.tolist()], d_2026=c26.tolist())
+(OUT / "fig05_plotted_values.json").write_text(json.dumps(dump, indent=0))
 for ext in ("pdf", "svg"):
     fig.savefig(OUT / f"fig05_directional_coupling_results.{ext}", metadata={"Date": None} if ext == "svg" else {"CreationDate": None})
 fig.savefig(OUT / "fig05_directional_coupling_results.png", dpi=600)
