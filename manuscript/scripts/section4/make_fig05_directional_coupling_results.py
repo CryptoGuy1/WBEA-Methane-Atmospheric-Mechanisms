@@ -55,7 +55,7 @@ pair_panel(axs[0], d5.km.values, d5.D.values, fwd, C_DEV, d5.null_p95.values, d5
 pair_panel(axs[1], h.km.values, h.D.values, h.fw.values, C_CONF, h.null_p95.values)
 hdl = [plt.Line2D([], [], marker="o", ls="", c="#555555", ms=3.6, label="Family-wise $p<0.05$ (max-$T$)"),
        plt.Line2D([], [], marker="o", ls="", mfc="white", mec="#555555", ms=3.6, label="Not family-wise significant"),
-       plt.Line2D([], [], c="#555555", lw=0.6, label="95% block-bootstrap CI (development only)"),
+       plt.Line2D([], [], c="#555555", lw=0.6, label="95% block-bootstrap CI (2021–2025)"),
        plt.Line2D([], [], marker="_", ls="", c=C_NULL, ms=5.5, mew=1.0, label="Shifted-wind null, 95th percentile")]
 axs[0].legend(handles=hdl, frameon=False, loc="upper right", fontsize=6.0, handlelength=1.4, labelspacing=0.35, borderaxespad=0.1)
 # (c) 2026 whole-period shifted-wind reference
@@ -63,7 +63,6 @@ ax = axs[2]; ax.axvline(0, c=C_GRID, lw=0.6, zorder=0)
 ax.hist(pn, bins=np.arange(-0.12, 0.125, 0.01), color="#bdbdbd", ec="white", lw=0.4, zorder=1)
 ax.axvline(pooled, c=C_CONF, lw=1.6, zorder=3)
 ax.text(pooled - 0.006, ax.get_ylim()[1] * 0.40, f"Observed\n$D={pooled:.4f}$", color=C_CONF, ha="right", va="top", fontsize=6.4)
-ax.text(0.545, 0.95, f"246 wind shifts\n0 of 246 $\\geq$ observed\n$p=1/247=0.0040$", transform=ax.transAxes, va="top", fontsize=6.2, color="#3a3a3a")
 ax.set_xlim(-0.13, 0.31); ax.set_xlabel("Pooled statistic $D$ (dimensionless)"); ax.set_ylabel("Number of shifted-wind surrogates")
 # (d) lag centroid vs nominal transit time
 ax = axs[3]; mid = np.array([0.25, 0.75, 1.25, 1.75, 2.5]); wid = np.array([0.36, 0.36, 0.36, 0.36, 0.6])

@@ -82,3 +82,10 @@ Outputs: `fig05_directional_coupling_results.{pdf,svg}` (vector, 0 raster images
   The ticks remain null-reference thresholds, not confidence intervals.
 - **(d)** Development year ranges (thin dark vertical bars) and the simulated reference ranges (light orange boxes) remain visually distinct; neither is labelled a confidence interval. The dotted centroid = transit-time diagonal remains a descriptive reference only.
 - Exports: PDF 174.5 x 122.0 mm (vector, fonts embedded, 0 raster images), SVG, PNG and TIFF at 600 dpi; all text inside the page; inspected at 150 dpi print width with no clipping.
+
+---
+## Editorial revision 2
+- **(a)** Legend entry now reads "95% block-bootstrap CI (2021–2025)". No legend added to (b).
+- **(c)** Removed the three-line annotation (wind-shift count, exceedances, finite p); the blue observed line and "Observed D = 0.2879" are retained. The statistics (246 shifts; 0 of 246 >= observed; p = 1/247 = 0.0040486) move to the caption and Results text.
+- **Numerical content unchanged:** `fig05_plotted_values.json` is identical to the previous version. A pixel comparison shows changes only in panel (a)'s legend (the shorter label narrows the right-anchored legend box, so its handles shift within the legend; no data marks move) and in the removed annotation area of (c).
+- Exports: PDF 174.5 x 122.0 mm (vector, fonts embedded, 0 raster images), SVG, PNG and TIFF at 600 dpi.
