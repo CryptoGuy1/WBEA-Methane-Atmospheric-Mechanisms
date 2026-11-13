@@ -8,7 +8,7 @@ Sources (all read-only):
   (c) h1_estimates.csv (development joint negative-control model) and e08_results.json (2026 joint model).
       The 2026 contemporaneous joint coefficient has no saved interval and is drawn as a point only.
       Dotted ticks mark the period-specific registered criterion -0.5|beta_S^NC| (not an uncertainty interval).
-Revision 2: legend wording in (a); criterion labelled in (c). Re-checked: no partial residuals or 2026 joint-model CI are saved anywhere."""
+Revision 3: (a) adds the authorised extracted partial residuals (hexbin density, rasterised layer) and quantile-bin means. Revision 2: legend wording in (a); criterion labelled in (c). Re-checked: no partial residuals or 2026 joint-model CI are saved anywhere."""
 import sys, json, pathlib, numpy as np, pandas as pd
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "section2"))
 import common
@@ -37,12 +37,22 @@ for a, l in ((ax_a, "(a)"), (ax_b, "(b)"), (ax_c, "(c)")):
     for sp in ("top", "right"): a.spines[sp].set_visible(False)
     a.tick_params(length=2.5, width=0.5)
 
-# ------------------------------------------------ (a) saved functional-form curves
+# ------------------------------------------------ (a) partial residuals (authorised plotting-only extraction) + saved fitted curves
+D4 = ROOT / "manuscript/data/section4"
+pr = pd.read_csv(D4 / "fig04a_partial_residuals.csv.gz"); qb = pd.read_csv(D4 / "fig04a_quantile_bin_means.csv")
+ver = json.loads((D4 / "fig04a_extraction_verification.json").read_text())
+assert all(c["match"] for c in ver["checks"].values()) and len(pr) == int(dev.n_hours) == 40334   # extraction reproduces E04 before use
+XL, YL = (-2.5, 4.0), (-0.3, 0.6)
+hb = ax_a.hexbin(pr.S_partial_residual_sd, pr.CH4_partial_residual_ppm, gridsize=(58, 32), extent=(*XL, *YL), bins="log", mincnt=1,
+                 cmap="Greys", alpha=0.55, linewidths=0, zorder=1, rasterized=True)
 ax_a.axhline(0, c=C_GRID, lw=0.6, zorder=0); ax_a.axvline(0, c=C_GRID, lw=0.6, zorder=0)
-ax_a.plot(ff.S_sd, ff.linear_effect_ppm, c=C_LIN, lw=1.0, ls=(0, (4, 2)), label="Linear fit")
-ax_a.plot(ff.S_sd, ff.spline_effect_ppm, c=C_SPL, lw=1.3, label="Piecewise-linear spline")
-ax_a.set_xlabel("Stability, $Z_S$ (reference SD)"); ax_a.set_ylabel("Adjusted effect on CH$_4$ anomaly (ppm)")
-ax_a.set_xlim(-1.5, 3.5); ax_a.legend(frameon=False, loc="upper left", fontsize=6.3, handlelength=2.2)
+ax_a.plot(qb.S_bin_mean, qb.y_bin_mean, "o", ms=2.4, mfc="white", mec="#3a3a3a", mew=0.6, zorder=3, label="Quantile-bin means (25)")
+ax_a.plot(ff.S_sd, ff.linear_effect_ppm, c=C_LIN, lw=1.0, ls=(0, (4, 2)), zorder=4, label="Linear fit")
+ax_a.plot(ff.S_sd, ff.spline_effect_ppm, c=C_SPL, lw=1.3, zorder=5, label="Piecewise-linear spline")
+ax_a.set_xlabel("Stability, $Z_S$ (reference SD; adjusted)"); ax_a.set_ylabel("CH$_4$ anomaly (ppm; adjusted)")
+ax_a.set_xlim(*XL); ax_a.set_ylim(*YL)
+h_ = ax_a.get_legend_handles_labels(); dens = plt.Rectangle((0, 0), 1, 1, fc="#bdbdbd", ec="none", alpha=0.8)
+ax_a.legend([dens] + h_[0], ["Hourly partial residuals"] + h_[1], frameon=False, loc="upper left", fontsize=6.0, handlelength=2.0, labelspacing=0.35)
 
 # ------------------------------------------------ (b) annual, pooled development, 2026 confirmation
 rows = [(str(y), r.estimate, r.ci_lo, r.ci_hi, C_DEV, "o", 3.4) for y, r in zip(range(2021, 2026), years)]

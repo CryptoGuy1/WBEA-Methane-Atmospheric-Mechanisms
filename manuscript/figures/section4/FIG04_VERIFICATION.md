@@ -51,3 +51,27 @@ The threshold uses the **joint-model** contemporaneous coefficient, not the prim
 - **(c)** Contemporaneous joint-model intervals: **development available** (0.04747, 0.04140-0.05230; `h1_estimates.csv`) and plotted; **2026 unavailable**. `e08_results.json` holds only the point `b1_joint` = 0.05462 (keys: `n_joint`, `b1_joint`), and `h1_nc_covariance_by_period.csv` also holds only points. The 2026 point remains a hollow marker without a bar.
 - **(c)** Dotted ticks are now labelled in the legend as the criterion $-0.5|\hat\beta_S^{NC}|$, using the period-specific joint-model coefficient: development -0.0237, 2026 -0.0273. They illustrate the registered magnitude criterion for a negative next-day coefficient and are not uncertainty intervals. The panel remained uncrowded, so the markers are retained.
 - Checks: PDF 174.5 x 64.0 mm; all text inside the page; 0 raster images; fonts embedded; PNG and TIFF at 600 dpi (TIFF LZW).
+
+---
+## Revision 3: authorised plotting-only extraction of E04 partial residuals (panel a)
+**Extraction:** `manuscript/scripts/section4/extract_fig04a_partial_residuals.py` copies `run_e04.py` verbatim: data preparation, `response()`, `design()` and `fit()` (lines 15-31) and the residualisation (lines 114-116). Same development panel, 2021-2023 reference medians and standardisation, 7 core stations with Kmin 5, year x month x hour cells, and log(U5 + 0.5). The bootstrap is omitted (it does not affect the residuals). No model, coefficient, interval or frozen file was changed.
+
+**Verification gate (passed before any data were written; `manuscript/data/section4/fig04a_extraction_verification.json`):**
+
+| Check | Extracted | Saved E04 | Match |
+|---|---|---|---|
+| Sample (hours) | 40,334 | 40,334 (`h1_estimates.csv`) | yes |
+| Fixed-effect cells | 1,439 | 1,439 | yes |
+| Primary coefficient (refit) | 0.04752 | 0.04752 | yes |
+| Slope of residual CH4 on residual S (FWL identity) | 0.04752 | 0.04752 | yes |
+| Partial R2 of S | 0.1356 | 0.1356 (`baselines.csv`) | yes |
+
+**Plotting:**
+- Hourly partial residuals are drawn as a log-scaled hexbin density (Greys, alpha 0.55), rasterised at 600 ppi as the only raster layer; all text, curves and markers are vector.
+- The 25 quantile-bin means use the same definition as the original E04 figure (`pd.qcut(rl_s, 25)`).
+- Linear fit and spline are unchanged (`h1_functional_form.csv`).
+- View: S in [-2.5, 4], CH4 residual in [-0.3, 0.6] ppm; 0.40% of observations fall outside the view (the original E04 extent [-3, 4] x [-0.4, 0.8] excluded 0.27%).
+
+**Panels (b) and (c):** code and values unchanged. The documented absence of a 2026 contemporaneous joint-model interval is retained.
+
+**Data-redistribution note:** `manuscript/data/section4/fig04a_partial_residuals.csv.gz` (40,334 hourly values derived from WBEA observations) is **not committed** to the public repository, pending the researcher's decision on WBEA's authorised-use terms. It is regenerated exactly by the extraction script from the development panel. The committed aggregates (`fig04a_quantile_bin_means.csv`, `fig04a_extraction_verification.json`) are summary values.

@@ -1,0 +1,32 @@
+{
+ "source": "experiments/E04_stability_elasticity/run_e04.py (lines 15-31, 114-116), copied verbatim",
+ "checks": {
+  "n_hours": {
+   "extracted": 40334,
+   "saved": 40334,
+   "match": true
+  },
+  "n_cells": {
+   "extracted": 1439,
+   "saved": 1439,
+   "match": true
+  },
+  "coefficient_fit": {
+   "extracted": 0.04752,
+   "saved": 0.04752,
+   "match": true
+  },
+  "coefficient_residual_slope": {
+   "extracted": 0.04752,
+   "saved": 0.04752,
+   "match": true
+  },
+  "partial_r2": {
+   "extracted": 0.1356,
+   "saved": 0.1356,
+   "match": true
+  }
+ },
+ "b_dir_full_precision": 0.047520729313986924,
+ "n_rows": 40334
+}
