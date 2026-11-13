@@ -63,4 +63,4 @@ Totals: 471,519 station-hours, 24,027 excursions (overall 5.10%). Internal consi
 - **Rounding:** 0.57% is displayed as "0.6%" and 1.64% as "1.6%" because of the one-decimal display; the exact values are above.
 - **Cell sizes are unequal.** Cells range from 2,230 hours (unstable / <1 / night) to 85,057 hours (unstable / >=2.5 / day). No uncertainty is shown, because none was computed for this table; the caption may mention the smallest cell size.
 - **Population:** the development period includes AMS 2, which was later excluded from the 2026 confirmation.
-- The night-time cells do not follow a strictly monotone pattern in every row or column (all 18 values are preserved as observed).
+- **Patterns (all 18 values preserved as observed):** in both panels, every row decreases monotonically with wind class and every column increases with stability class. The day/night contrast is not uniform: night exceeds day in six cells, but **day exceeds night in three**: stable / <1 (18.28 vs 15.59%), stable / 1-2.5 (10.20 vs 9.76%) and neutral / <1 (9.89 vs 8.90%). (An earlier draft of this report wrongly stated that the night-time cells were not monotone; corrected.)
