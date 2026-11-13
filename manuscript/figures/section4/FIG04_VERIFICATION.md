@@ -43,3 +43,11 @@ The threshold uses the **joint-model** contemporaneous coefficient, not the prim
 - **No saved interval for the 2026 contemporaneous joint coefficient.** The E08 runner saved only the point. It is drawn as a hollow point without a bar; the caption must state this.
 - **Windows and networks differ.** Annual and pooled development estimates use full calendar years (2025 to 2 Dec) and 7 core stations. The 2026 estimate uses Jan-Sep and 6 core stations (AMS 2 excluded). Jan-Sep development-year point estimates exist (`h1_nc_covariance_by_period.csv`: 0.057, 0.0295, 0.0411, 0.0496, 0.0437) but without saved CIs, so the registered annual rows are plotted.
 - **Sample sizes differ within the development joint model:** 40,201 vs 40,334 in the primary model, because S(t+24) must be available. This is expected, not an error.
+
+---
+## Revision 2 (presentation only; no values changed)
+- **(a)** Legend now reads "Linear fit" and "Piecewise-linear spline". **Observational layer not restored: the partial-residual observations are unavailable.** All branches and local files were re-searched: E04 saved only `h1_functional_form.csv` (curves), `baseline_rf_partial_dependence.csv`, estimates and summary tables. `run_e04.py` computes `rl_s`/`rl_y` at plot time without saving them. Restoring the layer requires the plotting-only extraction proposed above (not executed; awaiting authorisation).
+- **(b)** Re-checked against `h1_estimates.csv` and `e08_results.json`; no numerical or formatting error found; unchanged.
+- **(c)** Contemporaneous joint-model intervals: **development available** (0.04747, 0.04140-0.05230; `h1_estimates.csv`) and plotted; **2026 unavailable**. `e08_results.json` holds only the point `b1_joint` = 0.05462 (keys: `n_joint`, `b1_joint`), and `h1_nc_covariance_by_period.csv` also holds only points. The 2026 point remains a hollow marker without a bar.
+- **(c)** Dotted ticks are now labelled in the legend as the criterion $-0.5|\hat\beta_S^{NC}|$, using the period-specific joint-model coefficient: development -0.0237, 2026 -0.0273. They illustrate the registered magnitude criterion for a negative next-day coefficient and are not uncertainty intervals. The panel remained uncrowded, so the markers are retained.
+- Checks: PDF 174.5 x 64.0 mm; all text inside the page; 0 raster images; fonts embedded; PNG and TIFF at 600 dpi (TIFF LZW).

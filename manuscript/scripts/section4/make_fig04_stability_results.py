@@ -6,7 +6,9 @@ Sources (all read-only):
   (b) experiments/E04_stability_elasticity/results/h1_estimates.csv          (annual 2021-2025 and pooled development)
       experiments/E08_confirmation/confirmation_2026/e08_results.json         (registered 2026 estimate)
   (c) h1_estimates.csv (development joint negative-control model) and e08_results.json (2026 joint model).
-      The 2026 contemporaneous joint coefficient has no saved interval and is drawn as a point only."""
+      The 2026 contemporaneous joint coefficient has no saved interval and is drawn as a point only.
+      Dotted ticks mark the period-specific registered criterion -0.5|beta_S^NC| (not an uncertainty interval).
+Revision 2: legend wording in (a); criterion labelled in (c). Re-checked: no partial residuals or 2026 joint-model CI are saved anywhere."""
 import sys, json, pathlib, numpy as np, pandas as pd
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "section2"))
 import common
@@ -37,7 +39,7 @@ for a, l in ((ax_a, "(a)"), (ax_b, "(b)"), (ax_c, "(c)")):
 
 # ------------------------------------------------ (a) saved functional-form curves
 ax_a.axhline(0, c=C_GRID, lw=0.6, zorder=0); ax_a.axvline(0, c=C_GRID, lw=0.6, zorder=0)
-ax_a.plot(ff.S_sd, ff.linear_effect_ppm, c=C_LIN, lw=1.0, ls=(0, (4, 2)), label=f"Linear ({dev.estimate:.3f} ppm per SD)")
+ax_a.plot(ff.S_sd, ff.linear_effect_ppm, c=C_LIN, lw=1.0, ls=(0, (4, 2)), label="Linear fit")
 ax_a.plot(ff.S_sd, ff.spline_effect_ppm, c=C_SPL, lw=1.3, label="Piecewise-linear spline")
 ax_a.set_xlabel("Stability, $Z_S$ (reference SD)"); ax_a.set_ylabel("Adjusted effect on CH$_4$ anomaly (ppm)")
 ax_a.set_xlim(-1.5, 3.5); ax_a.legend(frameon=False, loc="upper left", fontsize=6.3, handlelength=2.2)
@@ -68,13 +70,14 @@ for lab, y, c, ne, nlo, nhi, je, jci in groups:
     ax_c.plot([nlo, nhi], [yn, yn], c=c, lw=1.1, solid_capstyle="butt"); ax_c.plot(ne, yn, "o", c=c, ms=3.8, mec=c)
     if jci is not None: ax_c.plot(jci, [yj, yj], c=c, lw=1.1, solid_capstyle="butt")
     ax_c.plot(je, yj, "D", ms=3.8, mfc="white", mec=c, mew=1.0)
-    thr = -0.5 * je; ax_c.plot([thr, thr], [yn - 0.22, yn + 0.22], c=c, lw=0.9, ls=(0, (1.2, 1.2)))
+    thr = -0.5 * abs(je)                                    # registered magnitude criterion for a negative next-day coefficient (not an uncertainty bound)
+    ax_c.plot([thr, thr], [yn - 0.24, yn + 0.24], c=c, lw=0.9, ls=(0, (1.2, 1.2)))
 ax_c.set_yticks([2.3, 0.8], ["2021–2025", "2026"]); ax_c.set_ylim(-0.2, 4.6); ax_c.set_xlim(-0.035, 0.07)
 ax_c.get_yticklabels()[1].set_color(C_CONF); ax_c.get_yticklabels()[1].set_fontweight("bold"); ax_c.tick_params(axis="y", length=0)
 ax_c.set_xlabel("Joint-model coefficient (ppm per SD)")
 h = [plt.Line2D([], [], c="#555555", marker="o", ms=3.8, lw=1.1, label="Next-day, $Z_S(t+24)$ (95% CI)"),
      plt.Line2D([], [], c="#555555", marker="D", ms=3.8, mfc="white", lw=1.1, label="Contemporaneous, $Z_S(t)$"),
-     plt.Line2D([], [], c="#555555", lw=0.9, ls=(0, (1.2, 1.2)), label="$-0.5\\times$ contemporaneous")]
+     plt.Line2D([], [], c="#555555", lw=0.9, ls=(0, (1.2, 1.2)), label=r"Criterion, $-0.5\,|\hat{\beta}_S^{\mathrm{NC}}|$")]
 ax_c.legend(handles=h, frameon=False, loc="upper left", fontsize=5.9, handlelength=1.8, borderaxespad=0.0, labelspacing=0.35)
 
 for ext in ("pdf", "svg"):
