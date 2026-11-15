@@ -83,3 +83,7 @@ The threshold uses the **joint-model** contemporaneous coefficient, not the prim
 - A text-layer comparison with the previous PDF shows only automatic tick-label changes caused by the wider axes ((a) adds ticks at 1 and 3; (b) now steps 0.01; (c) steps 0.02), plus a glyph-ordering difference in the beta-hat symbol. Data labels, legends and annotations are identical.
 - Checks: all text inside the page; fonts embedded; rasterised hexbin density only (2 entries: image plus alpha mask); PNG and TIFF at 600 dpi.
 - `fig04a_partial_residuals.csv.gz` remains uncommitted pending the researcher's data-redistribution decision.
+
+---
+## Revision 5: layout only
+Panel (c) is centred beneath (a)-(b), with a single-row legend inside its empty top band (no overlap with data or the panel label). Values unchanged: all source assertions pass and the residual extraction gate passes. PDF 174.5 x 128.0 mm; all text inside the page; fonts embedded; only the hexbin density layer is rasterised.
