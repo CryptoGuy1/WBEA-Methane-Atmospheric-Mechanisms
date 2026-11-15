@@ -1,0 +1,14 @@
+{
+ "ks_D": 0.1672064777327935,
+ "ks_p": 0.5740749250285179,
+ "z_mean": 0.14296022411640924,
+ "z_sd": 1.0607842096657578,
+ "wilcoxon_z_gt0_p": 0.1649913787841797,
+ "P_le1_given_rate": {
+  "0.1": 0.3917469981251679,
+  "0.15": 0.17555787608868256,
+  "0.2": 0.0691752902764109,
+  "0.238": 0.03156754859962663
+ },
+ "decision": "0-3/20 rejected: no evidence of inflation at the resolution of this design (does not establish calibration)"
+}
