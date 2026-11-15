@@ -8,7 +8,7 @@ Sources (all read-only):
   (c) h1_estimates.csv (development joint negative-control model) and e08_results.json (2026 joint model).
       The 2026 contemporaneous joint coefficient has no saved interval and is drawn as a point only.
       Dotted ticks mark the period-specific registered criterion -0.5|beta_S^NC| (not an uncertainty interval).
-Revision 3: (a) adds the authorised extracted partial residuals (hexbin density, rasterised layer) and quantile-bin means. Revision 2: legend wording in (a); criterion labelled in (c). Re-checked: no partial residuals or 2026 joint-model CI are saved anywhere."""
+Revision 4: layout - (a) and (b) on top, (c) below with legend outside the axes; values unchanged. Revision 3: (a) adds the authorised extracted partial residuals (hexbin density, rasterised layer) and quantile-bin means. Revision 2: legend wording in (a); criterion labelled in (c). Re-checked: no partial residuals or 2026 joint-model CI are saved anywhere."""
 import sys, json, pathlib, numpy as np, pandas as pd
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "section2"))
 import common
@@ -30,8 +30,8 @@ for k, (e, lo, hi) in expected.items():
 assert abs(h1["b1_primary"] - 0.05203865514163186) < 1e-15 and abs(h1["b_nc"] - (-0.018721921849912438)) < 1e-15 and abs(h1["b1_joint"] - 0.054621589756653266) < 1e-15
 assert abs(ff.linear_effect_ppm.iloc[-1] / ff.S_sd.iloc[-1] - dev.estimate) < 1e-3          # saved linear curve has slope = pooled estimate
 
-fig = plt.figure(figsize=(174.5 * MM, 64.0 * MM))
-ax_a = fig.add_axes([0.085, 0.20, 0.245, 0.72]); ax_b = fig.add_axes([0.445, 0.20, 0.225, 0.72]); ax_c = fig.add_axes([0.762, 0.20, 0.205, 0.72])
+fig = plt.figure(figsize=(174.5 * MM, 128.0 * MM))
+ax_a = fig.add_axes([0.085, 0.575, 0.375, 0.385]); ax_b = fig.add_axes([0.615, 0.575, 0.36, 0.385]); ax_c = fig.add_axes([0.165, 0.085, 0.45, 0.36])
 for a, l in ((ax_a, "(a)"), (ax_b, "(b)"), (ax_c, "(c)")):
     a.text(-0.02, 1.02, l, transform=a.transAxes, fontsize=8, fontweight="bold", ha="right", va="bottom")
     for sp in ("top", "right"): a.spines[sp].set_visible(False)
@@ -82,16 +82,16 @@ for lab, y, c, ne, nlo, nhi, je, jci in groups:
     ax_c.plot(je, yj, "D", ms=3.8, mfc="white", mec=c, mew=1.0)
     thr = -0.5 * abs(je)                                    # registered magnitude criterion for a negative next-day coefficient (not an uncertainty bound)
     ax_c.plot([thr, thr], [yn - 0.24, yn + 0.24], c=c, lw=0.9, ls=(0, (1.2, 1.2)))
-ax_c.set_yticks([2.3, 0.8], ["2021–2025", "2026"]); ax_c.set_ylim(-0.2, 4.6); ax_c.set_xlim(-0.035, 0.07)
+ax_c.set_yticks([2.3, 0.8], ["2021–2025", "2026"]); ax_c.set_ylim(-0.2, 3.4); ax_c.set_xlim(-0.035, 0.07)
 ax_c.get_yticklabels()[1].set_color(C_CONF); ax_c.get_yticklabels()[1].set_fontweight("bold"); ax_c.tick_params(axis="y", length=0)
 ax_c.set_xlabel("Joint-model coefficient (ppm per SD)")
 h = [plt.Line2D([], [], c="#555555", marker="o", ms=3.8, lw=1.1, label="Next-day, $Z_S(t+24)$ (95% CI)"),
      plt.Line2D([], [], c="#555555", marker="D", ms=3.8, mfc="white", lw=1.1, label="Contemporaneous, $Z_S(t)$"),
      plt.Line2D([], [], c="#555555", lw=0.9, ls=(0, (1.2, 1.2)), label=r"Criterion, $-0.5\,|\hat{\beta}_S^{\mathrm{NC}}|$")]
-ax_c.legend(handles=h, frameon=False, loc="upper left", fontsize=5.9, handlelength=1.8, borderaxespad=0.0, labelspacing=0.35)
+ax_c.legend(handles=h, frameon=False, loc="center left", bbox_to_anchor=(1.04, 0.5), fontsize=6.3, handlelength=2.0, borderaxespad=0.0, labelspacing=0.6)
 
 for ext in ("pdf", "svg"):
     fig.savefig(OUT / f"fig04_stability_results.{ext}", metadata={"Date": None} if ext == "svg" else {"CreationDate": None})
 fig.savefig(OUT / "fig04_stability_results_600dpi.png", dpi=600)
 fig.savefig(OUT / "fig04_stability_results_600dpi.tiff", dpi=600, pil_kwargs={"compression": "tiff_lzw"})
-print("fig04 written: 174.5 x 64.0 mm")
+print("fig04 written: 174.5 x 128.0 mm")

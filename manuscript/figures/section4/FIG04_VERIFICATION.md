@@ -75,3 +75,11 @@ The threshold uses the **joint-model** contemporaneous coefficient, not the prim
 **Panels (b) and (c):** code and values unchanged. The documented absence of a 2026 contemporaneous joint-model interval is retained.
 
 **Data-redistribution note:** `manuscript/data/section4/fig04a_partial_residuals.csv.gz` (40,334 hourly values derived from WBEA observations) is **not committed** to the public repository, pending the researcher's decision on WBEA's authorised-use terms. It is regenerated exactly by the extraction script from the development panel. The committed aggregates (`fig04a_quantile_bin_means.csv`, `fig04a_extraction_verification.json`) are summary values.
+
+---
+## Revision 4: layout only
+- Panels (a) and (b) on the top row, (c) below; (c)'s legend placed outside its axes on the right. Size 174.5 x 128.0 mm (previously 64.0 mm tall).
+- **Values unchanged:** all source assertions in the script pass again, and the residual data file still passes its extraction-verification gate (40,334 rows).
+- A text-layer comparison with the previous PDF shows only automatic tick-label changes caused by the wider axes ((a) adds ticks at 1 and 3; (b) now steps 0.01; (c) steps 0.02), plus a glyph-ordering difference in the beta-hat symbol. Data labels, legends and annotations are identical.
+- Checks: all text inside the page; fonts embedded; rasterised hexbin density only (2 entries: image plus alpha mask); PNG and TIFF at 600 dpi.
+- `fig04a_partial_residuals.csv.gz` remains uncommitted pending the researcher's data-redistribution decision.
