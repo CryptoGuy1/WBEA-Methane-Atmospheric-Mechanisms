@@ -18,3 +18,11 @@
 - All text inside the page.
 - Legible at the 13.3 cm display width (headers, values, decisions and caveat).
 - No overlapping elements.
+
+## Version 2 (icon-led, minimal text): `graphical_abstract_v2.*`
+- **Text:** 14 words plus numbers and the H1-H3 labels. Everything else is geometric icons drawn in code (methane molecule, wind, tower and stability profile, direction, regime bars, padlock, status marks).
+- **Data:**
+  - Station map: real coordinates and the 21 registered pairs.
+  - H1 and H3: 2026 registered estimates with 95% intervals, against a zero line.
+  - H2: the real 246-shift null histogram with the observed D = 0.288.
+- **Format:** 0 raster images; Liberation Sans embedded; all text inside the page; legible at the 13.3 cm display width.
