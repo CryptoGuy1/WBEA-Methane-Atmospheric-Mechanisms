@@ -1,0 +1,10 @@
+{
+ "commit": "fc56f1d164b1b2709f779aea30f4a10fbd06ffbd",
+ "python": "3.12.3",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "runtime_s": 28.8,
+ "analyses": 20,
+ "issues": [],
+ "randomness": "none"
+}

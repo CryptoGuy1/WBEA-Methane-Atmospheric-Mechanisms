@@ -1,0 +1,10 @@
+path,step,factor,delta
+path_1,A0 -> A2,"reference (random 1,000 -> all shifts)",0.0007548489136378067
+path_1,A2 -> A3,window (full -> Jan-Sep pooled),-0.0030903192720192763
+path_1,A3 -> A4,pair set (27 -> 21; AMS 2 in universe),0.004544497470068715
+path_1,A4 -> A5,residual universe (12 -> 11),0.006761206720818258
+path_1,A5 -> A1,"period (development Jan-Sep -> 2026), same pairs/universe",0.15045718208218917
+path_2,A0 -> A2,"reference (random 1,000 -> all shifts)",0.0007548489136378067
+path_2,A2 -> A2b,"pairs + universe (27/12 -> 21/11), full window",0.008595689426079606
+path_2,A2b -> A5,"window (full -> Jan-Sep pooled), 21/11",-0.00038030450721190934
+path_2,A5 -> A1,"period (development Jan-Sep -> 2026), same pairs/universe",0.15045718208218917

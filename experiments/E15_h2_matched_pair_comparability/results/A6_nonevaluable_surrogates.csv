@@ -1,0 +1,7 @@
+pair,observed_D_finite,nan_surrogates,of
+AMS 1->AMS 2,True,17,246
+AMS 2->AMS 5,True,20,246
+AMS 2->AMS 9,True,17,246
+AMS 2->AMS 11,True,18,246
+AMS 2->AMS 13,True,14,246
+AMS 2->AMS 30,True,14,246
