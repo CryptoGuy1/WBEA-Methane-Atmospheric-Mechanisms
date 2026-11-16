@@ -51,3 +51,11 @@ In a year-swap, methane and wind come from different years, so there is **no hou
 - **Resolution:** with n = 20, a true rate below about 15% cannot be distinguished from 5% with confidence.
 - **Interannual differences:** swaps also mix interannual differences in network operations (missingness patterns), which is realistic but not separately controlled.
 - **No transport claims:** no statement about transport, emission rates or universal calibration follows from this experiment.
+
+---
+## Addendum (2026-11-15, after independent review; the pre-registered text above is unchanged)
+This addendum corrects interpretation only. No threshold, design element or computation changed, and all numerical outputs are byte-identical.
+1. **Section 3 overstated the null.** Year-swapping removes the *synchronous same-year alignment* of wind and methane. It does **not** guarantee a zero expected H2 directional contrast: calendar-recurrent seasonal and diurnal structure in both series survives the swap and can create dependence between the combined series. The design is therefore an **empirical cross-year negative control**, not a strict statistical null. Its rejection rate is **not** a verified Type-I error rate.
+2. **Section 4 (decision rule).** The four-rejection threshold and its binomial tail probabilities assumed independent replicates. The 20 combinations reuse five methane years and five wind years (each year enters 8 combinations), so the threshold is retained only as a pre-declared *descriptive* benchmark, and the Wilson interval is nominal.
+3. **Terminology.** "Same-year anchors" retain the observed alignment of wind and methane. They are not evidence of physical coupling or transport.
+The corrected interpretation is in `REPORT.md` (v2); the original report is preserved as `REPORT_v1_superseded.md`.

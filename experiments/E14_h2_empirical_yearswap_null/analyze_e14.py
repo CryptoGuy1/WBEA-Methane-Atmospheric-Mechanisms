@@ -31,7 +31,7 @@ for a, l in zip(axs, "abc"):
     a.text(-0.02, 1.03, f"({l})", transform=a.transAxes, fontweight="bold", fontsize=8, ha="right", va="bottom")
     for sp in ("top", "right"): a.spines[sp].set_visible(False)
     a.tick_params(length=2.5, width=0.5)
-# (a) standardised statistic: year-swapped nulls vs same-year (real coupling); deterministic display offsets by wind year
+# (a) standardised statistic: year-swapped negative controls vs same-year (observed alignment); deterministic display offsets by wind year
 ax = axs[0]; an = R[(R.station_set == "coverage_rule") & (R.kind != "swap")]
 off = {y: (i - 2) * 0.06 for i, y in enumerate(sorted(R.wind_year.unique()))}
 ax.scatter(0 + prim.wind_year.map(off), prim.z, s=12, c="#7f7f7f", lw=0, alpha=0.85, label="Year-swapped (20)")
@@ -39,7 +39,7 @@ rej = prim[prim.p <= 0.05]; ax.scatter(0 + rej.wind_year.map(off), rej.z, s=22, 
 ax.scatter(1 + an.ch4_year.map(off), an.z, s=14, c="#2171b5", lw=0, label="Same-year (5)")
 ax.axhline(0, c="#d9d9d9", lw=0.6, zorder=0); ax.axhline(Z2026, c="#2171b5", lw=0.8, ls=(0, (3, 2)))
 ax.text(1.42, Z2026, "2026", color="#2171b5", fontsize=6, va="center")
-ax.set_xticks([0, 1], ["Year-swapped\n(null)", "Same-year\n(real coupling)"]); ax.set_xlim(-0.45, 1.55); ax.set_ylabel("Standardised pooled statistic, $z$")
+ax.set_xticks([0, 1], ["Year-swapped\n(negative control)", "Same-year\n(observed alignment)"]); ax.set_xlim(-0.45, 1.55); ax.set_ylabel("Standardised pooled statistic, $z$")
 ax.legend(frameon=False, fontsize=5.8, loc="center left", bbox_to_anchor=(0.0, 0.58), handletextpad=0.3, borderaxespad=0.1)
 # (b) p-value ECDF of the 20 year-swapped replicates under the frozen whole-period reference
 ax = axs[1]; ax.plot([0, 1], [0, 1], c="#bdbdbd", lw=0.7, ls=(0, (2, 2)))
