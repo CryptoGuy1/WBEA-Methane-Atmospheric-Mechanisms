@@ -16,7 +16,8 @@ def test_no_development_script_reads_raw_exports():
     for f in list((ROOT / "src").rglob("*.py")) + list((ROOT / "experiments").rglob("*.py")):
         rel = f.relative_to(ROOT).as_posix()
         if rel in ALLOWED_RAW_READERS or rel.startswith("experiments/R1_readiness") or rel.startswith("experiments/E08") \
-                or rel.startswith("experiments/E13_h2_seasonal_shift_sensitivity"):   # researcher-authorised post-confirmation reader (E13)
+                or rel.startswith("experiments/E13_h2_seasonal_shift_sensitivity") \
+                or rel.startswith("experiments/E15_h2_matched_pair_comparability"):   # researcher-authorised post-confirmation readers (E13; E15 DEVIATIONS D1)
             continue                                                 # R1 archived as run; E08 is the only consumer
         if RAW_PATTERNS.search(f.read_text()):
             bad.append(rel)
