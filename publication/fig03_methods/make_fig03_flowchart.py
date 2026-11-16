@@ -40,7 +40,7 @@ for h, t1, t2, c, y in est:
     arr((64.6, 34.0), (72.4, y + 6.0))
     box(73.0, y, 46.0, 12.0, c); ax.text(75.4, y + 6.0, h, fontsize=9.0, color="white", fontweight="bold", ha="left", va="center")
     ax.text(82.2, y + 8.2, t1, fontsize=7.4, color="white", fontweight="bold", ha="left", va="center")
-    ax.text(82.2, y + (3.2 if "\n" in t2 else 4.0), t2, fontsize=6.3, color="white", ha="left", va="center", linespacing=1.15)
+    ax.text(82.2, y + (3.2 if "\n" in t2 else 4.0), t2, fontsize=7.0, color="white", ha="left", va="center", linespacing=1.15)
     arr((122.6, y + 6.0), (126.9, 34.0 + (y - 28.5) * 0.3))
 
 # registered decisions come from H1-H3 applied to the 2026 data
@@ -48,9 +48,9 @@ box(127.5, 24.0, 20.0, 20.0, NAVY); txt(137.5, 34.0, "Registered\ndecisions\n(20
 
 # post-confirmation checks
 box(152.0, 9.5, 21.5, 46.0, "white", ec=LINE, ls=(0, (3, 2)), lw=0.9)
-txt(162.75, 51.1, "Post-\nconfirmation", 7.0, GREY, True)
+txt(162.75, 51.1, "Post-\nconfirmation", 7.2, GREY, True)
 for k, s in enumerate(("Synthetic\ntests", "Seasonal\nreferences", "Cross-year\ncontrols", "Matched\npairs")):
-    box(153.75, 37.5 - k * 8.8, 18.0, 7.4, PALE, r=1.0); txt(162.75, 41.2 - k * 8.8, s, 6.6, NAVY)
+    box(153.75, 37.5 - k * 8.8, 18.0, 7.4, PALE, r=1.0); txt(162.75, 41.2 - k * 8.8, s, 7.0, NAVY)
 arr((148.1, 34.0), (151.4, 34.0), ls=(0, (2.5, 1.5)))
 for ext in ("pdf", "svg"): fig.savefig(OUT / f"fig03_flowchart.{ext}")
 fig.savefig(OUT / "fig03_flowchart.png", dpi=600); print("ok")

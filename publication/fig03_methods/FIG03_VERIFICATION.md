@@ -42,3 +42,8 @@
    The shared box now reads "Quality control + 2021-2023 reference values", the common element of all three (anomaly centring and stability standardisation for H1; anomalies for H2; P95 thresholds for H3). The review's wording, "Reference quantities", was refined for precision. "Leave-pair-out residuals" now appears in the H2 box.
 2. **Estimands.** The review is correct that "shifted-wind test" names a procedure. Applied consistently to all three boxes, not only H2: estimand plus method (H1 "Stability association / regression"; H2 "Directional dependence / shifted-wind reference; leave-pair-out residuals"; H3 "Regime composition / rate decomposition").
 3. **Confirmation path.** The review is correct. The dashed arrow from confirmation directly to the decisions is removed. Both data periods (2021-2025, Jan-Sep 2026) now enter the shared path, the frozen protocol feeds a dashed group around H1-H3 (procedures fixed), and "Registered decisions (2026)" follows from H1-H3.
+
+## Font sizes (measured in the PDF with pdfplumber; the figure is at final print size, 174.5 mm)
+- All text is 7.0-9.0 pt, meeting Elsevier's minimum of about 7 pt at final size. Previously, the H1-H3 method sub-labels were 6.3 pt and the post-confirmation boxes 6.6 pt.
+- The only smaller glyph is the CH4 subscript "4" (4.9 pt, normal subscript scaling).
+- All text fits within its boxes.
