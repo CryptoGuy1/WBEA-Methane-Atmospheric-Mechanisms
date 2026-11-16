@@ -46,3 +46,21 @@
 3. Branch integration (E14, E15, manuscript and publication branches are unmerged; `main` lacks them).
 4. Overleaf manuscript content (duplication status UNVERIFIED).
 5. AMS 2 outage cause; station relocations; final validated 2026 data and the pre-declared re-run; `netmech` licence.
+
+## Revision 2 (after the Supplement text review)
+- **Tables:** all manuscript-facing text sanitised. Decision codes (D-xx), experiment tags (E0x/E1x), internal table IDs (TSn → Table Sn), the wind-variant code W0 and file names are removed. Each table ends with one provenance sentence pointing to `table_manifest.csv`.
+- **Notes reworded:**
+  - TS3: worst-case bounds for the hourly rate; reference to Section 2.2.
+  - TS4: wildfire flag (Section 1.3); station-contribution sentence without codes.
+  - TS6 B: corrected-model wording.
+  - TS6 C: retitled "Alternative-height wind transit, ERA5 100 m vs 10 m".
+  - TS11: removed the remark about an earlier report.
+- **Labels:** TS7 benchmark rows are named by calendar window.
+- **TS14:** descriptive comparison labels; the 27-pair 2026 analysis is labelled "27 pairs incl. AMS 2" (not evaluable, explained in the note). It is split into TS14 and TS14b, "Table S14 (continued)", with its own header.
+- **Fig. S11:** legend now reads "Continuous source (corrected model)" (decision code removed). A scan of the printed text of all 23 figure PDFs finds no internal codes.
+- **Verified for the Supplement text:**
+  - Eq. S1: stability standardised by its 2021-2023 mean and SD; wind term log(U + 0.5) with U the AMS 5 composite speed (`run_e04.py`). Proxy variants use 1,000 bootstrap replicates; primary estimates use 2,000.
+  - Section 1.3 wildfire flag (`src/wbea/smoke.py`).
+  - Ten-pair minimum (protocol contingency table).
+  - E12 generator description (`e12/generator.py`).
+- **Table QA:** 0 errors, 0 overfull boxes (CAS harness, 15 pages).

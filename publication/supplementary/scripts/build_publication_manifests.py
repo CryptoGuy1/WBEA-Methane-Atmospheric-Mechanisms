@@ -58,6 +58,7 @@ for s, (name, script, inputs, trans, corr) in FIG.items():
                      transformation=trans, corrections_applied=corr, caption_caveats=a.caption_caveats, section=a.section, original_preserved="yes (experiment directory unchanged)"))
 fm = pd.DataFrame(rows); fm.to_csv(SUP / "figure_manifest.csv", index=False)
 TM = pd.read_csv(ROOT / "publication/supplement_audit/table_manifest.csv")
+TM = pd.concat([TM, TM[TM.table_id == "TS14"].assign(table_id="TS14b", purpose="Table S14 (continued): shared-pair estimates, weights and leave-one-pair-out pooled D")], ignore_index=True)
 TIN = {"TS1": ["E02_data_quality/results/q1_variable_completeness_station_year.csv"], "TS2": ["E01_geometry_instrumentation/results/h2_family_eligibility.csv", "E08_confirmation/confirmation_2026/h2_pairs.csv"],
        "TS3": ["E03_excursion_patterns/results/q6_onsets_by_hour_by_rule.csv", "E03_excursion_patterns/results/q6_manski_bounds_by_hour.csv"], "TS4": ["E04_stability_elasticity/results/h1_estimates.csv", "E11_station_contribution/results/x3_h1_station_contribution.csv"],
        "TS5": ["E05_directional_coupling/results/h2_pair_statistics.csv"], "TS6": ["E06_detectability_kernel/results/e06_observed_vs_reference_kernel.csv", "E06_detectability_kernel/results/review_continuous_detectability.csv", "E09_elevated_wind/results/r1_delta_sse.csv", "E10_episode_typology/results/e10_decision.csv"],
@@ -65,7 +66,7 @@ TIN = {"TS1": ["E02_data_quality/results/q1_variable_completeness_station_year.c
        "TS9": ["E08_confirmation/confirmation_2026/h2_pairs.csv", "E08_confirmation/confirmation_2026/descriptive/h2_pairs_maxT.csv", "E01_geometry_instrumentation/results/h2_family_eligibility.csv"],
        "TS10": ["E08_post_confirmation_exploratory/results/h1_nc_covariance_by_period.csv", "E08_post_confirmation_exploratory/results/h3_2026_denominator_by_station.csv"],
        "TS11": ["E12_h2_synthetic_null_calibration/results/summary_by_scenario_method.csv", "E12_h2_synthetic_null_calibration/results/verdicts.json"], "TS12": ["E13_h2_seasonal_shift_sensitivity/results/e13_summary.csv", "E13_h2_seasonal_shift_sensitivity/results/e13_per_season.csv"],
-       "TS13": ["E14_h2_empirical_yearswap_null/results/replicates.csv"], "TS14": ["E15_h2_matched_pair_comparability/results/comparison_table.csv", "E15_h2_matched_pair_comparability/results/shared_pairs_A5_vs_A1.csv"]}
+       "TS13": ["E14_h2_empirical_yearswap_null/results/replicates.csv"], "TS14": ["E15_h2_matched_pair_comparability/results/comparison_table.csv", "E15_h2_matched_pair_comparability/results/decomposition_paths.csv"], "TS14b": ["E15_h2_matched_pair_comparability/results/shared_pairs_A5_vs_A1.csv", "E15_h2_matched_pair_comparability/results/weight_sensitivity.csv"]}
 TM["publication_file"] = [f"publication/supplementary/tables/{t}.tex" for t in TM.table_id]; TM["tex_sha256"] = [sha(SUP / "tables" / f"{t}.tex") for t in TM.table_id]
 TM["generating_script"] = "publication/supplementary/scripts/make_tables.py"; TM["source_inputs"] = ["; ".join(E + p for p in TIN[t]) for t in TM.table_id]
 TM["source_commits"] = ["; ".join(last(E + p) for p in TIN[t]) for t in TM.table_id]; TM["status"] = "prepared (compiles in CAS QA harness: 0 errors, 0 overfull)"

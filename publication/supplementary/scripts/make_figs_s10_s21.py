@@ -26,7 +26,7 @@ def s11():
     fig, ax = plt.subplots(1, 2, figsize=(W * MM, 62 * MM), sharey=True); fig.subplots_adjust(left=0.08, right=0.98, bottom=0.17, top=0.91, wspace=0.08)
     for k, mem in enumerate((20, 180)):
         a = ax[k]
-        for model, c, m, lab in (("continuous source", C_PRI, "o", "Continuous source (authoritative; D-39)"), ("original (mask-gated)", C_MUTE, "s", "Mask-gated (superseded)")):
+        for model, c, m, lab in (("continuous source", C_PRI, "o", "Continuous source (corrected model)"), ("original (mask-gated)", C_MUTE, "s", "Mask-gated (superseded)")):
             r = d[(d.model == model) & (d.memory_min == mem)].sort_values("A"); a.plot(r.A, 100 * r.detection_rate, m + "-", c=c, mfc=c if m == "o" else "white", ms=4, lw=1.0, label=lab)
         a.set_xticks([0.2, 0.4]); a.set_xlim(0.1, 0.5); a.set_ylim(0, 100); a.set_xlabel("Injected amplitude A (signal SD / residual SD)")
         a.text(0.03, 0.95, f"Signal memory {mem} min", transform=a.transAxes, fontsize=6.4, va="top")
