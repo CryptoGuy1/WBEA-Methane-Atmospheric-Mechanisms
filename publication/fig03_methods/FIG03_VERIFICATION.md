@@ -47,3 +47,13 @@
 - All text is 7.0-9.0 pt, meeting Elsevier's minimum of about 7 pt at final size. Previously, the H1-H3 method sub-labels were 6.3 pt and the post-confirmation boxes 6.6 pt.
 - The only smaller glyph is the CH4 subscript "4" (4.9 pt, normal subscript scaling).
 - All text fits within its boxes.
+
+## Second external review (each point evaluated)
+- **Accepted:**
+  - Label on the frozen boundary: "Prespecified estimators and decision rules".
+  - H1 "adjusted regression".
+  - "Synthetic calibration & falsification".
+  - "Post-confirmation diagnostics" heading. Adapted: the suggested sentence "Diagnostic only; registered decisions unchanged" does not fit at 7 pt within the page width; "decisions unchanged" goes in the caption.
+- **Declined:** a blue arrow from "Confirmation" directly into the H1-H3 boundary. The 2026 data passed quality control and were scored against 2021-2023 reference values (e.g. P95 thresholds) before the estimators, so a direct arrow would bypass that step. It would also contradict the first review's correct point that confirmation data feed the shared path. The 2026 dataset is already shown entering the full path (blue "Jan-Sep 2026" chip in the data box, matching the Confirmation colour).
+- **Agreed:** the AMS 2 exclusion belongs in the caption.
+- **Checks:** all text 7.0-9.0 pt (measured); everything inside the page.

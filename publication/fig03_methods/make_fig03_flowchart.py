@@ -32,9 +32,10 @@ box(39.0, 23.0, 25.0, 22.0, "#dde8f3", ec=LINE)
 txt(51.5, 34.0, "Quality control\n+\n2021–2023\nreference values", 7.4, NAVY, True)
 
 # estimators, procedures fixed by the frozen protocol
-box(69.5, 9.5, 52.5, 49.5, "white", ec=ORANGE, ls=(0, (3, 2)), lw=0.9, r=2.0)
+box(69.5, 1.0, 52.5, 58.0, "white", ec=ORANGE, ls=(0, (3, 2)), lw=0.9, r=2.0)
+txt(95.75, 6.3, "Prespecified estimators\nand decision rules", 7.0, ORANGE, True)
 arr((95.75, yt - 0.6), (95.75, 59.6), c=ORANGE, lw=1.2)
-est = [("H1", "Stability association", "regression", TEAL, 45.0), ("H2", "Directional dependence", "shifted-wind reference;\nleave-pair-out residuals", BLUE, 28.5),
+est = [("H1", "Stability association", "adjusted regression", TEAL, 45.0), ("H2", "Directional dependence", "shifted-wind reference;\nleave-pair-out residuals", BLUE, 28.5),
        ("H3", "Regime composition", "rate decomposition", ORANGE, 12.0)]
 for h, t1, t2, c, y in est:
     arr((64.6, 34.0), (72.4, y + 6.0))
@@ -47,10 +48,10 @@ for h, t1, t2, c, y in est:
 box(127.5, 24.0, 20.0, 20.0, NAVY); txt(137.5, 34.0, "Registered\ndecisions\n(2026)", 7.8, "white", True)
 
 # post-confirmation checks
-box(152.0, 9.5, 21.5, 46.0, "white", ec=LINE, ls=(0, (3, 2)), lw=0.9)
-txt(162.75, 51.1, "Post-\nconfirmation", 7.2, GREY, True)
-for k, s in enumerate(("Synthetic\ntests", "Seasonal\nreferences", "Cross-year\ncontrols", "Matched\npairs")):
-    box(153.75, 37.5 - k * 8.8, 18.0, 7.4, PALE, r=1.0); txt(162.75, 41.2 - k * 8.8, s, 7.0, NAVY)
+box(152.0, 1.0, 21.5, 58.0, "white", ec=LINE, ls=(0, (3, 2)), lw=0.9)
+txt(162.75, 52.4, "Post-\nconfirmation\ndiagnostics", 7.0, GREY, True)
+for s_, y0, hgt in (("Synthetic\ncalibration &\nfalsification", 35.2, 11.0), ("Seasonal\nreferences", 25.6, 8.0), ("Cross-year\ncontrols", 16.0, 8.0), ("Matched\npairs", 6.4, 8.0)):
+    box(153.75, y0, 18.0, hgt, PALE, r=1.0); txt(162.75, y0 + hgt / 2, s_, 7.0, NAVY)
 arr((148.1, 34.0), (151.4, 34.0), ls=(0, (2.5, 1.5)))
 for ext in ("pdf", "svg"): fig.savefig(OUT / f"fig03_flowchart.{ext}")
 fig.savefig(OUT / "fig03_flowchart.png", dpi=600); print("ok")
