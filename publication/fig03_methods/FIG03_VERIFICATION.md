@@ -32,3 +32,13 @@
 - **Text:** 2-4 words per box; equations and decision rules stay in the Methods text and Supplement.
 - **Format:** 174.5 x 74 mm; vector, 0 raster images; DejaVu Sans, matching Figures 4-7.
 - **Accuracy:** content is consistent with the frozen protocol (estimators, timeline) and the Supplement sections. The more detailed schematic (`fig03_methods_schematic.*`) is kept as an alternative.
+
+## Flowchart revision (after external AI review; each point checked before implementing)
+1. **Shared preprocessing.** The review is correct that regional residualisation is H2-specific:
+   - H2: leave-pair-out residuals (`src/wbea/h2.py`).
+   - H1: network median of station anomalies centred on 2021-2023 medians (`run_e04.py`).
+   - H3: station P95 excursion rates.
+
+   The shared box now reads "Quality control + 2021-2023 reference values", the common element of all three (anomaly centring and stability standardisation for H1; anomalies for H2; P95 thresholds for H3). The review's wording, "Reference quantities", was refined for precision. "Leave-pair-out residuals" now appears in the H2 box.
+2. **Estimands.** The review is correct that "shifted-wind test" names a procedure. Applied consistently to all three boxes, not only H2: estimand plus method (H1 "Stability association / regression"; H2 "Directional dependence / shifted-wind reference; leave-pair-out residuals"; H3 "Regime composition / rate decomposition").
+3. **Confirmation path.** The review is correct. The dashed arrow from confirmation directly to the decisions is removed. Both data periods (2021-2025, Jan-Sep 2026) now enter the shared path, the frozen protocol feeds a dashed group around H1-H3 (procedures fixed), and "Registered decisions (2026)" follows from H1-H3.
