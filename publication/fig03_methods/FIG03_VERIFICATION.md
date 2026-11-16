@@ -26,3 +26,9 @@
 - DejaVu Sans, matching Figures 4-7; fonts embedded.
 - Panel letters (a)-(c); no figure title.
 - All text inside the page.
+
+## Flowchart version (recommended): `fig03_flowchart.*`
+- **Design:** a minimal-text flowchart following the model EMS papers. It shows the study timeline (development, frozen protocol, confirmation), the data, preprocessing, the H1-H3 estimators, the registered decisions and the post-confirmation checks.
+- **Text:** 2-4 words per box; equations and decision rules stay in the Methods text and Supplement.
+- **Format:** 174.5 x 74 mm; vector, 0 raster images; DejaVu Sans, matching Figures 4-7.
+- **Accuracy:** content is consistent with the frozen protocol (estimators, timeline) and the Supplement sections. The more detailed schematic (`fig03_methods_schematic.*`) is kept as an alternative.
