@@ -1,204 +1,242 @@
-# WBEA Methane Atmospheric Mechanisms
+# A Falsification-Oriented Framework for Atmospheric Stability and Wind-Conditioned Methane Dependence in Monitoring Networks
 
-**A falsification-tested framework for atmospheric stability and directional methane coupling in environmental monitoring networks.**
+This repository contains the analysis code, frozen confirmation protocol, archived results and reproducibility records for a study of hourly methane (CH₄) observations from the Wood Buffalo Environmental Association (WBEA) monitoring network in the Athabasca oil sands region of Alberta, Canada.
 
-This repository contains the complete, version-controlled research record behind a study of hourly methane observations from the Wood Buffalo Environmental Association (WBEA) monitoring network in the Athabasca oil sands region of Alberta, Canada. It holds the analysis code, the frozen confirmation protocol, every experiment's saved results and reports, and the publication assets for the manuscript prepared for *Environmental Modelling & Software*.
+The study evaluates three statistical questions:
+- **Stability:** whether methane anomalies are associated with near-surface atmospheric stability.
+- **Directional dependence:** whether station pairs show wind-conditioned directional dependence.
+- **Weather regimes:** whether changes in meteorological-regime frequency account for year-to-year changes in methane excursions.
 
-> **What this study does and does not claim.** The analyses test *statistical associations* in monitoring data. They do not estimate emissions, attribute sources, or prove that methane travelled between stations.
+Its methodological contribution is to separate three kinds of evidence that are often conflated:
+1. **Independent temporal confirmation:** pre-specified tests applied once to held-out data.
+2. **Statistical-null calibration:** whether the test behaves as intended when no effect is present.
+3. **Physical-specificity testing:** whether a positive result could arise without the mechanism it suggests.
 
----
+> **Scope.** All results are statistical associations in monitoring data. They are not emission estimates, source attributions, or evidence that methane travelled between stations.
 
 ## Contents
-1. [Study design in one minute](#study-design-in-one-minute)
-2. [Main results](#main-results)
-3. [How to navigate the repository](#how-to-navigate-the-repository)
-4. [Branches and tags](#branches-and-tags)
-5. [Experiment index](#experiment-index)
-6. [Repository layout](#repository-layout)
-7. [Reproducing the analyses](#reproducing-the-analyses)
-8. [Data access and integrity safeguards](#data-access-and-integrity-safeguards)
-9. [Authors and contact](#authors-and-contact)
+- [Study at a glance](#study-at-a-glance)
+- [Main findings](#main-findings)
+- [Research workflow](#research-workflow)
+- [Repository navigation](#repository-navigation)
+- [Reproducibility and installation](#reproducibility-and-installation)
+- [Data availability and provenance](#data-availability-and-provenance)
+- [Experiment index](#experiment-index)
+- [Archived versions and safeguards](#archived-versions-and-safeguards)
+- [Citation and licence](#citation-and-licence)
 
 ---
 
-## Study design in one minute
+## Study at a glance
 
-The study tests three pre-specified hypotheses on a 12-station network:
-
-| | Hypothesis | Question |
+| | Question | Estimator |
 |---|---|---|
-| **H1** | Stability association | Are network methane anomalies higher when the near-surface atmosphere is more stable (AMS 5 tower temperature gradient)? |
-| **H2** | Directional coupling | After removing regional variation, do nearby station pairs show a lead-lag asymmetry that depends on whether the wind blows along or against the pair? |
-| **H3** | Regime composition | How much of the year-to-year change in methane excursion frequency is associated with changes in how often meteorological regimes occur? |
+| **H1** | Is network methane higher when the near-surface atmosphere is more stable? | Adjusted regression of the network CH₄ anomaly on the AMS 5 tower temperature gradient (T₉₀ − T₂₀) |
+| **H2** | Do nearby station pairs show lead-lag asymmetry that depends on wind direction along the pair? | Pooled lagged-correlation contrast D (aligned vs reversed winds), tested against shifted-wind surrogates |
+| **H3** | How much of the year-to-year change in excursion frequency reflects changing weather regimes? | Projection share from a regime-composition decomposition |
 
-The work proceeded in three strictly separated stages:
-
-1. **Development (2021-2025, exploratory).** Methods were built and tested on five years of data (experiments E00-E11).
-2. **Frozen confirmation (January-September 2026).** The protocol and code were frozen and tagged *before* the 2026 data were opened, then run once (experiment E08).
-3. **Post-confirmation diagnostics.** Additional analyses examine how far the directional statistic can be trusted and compared (experiments E12-E15). They are labelled exploratory and cannot change the registered decisions.
+**Data periods:**
+- **Development (2021–2025):** exploratory; methods were built and tested on these data.
+- **Independent confirmation (January–September 2026):** the protocol and code were frozen before these data were opened, then applied once.
+- **Post-confirmation diagnostics:** synthetic calibration, physical-specificity falsification and sensitivity analyses. These are exploratory and cannot alter the registered decisions.
 
 ---
 
-## Main results
+## Main findings
 
-### Registered 2026 confirmation (frozen protocol, run once)
+### Registered confirmation, January–September 2026 (frozen protocol, run once)
 
-| Hypothesis | Estimate (95% interval) | Registered decision |
-|---|---|---|
-| H1 stability association | 0.052 ppm per SD of stability (0.039 to 0.069), 4,472 hours | **Confirmed** |
-| H2 directional coupling | pooled D = 0.288, finite shifted-wind p = 1/247 (the smallest possible), 21 station pairs | **Confirmed** |
-| H3 regime composition | share = 0.011 (-0.020 to 0.043), 55 contrasts | **Not confirmed** |
+| Hypothesis | Estimate | 95% CI / test | Registered decision |
+|---|---|---|---|
+| H1 Stability association | 0.052 ppm per reference SD | 0.039 to 0.069 | Confirmed |
+| H2 Wind-conditioned directional dependence | pooled D = 0.288 | finite-shift p = 1/247 ≈ 0.0040 (minimum attainable) | Registered criteria met |
+| H3 Regime composition | share = 0.011 | −0.020 to 0.043 | Not confirmed |
 
-Important qualifications, reported with the results rather than hidden:
-- **H1:** the next-day negative control was unexpectedly negative in 2026 (-0.019; -0.027 to -0.005). It did not breach the registered decision rule, but it remains unexplained.
-- **H2:** synthetic tests show the statistic also responds to a wind-carried shared driver *without* any station-to-station methane transfer. A positive H2 result is therefore statistical directionality, not proof of transport.
-- **H3:** one station (AMS 18) supplied 92.9% of the estimator's weight in 2026.
-- **Network:** AMS 2 was excluded in 2026 (41.2% valid methane hours), leaving 11 stations.
+Source: [`e08_results.json`](experiments/E08_confirmation/confirmation_2026/e08_results.json) at tag [`e08-confirmation`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e08-confirmation).
 
-### Development and diagnostic findings (exploratory)
+### Essential limitations
+- **H1:** the 2026 next-day negative control was nonzero (−0.019; 95% CI −0.027 to −0.005). It did not breach the registered decision rule but remains unexplained.
+- **H2 calibration:** under constructed seasonal confounding, the whole-period shifted-wind test rejected in 23.8% of simulations rather than about 5%. Calibration across four null scenarios was classified as inconclusive.
+- **H2 physical specificity:** a wind-advected shared driver with no inter-station methane transfer produced directional dependence and was detected in 200 of 200 simulations. A positive H2 result is therefore statistical directionality, not evidence of methane transport.
+- **H3:** one station (AMS 18) contributed 92.9% of the estimator's weight in 2026.
+- **Development criterion:** the pre-registered quantitative lag-kernel criterion failed during development (1 of 5 transit classes in range; 4 required).
+- **Network:** AMS 2 was excluded from the 2026 analysis under the pre-specified coverage rule (41.2% valid methane hours).
 
-| Finding | Outcome |
+Confirmation of a statistical pattern, limited calibration under a chosen reference, and the absence of physical attribution are compatible conclusions; the study reports all three.
+
+---
+
+## Research workflow
+
+```text
+1. Exploratory development (2021–2025)
+   Methods built and tested; development gates, failures and decisions logged.
+                         │
+                         ▼
+2. Protocol freeze ──► Independent confirmation (Jan–Sep 2026)
+   Code and rules frozen     Frozen H1–H3 procedures applied once to held-out data
+   before 2026 data opened   → registered decisions
+                         │
+                         ▼
+3. Post-confirmation diagnostics
+   Synthetic calibration and falsification, season-restricted references,
+   cross-year negative controls, matched-pair comparability (decisions unchanged)
+```
+
+**Key records:**
+- **Frozen protocol:** [`PROTOCOL_E08_DRAFT_v2.md` at `protocol-freeze`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/blob/protocol-freeze/PROTOCOL_E08_DRAFT_v2.md)
+- **Freeze record:** [`FREEZE_RECORD.md`](experiments/E08_confirmation/FREEZE_RECORD.md)
+- **Confirmation results:** [`confirmation_2026/`](experiments/E08_confirmation/confirmation_2026)
+- **Post-confirmation evidence:** see the [experiment index](#experiment-index).
+- **Methods figure:** a workflow flowchart prepared for publication is available on the publication branch: [`fig03_flowchart.pdf`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/blob/publication/supplementary-assets/publication/fig03_methods/fig03_flowchart.pdf).
+
+---
+
+## Repository navigation
+
+| Resource | Location |
 |---|---|
-| H1 in development | 0.0475 ppm/SD (0.0411 to 0.0520); positive in every year, season and station-exclusion check |
-| H2 in development | pooled D = 0.1285 (0.1084 to 0.1553); 21 of 27 pairs family-wise significant |
-| Pre-registered lag-kernel criterion | **Failed** (1 of 5 transit classes in range; 4 required) |
-| H3 in development | **Not supported** (0.027; -0.040 to 0.126) |
-| ERA5 100 m vs 10 m wind transit | **Inconclusive** |
-| Episode typology | **Not supported** (placebo criterion failed) |
-| Synthetic null calibration of H2 | Null rejection 4.6-5.4% (overall **inconclusive** by the pre-set precision rule); a constructed seasonal confounder inflates rejection to 23.8% |
-| Season-restricted shift references | 2026 statistic exceeded all 63 and all 93 surrogates (sensitivity only) |
-| Cross-year negative controls | 1 of 20 rejections; descriptive, not a Type-I error estimate |
-| Development vs 2026 comparability | About 94% of the gap persists among the same 21 pairs and months; unexplained, weight-sensitive, and not evidence of a physical change |
-
-Negative, failed and inconclusive outcomes are kept in the record on purpose.
+| Registered confirmation protocol | [`PROTOCOL_E08_DRAFT_v2.md`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/blob/protocol-freeze/PROTOCOL_E08_DRAFT_v2.md) (authoritative at tag `protocol-freeze`) |
+| Confirmation results | [`experiments/E08_confirmation/confirmation_2026/`](experiments/E08_confirmation/confirmation_2026) |
+| Core analysis code | [`src/wbea/`](src/wbea) |
+| Data-processing scripts | [`src/build/`](src/build) |
+| Parameters, seeds and frozen rules | [`config/project.toml`](config/project.toml) |
+| Tests | [`tests/`](tests) and each experiment's `tests/` folder |
+| Reproducibility manifests (SHA-256) | [`manifests/`](manifests) |
+| Synthetic calibration and falsification | [`experiments/E12_h2_synthetic_null_calibration/`](experiments/E12_h2_synthetic_null_calibration) |
+| Sensitivity analyses | [E13](experiments/E13_h2_seasonal_shift_sensitivity) (on `main`); [E14](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/research/e14-h2-empirical-yearswap-null/experiments/E14_h2_empirical_yearswap_null) and [E15](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/research/e15-h2-matched-pair-comparability/experiments/E15_h2_matched_pair_comparability) (on their branches) |
+| Supplementary figures, tables and manifests | [`publication/supplementary/`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/publication/supplementary-assets/publication/supplementary) (branch `publication/supplementary-assets`) |
+| Main-text figures | [`manuscript/figures/`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/manuscript/section2-figures-tables/manuscript/figures) (branch `manuscript/section2-figures-tables`) |
+| Experiment reports | `experiments/<ID>/REPORT.md` (see the [experiment index](#experiment-index)) |
+| Research decision history | [`DECISION_LOG.md`](DECISION_LOG.md); review records in [`reviews/`](reviews) and [`REVIEW_BACKLOG.md`](REVIEW_BACKLOG.md) |
+| Final experimental audit | [`audit/`](audit) |
 
 ---
 
-## How to navigate the repository
+## Reproducibility and installation
 
-| If you want to… | Go to |
+**Environment.** The archived confirmation run used Python 3.12.3. Package versions are pinned in [`requirements.txt`](requirements.txt).
+
+```bash
+git clone https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms.git
+cd WBEA-Methane-Atmospheric-Mechanisms
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+> **Viewing is not reproducing.** Checking out a tag (for example `git checkout e08-confirmation`) gives the exact archived code and outputs. It does not re-execute any analysis, and re-execution needs the restricted WBEA data described below. Frozen records should be inspected, not modified.
+
+### Level 1: Inspect archived outputs (no restricted data)
+Every experiment's saved results, figures and reports are in the repository and can be read directly. Their integrity can be checked against the checksum files (for example [`confirmation_2026/SHA256SUMS.txt`](experiments/E08_confirmation/confirmation_2026/SHA256SUMS.txt) and the manifests in [`manifests/`](manifests)).
+
+### Level 2: Run tests
+Tested on a clean copy of `main` with no WBEA data present:
+
+| Test suite | Without WBEA data |
 |---|---|
-| Understand the decisions behind every method | `DECISION_LOG.md` |
-| See the frozen confirmation protocol | `PROTOCOL_E08_DRAFT_v2.md` at tag `protocol-freeze` |
-| See the registered 2026 results | `experiments/E08_confirmation/confirmation_2026/` at tag `e08-confirmation` |
-| Read any experiment's findings | `experiments/<ID>/REPORT.md` |
-| Check the full evidence audit | `audit/` (branch `audit/final-experimental-audit`) |
-| Get publication figures and tables | `publication/supplementary/` (branch `publication/supplementary-assets`) |
-| Understand data restrictions | `DATA_PROVENANCE.md` and `SEALED_DATA_POLICY.md` |
+| `tests/` | 35 pass; 4 fail because they require the development panel or raw exports |
+| `experiments/E12_h2_synthetic_null_calibration/tests` | 7 pass |
+| `experiments/E13_h2_seasonal_shift_sensitivity/tests` | 4 pass; 2 skip (sealed 2026 panel absent) |
 
-**Where the latest work lives.** E12 and E13 are on `main`. E14, E15 and the publication material are on their own branches (below) until they are merged.
+```bash
+python -m pytest -q tests experiments/E12_h2_synthetic_null_calibration/tests experiments/E13_h2_seasonal_shift_sensitivity/tests
+```
 
-To view a branch on GitHub, use the branch selector, or open, for example:
-`https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/research/e15-h2-matched-pair-comparability`
+### Level 3: Reproduce development analyses (authorised data required)
+1. Obtain the WBEA hourly exports and ERA5 file listed in [`DATA_PROVENANCE.md`](DATA_PROVENANCE.md), and verify them against [`manifests/`](manifests).
+2. Build the development panel with [`src/build/build_dev_panel.py`](src/build/build_dev_panel.py), then verify it against [`manifests/dev_panel_SHA256SUMS.txt`](manifests/dev_panel_SHA256SUMS.txt).
+3. Run an experiment, for example `python experiments/E04_stability_elasticity/run_e04.py`, and compare its outputs with the archived `results/`.
+
+**Note:** the builders and `config/project.toml` contain absolute input paths from the original analysis environment. Point them at your local copies before running.
+
+### Level 4: Frozen independent confirmation
+- **Archived record:** the frozen implementation is at tag [`protocol-freeze`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/protocol-freeze); the single registered run and its outputs are at tag [`e08-confirmation`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e08-confirmation).
+- **What a genuine rerun needs:**
+  - authorised 2026 WBEA data, processed by [`src/build/build_e08_panel.py`](src/build/build_e08_panel.py);
+  - the development panel (reference quantities come from 2021–2023);
+  - the pinned environment.
+- **Guard:** [`run_e08.py`](experiments/E08_confirmation/run_e08.py) runs in confirm mode only from the `protocol-freeze` commit on a clean working tree. A dry-run mode applies the same methods to 2025 development data.
+
+A rerun is a verification of the archived result, not a new confirmation.
+
+### Level 5: Synthetic post-confirmation experiments (no restricted methane data)
+The synthetic calibration experiment ([E12](experiments/E12_h2_synthetic_null_calibration)) generates its own data from committed parameter files (`synthetic_params.json`, `p1_amplitudes.json`) and station coordinates. Its entry point runs without WBEA data:
+
+```bash
+cd experiments/E12_h2_synthetic_null_calibration
+python run_e12.py --help
+```
+
+The parameters were originally estimated from development data (`estimate_params_from_development.py`); re-estimating them requires the development panel. The full production run is computationally intensive and was not re-executed when this README was written.
 
 ---
 
-## Branches and tags
+## Data availability and provenance
 
-Every branch head carries a tag, so any state of the project can be retrieved exactly (`git checkout <tag>`).
-
-| Branch | Purpose | Tag at branch head |
-|---|---|---|
-| `main` | Development experiments E00-E11, frozen confirmation E08, E12, E13, audit | `repository-guide-v1` |
-| `research/e12-h2-null-calibration` | E12: synthetic calibration, power and falsification of H2 | `e12-null-calibration` |
-| `research/e13-h2-seasonal-shift-sensitivity` | E13: season-restricted shift references for H2 | `e13-seasonal-reference-sensitivity` |
-| `research/e14-h2-empirical-yearswap-null` | E14 (Experiment B): cross-year empirical negative controls | `e14-crossyear-negative-control` |
-| `research/e15-h2-matched-pair-comparability` | E15 (Experiment A): matched-pair comparability; contains E12-E14 | `e15-matched-pair-comparability` |
-| `audit/final-experimental-audit` | Final experimental audit, evidence matrix, figure inventory | `final-experimental-audit` |
-| `manuscript/section2-figures-tables` | Main-text figures (Figs. 1-7, regime heatmap) and their scripts | `manuscript-figures-v1` |
-| `publication/supplement-evidence-audit` | Evidence inventory for the Supplementary Information | `supplement-evidence-audit` |
-| `publication/supplementary-assets` | Final Supplement figures S1-S23, tables S1-S14, manifests; contains E12-E15 | `supplementary-assets-v2` |
-
-**Frozen-record tags (never moved):**
-- `protocol-freeze` (`2b7c79e`): code and protocol frozen before the 2026 data were opened.
-- `e08-confirmation` (`4c011a8`): the single registered confirmation run.
-
-Milestone tags for each development experiment (`e00-feasibility` … `e11-x3`) are listed in the experiment index.
+- **Not redistributed.** WBEA hourly observations are not included in this repository and must be obtained from WBEA ([continuous monitoring data](https://wbea.org/data/continuous-monitoring-data/)), subject to its conditions. Derived summaries and scripts do not grant permission to redistribute the observations.
+- **Provenance.** Sources, export dates and archive checksums are recorded in [`DATA_PROVENANCE.md`](DATA_PROVENANCE.md) and [`manifests/`](manifests).
+- **Auxiliary data:**
+  - ERA5 reanalysis (Copernicus Climate Data Store): 100 m winds and boundary-layer height for specific analyses.
+  - NASA FIRMS VIIRS active-fire detections: a wildfire sensitivity flag.
+- **2026 data status.** The 2026 observations are WBEA monthly validated records and remain subject to WBEA's annual validation.
+- **Data seal.** Confirmation-period data were kept separate from development work under [`SEALED_DATA_POLICY.md`](SEALED_DATA_POLICY.md): designated builders, a code test that fails if development scripts reference sealed paths, and recorded checksums. The seal is procedural and code-enforced, not cryptographic.
 
 ---
 
 ## Experiment index
 
-| ID | Topic | Stage | Outcome | Tag |
-|---|---|---|---|---|
-| E00 | Feasibility of protocol v2.0 | development | archived | `e00-feasibility` |
-| E01 | Network geometry and instrumentation | development | 66 pairs; 27 within 30 km form the H2 family | `e01-geometry` |
-| E02 | Data quality and missingness | development | methane 90.6-94.2% valid per station | `e02-data-quality` |
-| E03 | Excursion patterns | development | night and winter peaks; co-excursion falls with distance | `e03-excursion-patterns` |
-| E04 | H1 stability association | development | gate passed | `e04-h1-gate-passed` |
-| E05 | H2 directional coupling | development | gate passed | `e05-h2-gate-passed` |
-| E06 | Detectability and lag kernel | development | kernel criterion **failed** | `e06-kernel-criterion-failed` |
-| E07 | H3 composition decomposition | development | **not supported** | `e07-h3-not-supported`, `e07-r1` |
-| PRE_E08 | Pre-confirmation benchmarks | development | complete | `pre-e08-tasks` |
-| E08 | Frozen 2026 confirmation | **registered** | H1 confirmed, H2 confirmed, H3 not confirmed | `protocol-freeze`, `e08-confirmation` |
-| E08 post | H1 negative-control and H3 weighting diagnostics | post-confirmation | covariance explanation not supported; AMS 18 dominance | (on `main`) |
-| E09 | Alternative-height (ERA5 100 m) wind | development | **inconclusive** | `e09-x4-inconclusive`, `e09-r1` |
-| E10 | Episode typology | development | **not supported** | `e10-typology-not-supported` |
-| E11 | Station contributions | development | no single station drives H1 or H2 | `e11-x3` |
-| E12 | Synthetic calibration and falsification | post-confirmation | calibration inconclusive; confounding and falsification demonstrated | `e12-null-calibration` |
-| E13 | Season-restricted references | post-confirmation | robust to shift reference | `e13-seasonal-reference-sensitivity` |
-| E14 | Cross-year negative controls (Experiment B) | post-confirmation | 1/20, 2/20, 0/20 rejections; descriptive | `e14-crossyear-negative-control` |
-| E15 | Matched-pair comparability (Experiment A) | post-confirmation | gap not explained by network, window or reference | `e15-matched-pair-comparability` |
+### Development and feasibility (2021–2025, exploratory)
 
-Each experiment folder contains its plan or protocol, code, `results/`, `figures/`, `REPORT.md` and a manifest of checksums.
+| ID | Topic | Outcome | Report |
+|---|---|---|---|
+| E00 | Feasibility | Archived | [report](experiments/E00_feasibility_v2/REPORT.md) |
+| R1 | Readiness checks | Complete | [report](experiments/R1_readiness/REPORT.md) |
+| E01 | Network geometry and instrumentation | 66 pairs; 27 within 30 km form the H2 family | [report](experiments/E01_geometry_instrumentation/REPORT.md) |
+| E02 | Data quality and missingness | Methane 90.6–94.2% valid per station | [report](experiments/E02_data_quality/REPORT.md) |
+| E03 | Excursion patterns | Night and winter peaks; co-excursion declines with distance | [report](experiments/E03_excursion_patterns/REPORT.md) |
+| E04 | H1 stability association | 0.0475 ppm/SD (0.0411–0.0520); development gate passed | [report](experiments/E04_stability_elasticity/REPORT.md) |
+| E05 | H2 directional dependence | D = 0.1285 (0.1084–0.1553); development gate passed | [report](experiments/E05_directional_coupling/REPORT.md) |
+| E06 | Detectability and lag kernel | **Kernel criterion failed** | [report](experiments/E06_detectability_kernel/REPORT.md) |
+| E07 | H3 composition | **Not supported** (0.027; −0.040 to 0.126) | [report](experiments/E07_composition_decomposition/REPORT.md) |
+| E09 | Alternative-height (ERA5 100 m) wind | **Inconclusive** | [report](experiments/E09_elevated_wind/REPORT.md) |
+| E10 | Episode typology | **Not supported** (placebo criterion failed) | [report](experiments/E10_episode_typology/REPORT.md) |
+| E11 | Station contributions | No single station drives H1 or H2 | [report](experiments/E11_station_contribution/REPORT.md) |
+| PRE_E08 | Pre-confirmation benchmarks | Complete | [report](experiments/PRE_E08/REPORT.md) |
+
+### Frozen confirmation (January–September 2026, registered)
+
+| ID | Topic | Outcome | Record |
+|---|---|---|---|
+| E08 | H1–H3 confirmation | H1 confirmed; H2 registered criteria met; H3 not confirmed | [results](experiments/E08_confirmation/confirmation_2026); [freeze record](experiments/E08_confirmation/FREEZE_RECORD.md) |
+
+### Post-confirmation diagnostics (exploratory; registered decisions unchanged)
+
+| ID | Topic | Outcome | Report |
+|---|---|---|---|
+| E08 post | H1 negative-control and H3 weighting diagnostics | Covariance explanation not supported; AMS 18 dominance | [readme](experiments/E08_post_confirmation_exploratory/README.md) |
+| E12 | Synthetic calibration and falsification | Null calibration inconclusive; seasonal confounding inflates rejection; advected driver detected | [report](experiments/E12_h2_synthetic_null_calibration/REPORT_FOR_MANUSCRIPT_AI.md) |
+| E13 | Season-restricted shift references | Observed D exceeded all 63 and all 93 surrogates (sensitivity only) | [report](experiments/E13_h2_seasonal_shift_sensitivity/E13_REPORT_FOR_MANUSCRIPT_AI.md) |
+| E14 | Cross-year empirical negative controls | 1/20, 2/20 and 0/20 rejections; dependent, descriptive | [report](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/blob/research/e14-h2-empirical-yearswap-null/experiments/E14_h2_empirical_yearswap_null/REPORT.md) (branch) |
+| E15 | Matched-pair comparability | Development–2026 gap not explained by pairs, window or reference; weight-sensitive | [report](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/blob/research/e15-h2-matched-pair-comparability/experiments/E15_h2_matched_pair_comparability/REPORT.md) (branch) |
 
 ---
 
-## Repository layout
+## Archived versions and safeguards
 
-| Path | Contents |
+| Reference | Role |
 |---|---|
-| `config/project.toml` | All parameters, random seeds and frozen rules |
-| `src/wbea/` | Shared library: guarded data loader, geometry, wind, H2 statistic, statistics, wildfire flag |
-| `src/build/` | One-time builders of the development and confirmation panels from raw exports |
-| `experiments/<ID>/` | One folder per experiment (see index above) |
-| `tests/` | Unit, regression and data-seal tests |
-| `manifests/` | SHA-256 checksums of raw archives and derived panels |
-| `metadata/` | Station coordinates, flag dictionary, temporal split |
-| `audit/` | Final experimental audit (on `main` and the audit branch) |
-| `reviews/` | Internal review records |
-| `literature/references.bib` | Reference list (PDFs are kept outside git) |
-| `DECISION_LOG.md` | Every methodological decision, with the evidence available at the time |
-| `REVIEW_BACKLOG.md` | Review items and their resolution |
-| `PROTOCOL_E08_DRAFT_v2.md` | The frozen confirmation protocol (authoritative version at tag `protocol-freeze`) |
-| `DATA_PROVENANCE.md`, `SEALED_DATA_POLICY.md` | Data sources, restrictions, and how the 2026 data were sealed |
-| `HISTORY_REWRITE.md` | Old-to-new commit hash map from the 2026-11-10 author-identity rewrite (file contents unchanged) |
+| [`protocol-freeze`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/protocol-freeze) | Code, configuration and protocol frozen before the 2026 data were opened |
+| [`e08-confirmation`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e08-confirmation) | The single registered confirmation run and its outputs |
+| Development tags (`e00-feasibility` … `e11-x3`) | Milestones of the development experiments, including failed and unsupported outcomes |
+| [`e12-null-calibration`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e12-null-calibration), [`e13-seasonal-reference-sensitivity`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e13-seasonal-reference-sensitivity), [`e14-crossyear-negative-control`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e14-crossyear-negative-control), [`e15-matched-pair-comparability`](https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms/tree/e15-matched-pair-comparability) | Archived states of the post-confirmation experiments |
+| SHA-256 manifests | Checksums of raw archives, derived panels and frozen outputs, recorded in [`manifests/`](manifests) and per-experiment manifest files |
+
+Post-confirmation work (E14, E15 and the publication assets) is developed on separate branches and has not been merged into `main`.
 
 ---
 
-## Reproducing the analyses
+## Citation and licence
 
-```bash
-git clone https://github.com/CryptoGuy1/WBEA-Methane-Atmospheric-Mechanisms.git
-cd WBEA-Methane-Atmospheric-Mechanisms
-pip install -r requirements.txt
+**Citation.** The associated manuscript is in preparation and has not been published. A formal citation will be added when a publication record is available. Until then, please cite this repository by its URL and the specific tag or commit used.
 
-# run the test suite (does not need WBEA data for most tests)
-python -m pytest -q tests
-
-# with authorised WBEA data placed in data/dev/ (see DATA_PROVENANCE.md):
-python experiments/E04_stability_elasticity/run_e04.py
-```
-
-- **Exact states:** use the tags. For example, `git checkout e08-confirmation` reproduces the registered confirmation code and outputs.
-- **Determinism:** all random seeds are fixed in `config/project.toml`. Saved results can be checked against each experiment's manifest checksums.
-- **Post-confirmation experiments** are on their branches: `git checkout research/e15-h2-matched-pair-comparability`.
-
----
-
-## Data access and integrity safeguards
-
-- **Data are not in this repository.** WBEA hourly exports are marked for authorised use only. Obtain them from WBEA (https://wbea.org/data/continuous-monitoring-data/) and verify them against the SHA-256 manifests.
-- **2026 data status.** The 2026 observations are WBEA's monthly validated records and are preliminary pending WBEA's annual validation.
-- **Sealed confirmation data.** The 2026 data were kept outside the analysis environment until the protocol was frozen. A seal test fails if any development script reads them. Named post-confirmation exemptions (E13, E15) are documented.
-- **Frozen record.** The frozen code and the registered E08 outputs are verified unchanged against their tags in every subsequent experiment.
-- **No outcome-driven changes.** Post-confirmation analyses were planned and committed before being run, and never alter the registered H1-H3 decisions.
-
----
-
-## Authors and contact
-
-Benjamin C. Nweke and Soheil Saraji, University of Wyoming.
-Contact: bnweke@uwyo.edu
-
-*Licence: to be added before publication. Until then, all rights are reserved by the authors.*
+**Licence.** No licence has been granted for this repository. A proposed MIT licence for `software/netmech` is marked as pending approval and not in force.
